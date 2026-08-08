@@ -1,0 +1,32 @@
+name: SystemAsset
+parents:
+- SemanticEntity
+description: 'Abstract base class for all deployable or operable units that exchange, transport,
+
+  store, convert, generate, or withdraw carriers within the system model.
+
+
+  SystemAsset is a genuine branch point in the hierarchy: its concrete subtree is
+
+  EnergyAssetInstance (and its subclasses). Future non-energy asset types (mechanical
+
+  balance-of-plant, civil infrastructure) would sit here as siblings to
+
+  EnergyAssetInstance without disturbing the energy asset hierarchy.
+
+
+  SystemAsset intentionally carries no attributes or relations; all domain-specific
+
+  content is expressed through typed subclasses, whose own attributes/relations are tagged by analytical perspective (belongsToGroup: dispatch/topology/power_flow/...).
+
+
+  Note: topological network nodes (Bus and its subclasses) are NOT SystemAssets.
+
+  They are NetworkNodes — points where carrier balance is enforced — and sit in a
+
+  separate branch of the SemanticEntity hierarchy.
+
+  '
+attributes: null
+relations: null
+abstract: true

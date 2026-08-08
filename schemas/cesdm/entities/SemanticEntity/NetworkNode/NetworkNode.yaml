@@ -1,0 +1,28 @@
+name: NetworkNode
+parents:
+- SemanticEntity
+description: "Abstract base class representing a topological connection point within a\nCarrierDomain\
+  \ where the domain's Carrier can be injected, withdrawn,\nexchanged, or balanced between\
+  \ connected assets.\n\nNetworkNode is explicitly NOT a SystemAsset. A node is a mathematical\
+  \ and\ntopological primitive — a point of enforced carrier balance — not a deployable\n\
+  or operable unit. In network analysis (power flow, dispatch optimisation, gas\nnetwork simulation)\
+  \ nodes are the \"where\", while assets are the \"what\".\n\nIf a physical object (a substation\
+  \ building, a compressor station) needs to be\nmodelled as an asset in addition to being\
+  \ a network node, create a separate\nEnergyAssetInstance referencing the same node via a\
+  \ relation; do not conflate\nthe two concepts on one entity.\n\nSpatial coordinates (latitude,\
+  \ longitude, elevation) are declared directly on this class,\ntagged belongsToGroup: [spatial]\
+  \ -- inherited by every typed subclass below.\n\nCarrier-specific operating-point\
+  \ attributes (voltage, pressure, temperature, head)\nbelong on typed subclasses:\n\
+  \  ElectricalBus  → nominal_voltage [kV]\n  GasBus         → nominal_pressure [bar]\n  HydrogenBus\
+  \    → nominal_pressure [bar]\n  HeatBus        → nominal_temperature [°C], nominal_pressure\
+  \ [bar]\n  WaterBus       → nominal_head [m]\n\nTopological connections (which assets attach\
+  \ to this node) are expressed via\natNode / fromNode / toNode, declared directly on the\
+  \ connecting asset, never\ndirectly on the node entity.\n"
+
+attributes: null
+relations:
+- id: locatedIn
+  required: false
+- id: belongsToCarrierDomain
+  required: false
+abstract: true

@@ -1,0 +1,149 @@
+name: GenerationUnit
+parents:
+- EnergyAssetInstance
+description: 'A deployed generation asset with stable identity, carrier/resource relations,
+  and its own operational and topological data. Every attribute/relation below is
+  tagged with belongsToGroup, indicating which analytical perspective (dispatch, topology,
+  dynamics, ...) it belongs to.
+
+  Technology-specific physical/design attributes that are mutually exclusive across
+  technologies live on dedicated subclasses instead of here: HydroGenerationUnit (hydraulic_head,
+  turbine_type, is_reversible, plus the ReservoirStorageUnit coupling), WindGenerationUnit
+  (hub_height, rotor_diameter, installation_type, number_of_turbines), SolarGenerationUnit
+  (tilt_angle, azimuth_angle, tracking_type, panel_technology), and ThermalGenerationUnit
+  (cooling_type, reactor_type, thermal_capacity). Use one of these subclasses instead
+  of GenerationUnit directly whenever the technology matches; use GenerationUnit directly
+  only for a generic or as-yet-unclassified generation asset.'
+relations:
+- id: usesDynamicModelType
+  required: false
+  belongsToGroup:
+  - dynamics
+  target: DynamicMachineModelType
+- id: hasTechnology
+  required: false
+  target: GeneratorType
+- id: hasInputResource
+  required: false
+  target: NaturalResource
+- id: hasInputCarrier
+  required: false
+  target: Carrier
+- id: hasOutputCarrier
+  required: false
+  target: Carrier
+- id: hasAvailabilityProfile
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: hasRunOfRiverInflowProfile
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: atNode
+  required: false
+  belongsToGroup:
+  - topology
+- id: hasAutomaticVoltageRegulator
+  required: false
+  belongsToGroup:
+  - dynamics
+- id: hasTurbineGovernor
+  required: false
+  belongsToGroup:
+  - dynamics
+- id: hasPowerSystemStabilizer
+  required: false
+  belongsToGroup:
+  - dynamics
+attributes:
+- id: rated_voltage
+  required: false
+  belongsToGroup:
+  - technical
+  - dynamics
+- id: rated_apparent_power
+  required: false
+  belongsToGroup:
+  - technical
+  - dynamics
+- id: generator_technology_type
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: nominal_power_capacity
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: minimum_generation
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: maximum_generation
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: variable_operating_cost
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: fixed_operating_cost
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: energy_conversion_efficiency
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: annual_resource_potential
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: dispatch_type
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: maximum_ramp_rate_up
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: maximum_ramp_rate_down
+  required: false
+  belongsToGroup:
+  - dispatch
+- id: powerflow_bus_type
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: voltage_magnitude_setpoint
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: voltage_angle_setpoint
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: active_power_setpoint
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: reactive_power_setpoint
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: maximum_active_power_output
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: minimum_active_power_output
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: maximum_reactive_power_output
+  required: false
+  belongsToGroup:
+  - power_flow
+- id: minimum_reactive_power_output
+  required: false
+  belongsToGroup:
+  - power_flow

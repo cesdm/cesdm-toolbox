@@ -1,0 +1,35 @@
+name: ExternalSupply
+parents:
+- EnergyAssetInstance
+description: "An external supply point that injects a single output carrier into an\
+  \ EnergyBus and acts as a slack source for the modelled system.\nAn ExternalSupply\
+  \ represents energy flowing into the model boundary from outside the explicitly\
+  \ modelled perimeter — e.g. an import from a neighbouring market zone, a grid connection\
+  \ of undefined origin, or a reference slack bus used as the angular and power balance\
+  \ reference in load-flow and dispatch models.\nAs a slack source it absorbs all\
+  \ power imbalances within a connected island (i.e. its injection is solved, not\
+  \ fixed). The supply price attribute defines the marginal cost of this balancing\
+  \ energy.\nDifferences from GenerationUnit:\n  - Capacity is optional (default:\
+  \ uncapacitated).\n  - The supply is not a physical asset within the modelled system;\
+  \ it\n    represents a system boundary condition.\n  - In AC power flow the connected\
+  \ bus should be assigned\n    powerflow_bus_type = slack.\n\
+  \  - In optimisation, supply_price defines\n    the\
+  \ cost of imbalance energy.\n\nOne ExternalSupply with is_slack = true should exist\
+  \ per connected electrical island.\nTopological connection is expressed via atNode; economic\n  \ parameters (supply_price, etc.) are declared directly on this class.\n"
+attributes:
+- id: supply_price
+  required: false
+  belongsToGroup: [dispatch]
+- id: supply_capacity
+  required: true
+  belongsToGroup: [dispatch]
+- id: is_slack
+  required: true
+  belongsToGroup: [dispatch]
+relations:
+- id: hasOutputCarrier
+  required: false
+  target: Carrier
+- id: atNode
+  required: false
+  belongsToGroup: [topology]

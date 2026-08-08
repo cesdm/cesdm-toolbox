@@ -1,0 +1,44 @@
+name: Controller.GOV.GGOV1
+parents:
+- Controller.GOV
+description: >
+  GE/PSS/E Generic Governor (GGOV1) — gas turbine and combined-cycle.
+attributes:
+- id: GOV_GGOV1_R
+  required: true
+- id: GOV_GGOV1_Tpelec
+  required: false
+- id: GOV_GGOV1_Kpgov
+  required: true
+- id: GOV_GGOV1_Kigov
+  required: true
+- id: GOV_GGOV1_Kdgov
+  required: false
+- id: GOV_GGOV1_Tdgov
+  required: false
+- id: GOV_GGOV1_Tact
+  required: true
+- id: GOV_GGOV1_T3
+  required: true
+- id: GOV_GGOV1_Ropen
+  required: false
+- id: GOV_GGOV1_Rclose
+  required: false
+- id: GOV_GGOV1_Kimw
+  required: false
+- id: GOV_GGOV1_Aset
+  required: false
+- id: GOV_GGOV1_Ka
+  required: false
+- id: GOV_GGOV1_Ta
+  required: false
+- id: GOV_Db
+  required: false
+- id: GOV_Pmax
+  required: true
+- id: GOV_Pmin
+  required: true
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

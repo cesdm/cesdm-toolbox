@@ -1,0 +1,8 @@
+description: "CESDM V4 default technology library \u2014 TYNDP / ENTSO-E technology\
+  \ classes.\nLoad with: model.import_library('path/to/default_library.yaml')\nEvery\
+  \ GenerationUnit and StorageUnit should reference one of these types\nvia the hasTechnology\
+  \ relation.\n\nSchema hierarchy note: GeneratorType, StorageType, ConverterType\
+  \ and TransmissionType remain technology templates, not asset classes. Concrete\
+  \ assets can use refined classes such as GenerationUnit, HydroGenerationUnit, GenerationUnit\
+  \ or ReservoirStorageUnit, while hasTechnology links them to these default library\
+  \ technology types for shared efficiencies, costs and carrier relations."

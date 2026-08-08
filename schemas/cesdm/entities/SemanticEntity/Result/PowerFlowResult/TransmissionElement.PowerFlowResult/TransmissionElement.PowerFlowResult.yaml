@@ -1,0 +1,59 @@
+name: TransmissionElement.PowerFlowResult
+parents:
+- PowerFlowResult
+description: >-
+  Power-flow result for TransmissionLine, Transformer, and
+  Interconnector assets (anything deriving from TransmissionElement).
+  Captures the standard AC power-flow branch outputs: active/reactive
+  power flow at each end (these differ due to losses/charging, hence
+  separate from/to values rather than a single flow figure), active
+  and reactive power loss, current magnitude, and thermal loading --
+  distinct from TransmissionElement.DispatchResult, which captures
+  scheduled energy flow and congestion rent from an economic-dispatch
+  run rather than an actual solved power-flow state.
+
+  Snapshot attributes hold the value from a single-snapshot solve (and
+  the most recent snapshot for a time-series run). average_loading_percent,
+  max_loading_percent, and total_active_power_loss are populated only
+  for a time-series run -- see PowerFlowRunRecord.hasTimestampSeries.
+  total_active_power_loss is an integrated energy quantity [MWh] over
+  the run's time horizon, distinct from the instantaneous
+  active_power_loss snapshot value.
+relations:
+- id: representsAsset
+  required: true
+  target:
+  - TransmissionLine
+  - Transformer
+  - Interconnector
+- id: hasLoadingProfile
+  required: false
+  target: Profile
+  description: Time series of loading_percent, for a time-series power-flow run.
+- id: hasActivePowerLossProfile
+  required: false
+  target: Profile
+  description: Time series of active_power_loss, for a time-series power-flow run.
+attributes:
+- id: active_power_flow_from
+  required: false
+- id: reactive_power_flow_from
+  required: false
+- id: active_power_flow_to
+  required: false
+- id: reactive_power_flow_to
+  required: false
+- id: active_power_loss
+  required: false
+- id: reactive_power_loss
+  required: false
+- id: current_magnitude
+  required: false
+- id: loading_percent
+  required: false
+- id: average_loading_percent
+  required: false
+- id: max_loading_percent
+  required: false
+- id: total_active_power_loss
+  required: false

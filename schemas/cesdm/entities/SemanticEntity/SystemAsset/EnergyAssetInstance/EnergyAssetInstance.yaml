@@ -1,0 +1,43 @@
+name: EnergyAssetInstance
+parents:
+- SystemAsset
+description: "Abstract base class for a specific deployed instance of an energy infrastructure\n\
+  asset. An instance carries identity information (name, via SemanticEntity),\noptionally\
+  \ references its technology type via hasTechnology, and its own\nspatial (latitude, longitude,\
+  \ elevation) and planning (commissioning_year,\ncommission_date, retrofit_date, retirement_date)\
+  \ attributes here, tagged\nbelongsToGroup.\n\nConcrete subclasses declare their own topology\
+  \ (atNode / fromNode+toNode),\ndispatch, power-flow, technical, and dynamics attributes/relations\
+  \ directly,\neach tagged with the perspective(s) they belong to -- see\ndocs/guide/05_attribute_groups.md\
+  \ for the full picture.\n\nCarrier relations (hasInputCarrier,\
+  \ hasOutputCarrier) may be set directly on the\ninstance when no EnergyTechnologyType exists\
+  \ (e.g. when importing from PyPSA,\nwhich has no formal technology-type registry). When\
+  \ an hasTechnology relation is\npresent, carrier information is preferably read from the\
+  \ referenced type entity.\n\nConcrete subclasses: GenerationUnit, StorageUnit, ReservoirStorageUnit, ConversionUnit,\n\
+  TransmissionElement, DemandUnit.\n"
+attributes:
+- id: latitude
+  required: false
+  belongsToGroup: [spatial]
+- id: longitude
+  required: false
+  belongsToGroup: [spatial]
+- id: elevation
+  required: false
+  belongsToGroup: [spatial]
+- id: commissioning_year
+  required: false
+  belongsToGroup: [planning]
+- id: commission_date
+  required: false
+  belongsToGroup: [planning]
+- id: retrofit_date
+  required: false
+  belongsToGroup: [planning]
+- id: retirement_date
+  required: false
+  belongsToGroup: [planning]
+relations:
+- id: locatedIn
+  required: false
+  belongsToGroup: [spatial]
+abstract: true

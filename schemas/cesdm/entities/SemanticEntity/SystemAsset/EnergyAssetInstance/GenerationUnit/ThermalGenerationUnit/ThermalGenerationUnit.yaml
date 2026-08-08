@@ -1,0 +1,42 @@
+name: ThermalGenerationUnit
+parents:
+- GenerationUnit
+description: >-
+  A thermal generation asset that converts heat into electricity via a
+  thermodynamic cycle — gas, coal, oil, biomass, waste, or nuclear. All
+  generic dispatch/topology/power-flow/dynamics attributes and relations
+  are inherited from GenerationUnit unchanged; this class adds the
+  physical/design attributes specific to thermal plants (cooling_type,
+  reactor_type, thermal_capacity), which do not apply to non-thermal
+  generation technologies, plus the unit-commitment parameters
+  (minimum_up_time, minimum_down_time, hot_start_cost, cold_start_cost)
+  that model a thermal unit's startup/shutdown dynamics and are not
+  meaningful for intermittent renewables or hydro. reactor_type only
+  applies to nuclear units and is left unset for every other thermal
+  technology.
+
+  Use hasTechnology to reference a GeneratorType such as:
+  "Generation.Thermal.Gas.CCGT.New", "Generation.Thermal.Coal.Subcritical",
+  "Generation.Thermal.Nuclear.PWR".
+attributes:
+- id: cooling_type
+  required: false
+  belongsToGroup: [technical]
+- id: reactor_type
+  required: false
+  belongsToGroup: [technical]
+- id: thermal_capacity
+  required: false
+  belongsToGroup: [technical]
+- id: minimum_up_time
+  required: false
+  belongsToGroup: [dispatch]
+- id: minimum_down_time
+  required: false
+  belongsToGroup: [dispatch]
+- id: hot_start_cost
+  required: false
+  belongsToGroup: [dispatch]
+- id: cold_start_cost
+  required: false
+  belongsToGroup: [dispatch]

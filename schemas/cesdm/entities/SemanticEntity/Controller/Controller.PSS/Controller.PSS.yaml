@@ -1,0 +1,26 @@
+name: Controller.PSS
+parents:
+- Controller
+abstract: true
+view_family: pss
+description: >
+  Abstract base class for all Power System Stabiliser (PSS)
+  controllers attached to a synchronous machine's AVR.
+
+  Each concrete subclass represents one specific IEEE or commercial PSS
+  model type:
+
+    Controller.PSS.STAB1   — PSS/E STAB1 / IEEE PSS1A single-input stabiliser
+    Controller.PSS.PSS2A   — IEEE PSS2A dual-input (speed + power) stabiliser
+    Controller.PSS.PSS2B   — IEEE PSS2B dual-input with additional signal path
+
+  The controlsGenerationUnit relation points to the GenerationUnit this PSS
+  is associated with; the matching hasPowerSystemStabilizer relation on
+  the generator itself completes the link.
+
+  Do not instantiate Controller.PSS directly — use a concrete subclass.
+
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

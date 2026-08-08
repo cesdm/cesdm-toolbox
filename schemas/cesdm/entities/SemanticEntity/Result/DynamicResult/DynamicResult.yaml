@@ -1,0 +1,21 @@
+name: DynamicResult
+abstract: true
+parents:
+- Result
+description: >-
+  Abstract base for time-domain dynamic simulation results (transient
+  stability, contingency, frequency response). Holds scalar aggregate
+  metrics and relations to Profile entities for a disturbance
+  simulation's outcome -- distinct from DispatchResult/PowerFlowResult,
+  which hold steady-state economic-dispatch and load-flow outcomes
+  respectively. A single generator can carry a DynamicResult alongside
+  a DynamicModel.GenerationUnit.Subtransient (its input machine model)
+  and a PowerFlowResult (its pre-disturbance operating point), from a
+  chained dispatch -> power-flow -> dynamics workflow (see
+  RunRecord.hasInputRun).
+relations:
+- id: representsAsset
+  required: true
+- id: hasRunRecord
+  required: true
+  target: DynamicRunRecord

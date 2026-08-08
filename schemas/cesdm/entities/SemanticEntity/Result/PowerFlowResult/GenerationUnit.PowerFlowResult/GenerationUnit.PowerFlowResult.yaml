@@ -1,0 +1,33 @@
+name: GenerationUnit.PowerFlowResult
+parents:
+- PowerFlowResult
+description: >-
+  Power-flow result for GenerationUnit assets. At a PV
+  (voltage-controlled) bus, active power is an input but reactive
+  power is solved by the power flow to hold the voltage setpoint; at
+  the slack bus, active power is also solved (to balance system
+  losses). This result captures those solved values -- distinct from
+  GenerationUnit.DispatchResult, which captures the economic-dispatch
+  schedule, not the power-flow solution.
+
+  Snapshot attributes hold the value from a single-snapshot solve (and
+  the most recent snapshot for a time-series run). The Profile
+  relations are populated only for a time-series run -- see
+  PowerFlowRunRecord.hasTimestampSeries.
+relations:
+- id: representsAsset
+  required: true
+  target: GenerationUnit
+- id: hasActivePowerOutputProfile
+  required: false
+  target: Profile
+  description: Time series of active_power_output, for a time-series power-flow run.
+- id: hasReactivePowerOutputProfile
+  required: false
+  target: Profile
+  description: Time series of reactive_power_output, for a time-series power-flow run.
+attributes:
+- id: active_power_output
+  required: false
+- id: reactive_power_output
+  required: false

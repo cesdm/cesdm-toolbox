@@ -1,0 +1,26 @@
+name: Controller.GOV
+parents:
+- Controller
+abstract: true
+view_family: governor
+description: >
+  Abstract base class for all speed governor and prime-mover
+  controllers attached to a synchronous machine.
+
+  Each concrete subclass represents one specific IEEE or commercial
+  governor model type:
+
+    Controller.GOV.IEEEG1  — IEEE Type G1 steam governor (IEEE Std 1110-2002)
+    Controller.GOV.GGOV1   — GE/PSS/E generic governor (gas turbine / combined cycle)
+    Controller.GOV.HYGOV   — IEEE hydro turbine-governor
+
+  The controlsGenerationUnit relation points to the GenerationUnit this governor
+  is associated with; the matching hasTurbineGovernor relation on the
+  generator itself completes the link.
+
+  Do not instantiate Controller.GOV directly — use a concrete subclass.
+
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

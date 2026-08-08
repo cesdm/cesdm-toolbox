@@ -1,0 +1,22 @@
+name: Controller
+parents:
+- SemanticEntity
+abstract: true
+description: >
+  Abstract base class shared by every AVR/governor/PSS excitation and
+  control model attached to a synchronous machine (Controller.AVR,
+  Controller.GOV, Controller.PSS). Each concrete leaf subclass
+  represents one specific IEEE or commercial model type and carries
+  only the parameters defined for that model.
+
+  The controlsGenerationUnit relation points to
+  the GenerationUnit this controller is associated with; the matching
+  relation on the generator itself (hasAutomaticVoltageRegulator /
+  hasTurbineGovernor / hasPowerSystemStabilizer) completes the link.
+
+  Do not instantiate Controller directly — use a concrete leaf subclass.
+
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

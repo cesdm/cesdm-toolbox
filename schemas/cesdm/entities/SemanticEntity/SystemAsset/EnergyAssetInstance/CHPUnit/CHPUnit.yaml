@@ -1,0 +1,69 @@
+name: CHPUnit
+parents:
+- EnergyAssetInstance
+description: >-
+  A deployed combined heat and power asset represented as one semantic entity.
+  CHPUnit is intended for the common one-fuel, two-output case in which fuel
+  is converted into electricity and useful heat. It exposes dedicated fuel,
+  electricity, and heat node relations and therefore does not require explicit
+  ConversionPort entities. For arbitrary MxN conversion systems, or when each
+  port needs its own parameters, use ConversionUnit with ConversionPort entities.
+attributes:
+- id: nominal_electrical_power_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: nominal_thermal_power_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: electrical_efficiency
+  required: false
+  belongsToGroup: [technical, dispatch]
+- id: thermal_efficiency
+  required: false
+  belongsToGroup: [technical, dispatch]
+- id: total_efficiency
+  required: false
+  belongsToGroup: [technical]
+- id: power_to_heat_ratio
+  required: false
+  belongsToGroup: [technical]
+- id: minimum_load
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_ramp_rate_up
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_ramp_rate_down
+  required: false
+  belongsToGroup: [dispatch]
+- id: variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+- id: fixed_operating_cost
+  required: false
+  belongsToGroup: [planning]
+relations:
+- id: hasTechnology
+  required: false
+  target: ConverterType
+- id: hasInputCarrier
+  required: false
+  target: Carrier
+- id: hasElectricityOutputCarrier
+  required: false
+  target: Carrier
+- id: hasHeatOutputCarrier
+  required: false
+  target: Carrier
+- id: atFuelNode
+  required: false
+  belongsToGroup: [topology]
+  target: NetworkNode
+- id: atElectricityNode
+  required: false
+  belongsToGroup: [topology]
+  target: ElectricalBus
+- id: atHeatNode
+  required: false
+  belongsToGroup: [topology]
+  target: HeatBus

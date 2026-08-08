@@ -1,0 +1,22 @@
+name: DynamicRunRecord
+parents:
+- RunRecord
+description: >-
+  Records the metadata of a single time-domain dynamic simulation
+  (transient stability, contingency, or frequency-response study). Acts
+  as the provenance anchor for all DynamicResultView entities produced
+  by that simulation. Typically chained after a PowerFlowRunRecord via
+  hasInputRun, since a dynamic simulation's pre-disturbance operating
+  point usually comes from a converged power-flow solution.
+attributes:
+- id: solver_name
+  required: false
+- id: solve_time_seconds
+  required: false
+- id: integration_method
+  required: false
+- id: simulation_timestep_seconds
+  required: false
+- id: simulation_duration_seconds
+  required: false
+relations: []

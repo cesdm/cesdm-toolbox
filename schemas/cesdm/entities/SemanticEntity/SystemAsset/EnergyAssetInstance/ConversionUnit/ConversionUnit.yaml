@@ -1,0 +1,37 @@
+name: ConversionUnit
+parents:
+- EnergyAssetInstance
+description: 'A specific deployed conversion unit that transforms one or more input
+  carriers into one or more output carriers, potentially spanning multiple CarrierDomains.
+
+  Carrier topology is expressed exclusively through ConversionPort entities. Each
+  ConversionPort records its bus connection (atNode), carrier (hasCarrier), flow direction,
+  and flow coefficient, and points back to this unit via belongsToUnit. Ports are
+  therefore discoverable without any forward relation on the unit itself.
+
+  This design makes ConversionPort the single source of truth for carrier information.
+  Do NOT set hasInputCarrier or hasOutputCarrier directly on a ConversionUnit — doing
+  so creates a second, potentially inconsistent source that import tools would have
+  to reconcile. If a quick carrier annotation is needed for tooling that does not
+  support the full port model (e.g. PyPSA import without gas network), set the carriers
+  on the GenerationUnit subclass instead, or create a minimal single-port ConversionPort.
+
+  Operational and economic parameters (nominal_power_capacity, variable_operating_cost,
+  referencePort) are held directly on the unit itself.
+
+  Examples: CHP plant, electrolyser, heat pump, fuel cell, methanation reactor, P2X
+  converter. '
+attributes:
+- id: nominal_power_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+relations:
+- id: hasTechnology
+  required: false
+  target: EnergyTechnologyType
+- id: referencePort
+  required: false
+  belongsToGroup: [dispatch]

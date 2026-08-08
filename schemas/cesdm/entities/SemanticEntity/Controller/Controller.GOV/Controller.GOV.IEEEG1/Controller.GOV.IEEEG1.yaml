@@ -1,0 +1,25 @@
+name: Controller.GOV.IEEEG1
+parents:
+- Controller.GOV
+description: >
+  IEEE Type G1 steam turbine governor (IEEEG1).
+  IEEE Std 1110-2002.
+attributes:
+- id: GOV_IEEEG1_R
+  required: true
+- id: GOV_IEEEG1_T1
+  required: true
+- id: GOV_IEEEG1_T2
+  required: false
+- id: GOV_IEEEG1_T3
+  required: true
+- id: GOV_Db
+  required: false
+- id: GOV_Pmax
+  required: true
+- id: GOV_Pmin
+  required: true
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

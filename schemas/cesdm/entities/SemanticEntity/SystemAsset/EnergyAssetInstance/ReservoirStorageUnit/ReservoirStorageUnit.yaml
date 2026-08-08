@@ -1,0 +1,56 @@
+name: ReservoirStorageUnit
+parents:
+- EnergyAssetInstance
+description: 'Water reservoir storage unit. Covers all hydraulic water bodies: natural
+  reservoirs, pondage, dams, and upper/lower reservoirs in PHS systems.
+
+  Deliberately NOT a StorageUnit subclass: a battery-style StorageUnit is one
+  physical device that both stores and converts energy, carrying its own
+  power/efficiency directly. A reservoir is only the water vessel -- the
+  power-conversion machinery (turbine/pump) is a separate physical asset,
+  the paired HydroGenerationUnit, which is where nominal_power_capacity,
+  charging/discharging power, and efficiency belong instead (as
+  maximum_pumping_power, pumping_efficiency, turbine_efficiency -- see
+  HydroGenerationUnit.yaml). A ReservoirStorageUnit therefore has no atNode
+  of its own either: its network connection is that same paired
+  HydroGenerationUnit''s atNode.
+
+  With or without natural inflow: With inflow    — reservoir-hydro or open-loop PHS.
+  Set annual_natural_inflow_energy directly on this entity. Without inflow — closed-loop
+  PHS upper reservoir. Leave annual_natural_inflow_energy unset or zero.
+
+  Coupling to generation: The linked HydroGenerationUnit accesses this reservoir via
+  drawsFromReservoir. Whether that generator has is_reversible = true (PHS) or false
+  (pure turbine) determines the operational mode — the reservoir itself does not need
+  to know.
+
+  A PHS scheme with distinct upper and lower reservoirs is represented with two ReservoirStorageUnit
+  entities and one or more HydroGenerationUnit entities. Use drawsFromReservoir for
+  the upper/source reservoir and dischargesToReservoir for the lower/downstream reservoir
+  where modelled. '
+attributes:
+- id: energy_storage_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: annual_natural_inflow_energy
+  required: false
+  belongsToGroup: [dispatch]
+- id: storage_technology_type
+  required: false
+  belongsToGroup: [dispatch]
+relations:
+- id: storesCarrier
+  required: false
+  target: Carrier
+- id: suppliesResourceTo
+  required: false
+  target: HydroGenerationUnit
+- id: hasTechnology
+  required: false
+  target: StorageType
+- id: storesResource
+  required: false
+  target: NaturalResource
+- id: hasNaturalInflowProfile
+  required: false
+  belongsToGroup: [dispatch]

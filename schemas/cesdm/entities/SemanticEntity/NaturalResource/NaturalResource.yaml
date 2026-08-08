@@ -1,0 +1,23 @@
+name: NaturalResource
+parents:
+- SemanticEntity
+description: 'Represents an exogenous natural resource or environmental potential
+  that can constrain, supply, or drive an energy conversion process but is not a
+  transported network carrier. Examples include wind, solar irradiance, river
+  flow, reservoir inflow, and geothermal heat. Natural resources are distinct
+  from Carrier entities such as electricity, hydrogen, methane, heat or CO2.
+
+  Use semantic profile relations such as hasAvailabilityProfile,
+  hasRunOfRiverInflowProfile, or hasNaturalInflowProfile to describe time-varying
+  resource availability.
+
+  '
+attributes:
+- id: name
+  required: false
+- id: resource_group
+  required: false
+- id: resource_type
+  required: false
+- id: natural_resource_unit
+  required: false

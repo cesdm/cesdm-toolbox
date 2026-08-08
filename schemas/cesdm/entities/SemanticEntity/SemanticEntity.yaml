@@ -1,0 +1,15 @@
+name: SemanticEntity
+description: 'Abstract base class from which all domain entities within the schema
+  are derived. Provides the universal identity and annotation attributes shared across
+  all modelled objects: assets, carriers, nodes, domains, results, regions,
+  and the model container itself.
+
+  '
+attributes:
+- id: name
+  required: false
+- id: long_name
+  required: false
+- id: description
+  required: false
+abstract: true

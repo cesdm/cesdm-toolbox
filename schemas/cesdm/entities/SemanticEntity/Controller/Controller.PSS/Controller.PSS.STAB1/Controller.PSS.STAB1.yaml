@@ -1,0 +1,27 @@
+name: Controller.PSS.STAB1
+parents:
+- Controller.PSS
+description: >
+  PSS/E STAB1 / IEEE PSS1A single-input stabiliser.
+  IEEE Std 421.5-2016, Section 12.2.
+attributes:
+- id: PSS_STAB1_Kstab
+  required: true
+- id: PSS_STAB1_Tw
+  required: true
+- id: PSS_STAB1_T1
+  required: true
+- id: PSS_STAB1_T2
+  required: true
+- id: PSS_STAB1_T3
+  required: false
+- id: PSS_STAB1_T4
+  required: false
+- id: PSS_Vs_max
+  required: true
+- id: PSS_Vs_min
+  required: true
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

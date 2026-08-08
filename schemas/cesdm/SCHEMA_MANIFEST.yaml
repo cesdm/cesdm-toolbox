@@ -1,0 +1,93 @@
+# CESDM schema manifest
+#
+# Declares the version of this schema tree and a stability tier per
+# schema family (top-level subdirectory of schemas/). This file is read
+# by ear.schema_manifest.SchemaManifest and attached to every loaded
+# model as model.schema_manifest.
+#
+# --------------------------------------------------------------------
+# Versioning policy (semver: MAJOR.MINOR.PATCH)
+# --------------------------------------------------------------------
+# PATCH  — wording/typo fixes, clarified descriptions, no structural change.
+# MINOR  — additive, backward-compatible change: a new optional attribute
+#          or relation, a new entity class, a new Result class.
+#          Existing valid models remain valid.
+# MAJOR  — breaking change: a renamed/removed class, attribute, or
+#          relation; a changed cardinality or required-ness; a changed
+#          inheritance root. Existing models may need migration.
+#
+# CesdmModel.import_yaml_hierarchical() compares the schema_version
+# recorded in an exported model's _cesdm_meta block against the
+# currently loaded schema's major version and warns (does not fail) on
+# a mismatch — see cesdm/domain/model/hierarchical_yaml.py.
+#
+# See docs/architecture/schema_governance.md for the full policy,
+# stability-tier definitions, and the schema-change proposal process.
+# See CHANGELOG.md for the version history of this schema tree.
+
+version: "1.0.0"
+
+description: >
+  CESDM core schema tree (electricity/gas/heat/hydrogen/water energy
+  systems). Provisional — see docs/guide/00_disclaimer.md. Not yet
+  grounded in a finalized Common Energy System Domain Ontology.
+
+changelog: CHANGELOG.md
+
+stability:
+  # Structural backbone: SemanticEntity, Port, SystemAsset. Changes here
+  # are the most disruptive possible, so this is held to the highest bar.
+  core: stable
+
+  # Asset entity classes (GenerationUnit, StorageUnit, DemandUnit, ...).
+  # Round-trip tested against PyPSA and TYNDP imports.
+  assets: stable
+
+  # NetworkNode and its per-carrier subclasses.
+  nodes: stable
+
+  # Carrier, NaturalResource.
+  carrier: stable
+
+  # Central attribute and relation registries.
+  attributes: stable
+  relations: stable
+  units: stable
+
+  # EnergySystemModel, GeographicalRegion, DispatchRunRecord. Also
+  # holds RunRecord/PowerFlowRunRecord/DynamicRunRecord -- stability
+  # tiers are per-directory, not per-file, so these newer,
+  # less-exercised classes inherit "stable" by location even though
+  # PowerFlowRunRecord/DynamicRunRecord specifically have no
+  # round-trip coverage yet. Treat them as experimental in practice
+  # until a future manifest version adds finer-grained tiering.
+  system: stable
+
+  # GeneratorType, ConverterType, StorageType templates.
+  technology: stable
+
+  # Attribute groups (belongsToGroup) declared directly on asset
+  # classes -- dispatch/topology/power_flow are exercised by the
+  # PyPSA/TYNDP/MATPOWER/pandapower import-export round trips and
+  # considered stable. spatial/planning/technical/dynamics see far
+  # less cross-tool round-trip coverage.
+  dispatch: stable
+  topology: stable
+  power_flow: stable
+  spatial: experimental
+  planning: experimental
+  technical: experimental
+  dynamics: experimental
+
+  # Result entity classes, one subtree per analysis domain.
+  results.dispatch: experimental
+  results.power_flow: experimental
+  results.dynamics: experimental
+
+  # IEEE AVR/governor/PSS controller model schemas. Exercised by
+  # tests/test_hvdc_schema.py and the Kundur two-area example, but with
+  # far fewer independent consumers than the core asset schemas.
+  controllers: experimental
+
+  # Time-series/profile schema classes.
+  profiles: stable

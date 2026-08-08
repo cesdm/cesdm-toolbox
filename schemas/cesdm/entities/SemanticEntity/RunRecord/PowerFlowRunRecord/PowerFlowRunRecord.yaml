@@ -1,0 +1,40 @@
+name: PowerFlowRunRecord
+parents:
+- RunRecord
+description: >-
+  Records the metadata of a single power-flow (load-flow) study: solver
+  and convergence behaviour, not economic-dispatch results. Acts as the
+  provenance anchor for all PowerFlowResultView entities produced by
+  that study. Frequently chained after a DispatchRunRecord via
+  hasInputRun, since the dispatched generation/demand profile is a
+  common source of the bus injections a power-flow study is run
+  against.
+
+  A power-flow study is either a single-snapshot solve (one fixed
+  operating point — the default/simpler case, and what a single call
+  to a solver like pandapower's runpp() or MATPOWER/PYPOWER produces)
+  or a time-series ("quasi-steady-state") study run across many
+  operating points, e.g. hourly across a dispatch profile. Whether
+  hasTimestampSeries is set is the signal for which kind this is: if
+  present, PowerFlowResultView entities from this run are expected to
+  populate their aggregate (average/min/max) attributes and Profile
+  relations; if absent, only the plain snapshot-value attributes are
+  meaningful.
+attributes:
+- id: solver_name
+  required: false
+- id: solve_time_seconds
+  required: false
+- id: converged
+  required: false
+- id: iteration_count
+  required: false
+- id: convergence_tolerance
+  required: false
+relations:
+- id: hasTimestampSeries
+  required: false
+  target: TimestampSeries
+  description: >-
+    Present only for a time-series power-flow study run across
+    multiple operating points. Absent for a single-snapshot solve.

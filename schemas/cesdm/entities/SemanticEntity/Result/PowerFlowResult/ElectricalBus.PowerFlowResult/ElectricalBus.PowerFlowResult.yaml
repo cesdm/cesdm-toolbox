@@ -1,0 +1,43 @@
+name: ElectricalBus.PowerFlowResult
+parents:
+- PowerFlowResult
+description: >-
+  Power-flow result for ElectricalBus nodes: the standard AC
+  power-flow state variables (voltage magnitude and angle) plus net
+  power injection at the bus.
+
+  Snapshot attributes (voltage_magnitude, voltage_angle,
+  net_active_power_injection, net_reactive_power_injection) hold the
+  value from a single-snapshot solve and are always the primary
+  values, even for a time-series run (where they hold the last/most
+  recent snapshot). The average/min/max attributes and Profile
+  relations are populated only when PowerFlowRunRecord.hasTimestampSeries
+  is set, i.e. for a time-series ("quasi-steady-state") study run
+  across multiple operating points -- see PowerFlowRunRecord.
+relations:
+- id: representsAsset
+  required: true
+  target: ElectricalBus
+- id: hasVoltageMagnitudeProfile
+  required: false
+  target: Profile
+  description: Time series of voltage_magnitude, for a time-series power-flow run.
+- id: hasVoltageAngleProfile
+  required: false
+  target: Profile
+  description: Time series of voltage_angle, for a time-series power-flow run.
+attributes:
+- id: voltage_magnitude
+  required: false
+- id: voltage_angle
+  required: false
+- id: net_active_power_injection
+  required: false
+- id: net_reactive_power_injection
+  required: false
+- id: average_voltage_magnitude
+  required: false
+- id: min_voltage_magnitude
+  required: false
+- id: max_voltage_magnitude
+  required: false

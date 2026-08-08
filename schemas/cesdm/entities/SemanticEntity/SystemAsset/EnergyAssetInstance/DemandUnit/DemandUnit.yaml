@@ -1,0 +1,65 @@
+name: DemandUnit
+parents:
+- EnergyAssetInstance
+description: 'A specific deployed demand or load entity that withdraws a carrier from
+  one EnergyBus. Connected to the network via atNode.
+
+  The DemandUnit entity carries identity attributes (name), the optional
+  hasTechnology relation, and its own operational attributes — demand
+  volumes, profiles, flexibility parameters, cost signals — declared
+  directly, tagged belongsToGroup.
+
+  Examples: an industrial electricity load at Bus H, a residential heat demand zone
+  connected to a district heating node.
+
+  '
+attributes:
+- id: annual_energy_demand
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_energy_demand
+  required: false
+  belongsToGroup: [dispatch]
+- id: demand_type
+  required: false
+  belongsToGroup: [dispatch]
+- id: is_demand_flexible
+  required: false
+  belongsToGroup: [dispatch]
+- id: flexibility_time_resolution
+  required: false
+  belongsToGroup: [dispatch]
+- id: flexibility_window_time_start
+  required: false
+  belongsToGroup: [dispatch]
+- id: flexibility_window_time_end
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_upward_adjustment
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_downward_adjustment
+  required: false
+  belongsToGroup: [dispatch]
+- id: value_of_lost_load
+  required: false
+  belongsToGroup: [dispatch]
+- id: variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+- id: active_power_demand
+  required: false
+  belongsToGroup: [power_flow]
+- id: reactive_power_demand
+  required: false
+  belongsToGroup: [power_flow]
+- id: power_factor
+  required: false
+  belongsToGroup: [power_flow]
+relations:
+- id: hasDemandProfile
+  required: false
+  belongsToGroup: [dispatch]
+- id: atNode
+  required: false
+  belongsToGroup: [topology]

@@ -1,0 +1,22 @@
+name: Interconnector
+parents:
+- TransmissionElement
+description: 'A capacity-constrained cross-border or inter-zone interconnector where
+  only the net transfer capacity (NTC) or maximum power flow matters — no detailed
+  impedance model is required. Also covers HVDC links modelled as simple power injections.
+  Flow limits are declared directly on this class. Topological connection
+  (fromNode, toNode) is declared directly here as well.
+
+  Maps to FlexEco class PN_NTC (NTC links) or PN_HVDC (HVDC links).
+
+  Examples: the CH-DE NTC interconnector (6000 MW), an HVDC link between two AC bidding
+  zones, a DC cable between countries.
+
+  '
+attributes:
+- id: maximum_power_flow_from_to
+  required: false
+  belongsToGroup: [power_flow]
+- id: maximum_power_flow_to_from
+  required: false
+  belongsToGroup: [power_flow]

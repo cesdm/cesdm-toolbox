@@ -1,0 +1,12 @@
+name: GeographicalRegion
+parents:
+- SemanticEntity
+description: 'Represents a spatial region or geographic zone used to locate assets,
+  nodes, and network elements within the modelled system. Regions may be physical
+  (e.g., watersheds, countries) or administrative (e.g., bidding zones, control areas),
+  and may be hierarchically nested via isSubRegionOf.
+
+  '
+relations:
+- id: isSubRegionOf
+  required: false

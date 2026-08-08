@@ -1,0 +1,96 @@
+StorageType:
+  Storage.Electrochemical.Battery:
+    attributes:
+    - id: name
+      value: Storage.Electrochemical.Battery
+    - id: discharging_efficiency
+      value: 0.95
+    - id: charging_efficiency
+      value: 0.9
+    - id: variable_operating_cost
+      value: 0.0
+    - id: storage_technology_type
+      value: battery
+    - id: has_natural_inflow
+      value: false
+    - id: has_active_charging
+      value: true
+    relations:
+    - id: hasCarrier
+      target: carrier.electricity
+  Storage.Hydro.PumpedHydro.ClosedLoop:
+    attributes:
+    - id: name
+      value: Storage.Hydro.PumpedHydro.ClosedLoop
+    - id: discharging_efficiency
+      value: 0.87
+    - id: charging_efficiency
+      value: 0.82
+    - id: variable_operating_cost
+      value: 0.0
+    - id: storage_technology_type
+      value: PHS
+    - id: has_natural_inflow
+      value: false
+    - id: has_active_charging
+      value: true
+    relations:
+    - id: storesResource
+      target: resource.water
+  Storage.Hydro.PumpedHydro.OpenLoop:
+    attributes:
+    - id: name
+      value: Storage.Hydro.PumpedHydro.OpenLoop
+    - id: discharging_efficiency
+      value: 0.87
+    - id: charging_efficiency
+      value: 0.82
+    - id: variable_operating_cost
+      value: 0.0
+    - id: storage_technology_type
+      value: PHS
+    - id: has_natural_inflow
+      value: true
+    - id: has_active_charging
+      value: true
+    relations:
+    - id: storesResource
+      target: resource.water
+  Storage.Hydro.Reservoir:
+    attributes:
+    - id: name
+      value: Storage.Hydro.Reservoir
+    - id: discharging_efficiency
+      value: 1.0
+    - id: charging_efficiency
+      value: 0.0
+    - id: variable_operating_cost
+      value: 0.0
+    - id: storage_technology_type
+      value: hydro
+    - id: has_natural_inflow
+      value: true
+    - id: has_active_charging
+      value: false
+    relations:
+    - id: storesResource
+      target: resource.water
+  Storage.Hydro.Pondage:
+    attributes:
+    - id: name
+      value: Storage.Hydro.Pondage
+    - id: discharging_efficiency
+      value: 1.0
+    - id: charging_efficiency
+      value: 0.0
+    - id: variable_operating_cost
+      value: 0.0
+    - id: storage_technology_type
+      value: hydro
+    - id: has_natural_inflow
+      value: true
+    - id: has_active_charging
+      value: false
+    relations:
+    - id: storesResource
+      target: resource.water

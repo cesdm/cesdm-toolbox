@@ -1,0 +1,20 @@
+name: Controller.AVR.SEXS
+parents:
+- Controller.AVR
+description: >
+  Simplified Exciter (SEXS) — PSS/E library model.
+  Efd = AVR_SEXS_Ka/(1+s·AVR_SEXS_Ta) · (Vref − Vt + Vs)
+  Limits: AVR_Efd_min ≤ Efd ≤ AVR_Efd_max
+attributes:
+- id: AVR_SEXS_Ka
+  required: true
+- id: AVR_SEXS_Ta
+  required: true
+- id: AVR_Efd_min
+  required: true
+- id: AVR_Efd_max
+  required: true
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

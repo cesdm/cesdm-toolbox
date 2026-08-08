@@ -1,0 +1,41 @@
+name: Controller.AVR.AC1A
+parents:
+- Controller.AVR
+description: >
+  IEEE Type AC1A alternator-rectifier exciter.
+  IEEE Std 421.5-2016, Section 6.
+attributes:
+- id: AVR_Tr
+  required: false
+- id: AVR_AC1A_Ka
+  required: true
+- id: AVR_AC1A_Ta
+  required: true
+- id: AVR_AC1A_Tb
+  required: false
+- id: AVR_AC1A_Tc
+  required: false
+- id: AVR_AC1A_Ke
+  required: true
+- id: AVR_AC1A_Te
+  required: true
+- id: AVR_AC1A_Kf
+  required: true
+- id: AVR_AC1A_Tf
+  required: true
+- id: AVR_AC1A_Kc
+  required: true
+- id: AVR_AC1A_Kd
+  required: true
+- id: AVR_Va_min
+  required: true
+- id: AVR_Va_max
+  required: true
+- id: AVR_Efd_min
+  required: true
+- id: AVR_Efd_max
+  required: true
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

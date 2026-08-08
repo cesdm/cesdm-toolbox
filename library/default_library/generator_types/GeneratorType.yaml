@@ -1,0 +1,702 @@
+GeneratorType:
+  Generation.Nuclear.LWR:
+    attributes:
+    - id: name
+      value: Generation.Nuclear.LWR
+    - id: long_name
+      value: Nuclear Light Water Reactor (PWR/BWR)
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.33
+    - id: variable_operating_cost
+      value: 9.0
+    - id: maximum_ramp_rate_up
+      value: 0.05
+    - id: maximum_ramp_rate_down
+      value: 0.05
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.nuclear.uranium
+  Generation.Nuclear.SMR:
+    attributes:
+    - id: name
+      value: Generation.Nuclear.SMR
+    - id: long_name
+      value: Small Modular Reactor (<300 MWe)
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.35
+    - id: variable_operating_cost
+      value: 9.0
+    - id: maximum_ramp_rate_up
+      value: 0.1
+    - id: maximum_ramp_rate_down
+      value: 0.1
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.nuclear.uranium
+  Generation.Thermal.Nuclear.Standard:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Nuclear.Standard
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.33
+    - id: variable_operating_cost
+      value: 9.0
+    - id: maximum_ramp_rate_up
+      value: 0.33
+    - id: maximum_ramp_rate_down
+      value: 0.33
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.nuclear.uranium
+  Generation.Thermal.Coal.HardCoal.Old1:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.HardCoal.Old1
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.35
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.hard_coal
+  Generation.Thermal.Coal.HardCoal.Old2:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.HardCoal.Old2
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.4
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.hard_coal
+  Generation.Thermal.Coal.HardCoal.New:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.HardCoal.New
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.46
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.hard_coal
+  Generation.Thermal.Coal.HardCoal.CCS:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.HardCoal.CCS
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.38
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.hard_coal
+  Generation.Thermal.Coal.HardCoal.Biofuel:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.HardCoal.Biofuel
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.38
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.biofuel.biomass
+  Generation.Thermal.Coal.Lignite.Old1:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.Lignite.Old1
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.35
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.lignite
+  Generation.Thermal.Coal.Lignite.Old2:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.Lignite.Old2
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.4
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.lignite
+  Generation.Thermal.Coal.Lignite.New:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.Lignite.New
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.46
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.lignite
+  Generation.Thermal.Coal.Lignite.CCS:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.Lignite.CCS
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.38
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.lignite
+  Generation.Thermal.Coal.Lignite.Biofuel:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Coal.Lignite.Biofuel
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.35
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.coal.lignite
+  Generation.Thermal.Gas.Conventional.Old1:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.Conventional.Old1
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.36
+    - id: variable_operating_cost
+      value: 1.1
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.Conventional.Old2:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.Conventional.Old2
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.41
+    - id: variable_operating_cost
+      value: 1.1
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.CCGT.Old1:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.CCGT.Old1
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.4
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.CCGT.Old2:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.CCGT.Old2
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.48
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.CCGT.Present1:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.CCGT.Present1
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.56
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.CCGT.Present2:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.CCGT.Present2
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.58
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.CCGT.New:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.CCGT.New
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.6
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.CCGT.CCS:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.CCGT.CCS
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.51
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.CCGT.Biofuel:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.CCGT.Biofuel
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.51
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.OCGT.Old:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.OCGT.Old
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.35
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Gas.OCGT.New:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Gas.OCGT.New
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.42
+    - id: variable_operating_cost
+      value: 1.6
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Thermal.Oil.LightOil.Standard:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Oil.LightOil.Standard
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.35
+    - id: variable_operating_cost
+      value: 1.1
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.oil
+  Generation.Thermal.Oil.HeavyOil.Old1:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Oil.HeavyOil.Old1
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.35
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.oil
+  Generation.Thermal.Oil.HeavyOil.Old2:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Oil.HeavyOil.Old2
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.4
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.oil
+  Generation.Thermal.OilShale.Standard.Old:
+    attributes:
+    - id: name
+      value: Generation.Thermal.OilShale.Standard.Old
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.29
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.oil.shale
+  Generation.Thermal.OilShale.Standard.New:
+    attributes:
+    - id: name
+      value: Generation.Thermal.OilShale.Standard.New
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.39
+    - id: variable_operating_cost
+      value: 3.3
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.oil.shale
+  Generation.Thermal.OilShale.Biofuel.Standard:
+    attributes:
+    - id: name
+      value: Generation.Thermal.OilShale.Biofuel.Standard
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.29
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.oil.shale
+  Generation.Thermal.Other.NonRenewable.Residual:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Other.NonRenewable.Residual
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+  Generation.Renewable.Wind.Offshore:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Wind.Offshore
+    - id: dispatch_type
+      value: nondispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.renewable.wind
+  Generation.Renewable.Wind.Onshore:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Wind.Onshore
+    - id: dispatch_type
+      value: nondispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.renewable.wind
+  Generation.Renewable.Solar.PV:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Solar.PV
+    - id: dispatch_type
+      value: nondispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.renewable.solar
+  Generation.Renewable.Solar.PV.Rooftop:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Solar.PV.Rooftop
+    - id: dispatch_type
+      value: nondispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.renewable.solar
+  Generation.Renewable.Solar.PV.Utility:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Solar.PV.Utility
+    - id: dispatch_type
+      value: nondispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.renewable.solar
+  Generation.Renewable.Solar.Thermal:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Solar.Thermal
+    - id: dispatch_type
+      value: nondispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.renewable.solar
+  Generation.Renewable.Hydro.PHS.ClosedLoop:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Hydro.PHS.ClosedLoop
+    - id: long_name
+      value: Pumped Hydro Storage — Closed Loop
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.87
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.water
+  Generation.Renewable.Hydro.PHS.OpenLoop:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Hydro.PHS.OpenLoop
+    - id: long_name
+      value: Pumped Hydro Storage — Open Loop (with natural inflow)
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.87
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.water
+  Generation.Renewable.Hydro.RunOfRiver:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Hydro.RunOfRiver
+    - id: dispatch_type
+      value: nondispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputResource
+      target: resource.water
+  Generation.Renewable.Other.Residual:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Other.Residual
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+  Generation.Hydrogen.FuelCell:
+    attributes:
+    - id: name
+      value: Generation.Hydrogen.FuelCell
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.55
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.hydrogen
+  Generation.Thermal.Hydrogen.CCGT:
+    attributes:
+    - id: name
+      value: Generation.Thermal.Hydrogen.CCGT
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 0.58
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.hydrogen
+  Generation.DemandResponse:
+    attributes:
+    - id: name
+      value: Generation.DemandResponse
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 200.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+  Generation.Adequacy:
+    attributes:
+    - id: name
+      value: Generation.Adequacy
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 250.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+  Supply.Gas:
+    attributes:
+    - id: name
+      value: Supply.Gas
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasOutputCarrier
+      target: carrier.electricity
+    - id: hasInputCarrier
+      target: carrier.fuel.fossil.gas.natural_gas
+  Generation.Renewable.Hydro.Reservoir:
+    attributes:
+    - id: name
+      value: Generation.Renewable.Hydro.Reservoir
+    - id: dispatch_type
+      value: dispatchable
+    - id: energy_conversion_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    relations:
+    - id: hasInputResource
+      target: resource.water
+    - id: hasOutputCarrier
+      target: carrier.electricity

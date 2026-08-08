@@ -1,0 +1,11 @@
+name: CompositeAsset
+parents:
+- EnergyAssetInstance
+abstract: true
+description: 'Abstract asset that groups constituent EnergyAssetInstance entities
+  into a larger plant or system. Concrete subclasses declare their own typed
+  asset-to-asset relations, expressing the actual role of each component
+  (reservoir vs turbine-generator) rather than a generic, untyped
+  "these things are related" link -- this lets validators and import tools
+  reason about the model without string parsing.
+  '

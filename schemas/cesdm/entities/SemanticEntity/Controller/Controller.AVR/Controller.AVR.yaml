@@ -1,0 +1,28 @@
+name: Controller.AVR
+parents:
+- Controller
+abstract: true
+view_family: avr
+description: >
+  Abstract base class for all Automatic Voltage Regulator (AVR) /
+  excitation system controllers attached to a synchronous machine.
+
+  Each concrete subclass represents one specific IEEE or commercial AVR
+  model type and carries only the parameters defined for that model:
+
+    Controller.AVR.SEXS    — Simplified Exciter (PSS/E, simplified studies)
+    Controller.AVR.IEEET1  — IEEE Type 1 DC exciter (IEEE Std 421.5-2016)
+    Controller.AVR.AC1A    — IEEE Type AC1A alternator-rectifier exciter
+    Controller.AVR.ST1A    — IEEE Type ST1A static (thyristor) exciter
+
+  The controlsGenerationUnit relation points to
+  the GenerationUnit this AVR is associated with; the matching
+  hasAutomaticVoltageRegulator relation on the generator itself
+  completes the link.
+
+  Do not instantiate Controller.AVR directly — use a concrete subclass.
+
+relations:
+- id: controlsGenerationUnit
+  required: true
+  target: GenerationUnit

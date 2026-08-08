@@ -1,0 +1,44 @@
+name: ConversionPort
+parents:
+- Port
+description: "A single input or output port of a ConversionUnit in the Tier 2 MIMO (multiple-input\
+  \ multiple-output) representation.\nEach ConversionPort is a first-class entity that records:\n\
+  \  - which Bus it connects to (atNode relation)\n  - which Carrier flows at this port\
+  \ (hasCarrier relation)\n  - the flow direction (input / output / bidirectional)\n  - the\
+  \ flow coefficient relative to the unit's reference port\n  - optionally a time-varying\
+  \ flow coefficient profile\n\nCarrier-specific efficiencies or output ratios are represented\
+  \ at port level through flow_coefficient. For example, for a CHP with a gas reference input,\
+  \ the electrical and heat efficiencies are the flow coefficients of the electricity and\
+  \ heat output ports, not attributes of the ConversionUnit itself.\nThe reference\
+  \ port (is_reference_port = true) defines the scale: flow_coefficient = 1.0 for the reference\
+  \ port by definition. All other ports express their flow as a signed ratio to the reference\
+  \ port flow. Positive = injection into the Bus (output); negative = withdrawal from the\
+  \ Bus (input).\nExactly one ConversionPort per ConversionUnit must be the reference port.\
+  \ It is typically the primary fuel or energy input.\nConversionPort is a domain entity,\
+  \ not a view. It describes the physical port structure of the unit, which is a topology\
+  \ fact that exists independently of any analysis.\n\nConversionPort is a structural port/interface,\
+  \ not an EnergyAssetInstance. It belongs to a ConversionUnit or component and can connect\
+  \ to NetworkNode instances."
+attributes:
+- id: port_direction
+  required: true
+- id: flow_coefficient
+  required: true
+- id: is_reference_port
+  required: false
+- id: minimum_flow_fraction
+  required: false
+- id: maximum_flow_fraction
+  required: false
+- id: maximum_output_power
+  required: false
+relations:
+- id: belongsToUnit
+  required: true
+  target: ConversionUnit
+- id: atNode
+  required: true
+  target: NetworkNode
+- id: hasCarrier
+  required: true
+  target: Carrier

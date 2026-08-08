@@ -1,0 +1,22 @@
+name: TimestampSeries
+parents:
+- SemanticEntity
+description: 'Defines a uniform time axis shared by one or more Profile entities.
+  A TimestampSeries carries only structural metadata — start point, step size, length,
+  and timezone. The actual timestamp values (Unix epoch integers) are stored in the
+  HDF5 file under /timestamps/<entity_id>/values and are optional: many workflows
+  only need the metadata to reconstruct the axis programmatically.
+
+  One TimestampSeries can be shared by many profiles that cover the same time horizon,
+  avoiding redundant storage of the time axis.
+
+  '
+attributes:
+- id: start_datetime
+  required: true
+- id: resolution
+  required: true
+- id: length
+  required: true
+- id: timezone
+  required: false

@@ -1,0 +1,79 @@
+name: StorageUnit
+parents:
+- EnergyAssetInstance
+description: 'A specific deployed storage unit that absorbs and re-releases a single
+  carrier at one EnergyBus. Connected to the network via atNode.
+
+  The StorageUnit entity carries identity attributes (name), the optional
+  hasTechnology relation, and its own operational attributes — capacity,
+  efficiencies, state-of-charge bounds — declared directly, tagged
+  belongsToGroup.
+
+  Examples: a 10 MWh battery at substation C, a generic demand-response storage.
+
+  Reservoir hydro storage (with or without pumped-hydro capability) uses the
+  separate ReservoirStorageUnit class instead, paired with a
+  HydroGenerationUnit -- not a StorageUnit subclass, since the storage vessel
+  (the reservoir) and the power-conversion machinery (the generator''s
+  turbine/pump) are two distinct physical assets there. See
+  ReservoirStorageUnit.yaml for the full reasoning.
+
+  '
+attributes:
+- id: nominal_power_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: energy_storage_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: charging_efficiency
+  required: false
+  belongsToGroup: [dispatch]
+- id: discharging_efficiency
+  required: false
+  belongsToGroup: [dispatch]
+- id: self_discharge_rate
+  required: false
+  belongsToGroup: [dispatch]
+- id: minimum_state_of_charge
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_state_of_charge
+  required: false
+  belongsToGroup: [dispatch]
+- id: initial_state_of_charge
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_ramp_rate_up
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_ramp_rate_down
+  required: false
+  belongsToGroup: [dispatch]
+- id: variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+- id: charging_variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_charging_power
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_discharging_power
+  required: false
+  belongsToGroup: [dispatch]
+- id: storage_technology_type
+  required: false
+  belongsToGroup: [dispatch]
+relations:
+- id: hasTechnology
+  required: false
+- id: storesCarrier
+  required: false
+  target: Carrier
+- id: storesResource
+  required: false
+  target: NaturalResource
+- id: atNode
+  required: false
+  belongsToGroup: [topology]

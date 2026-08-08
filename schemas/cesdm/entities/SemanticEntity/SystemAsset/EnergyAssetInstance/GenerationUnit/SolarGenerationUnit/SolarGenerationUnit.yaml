@@ -1,0 +1,27 @@
+name: SolarGenerationUnit
+parents:
+- GenerationUnit
+description: >-
+  A solar generation asset — photovoltaic (rooftop, ground-mounted, or
+  utility-scale) or concentrated solar power. All generic dispatch/
+  topology/power-flow/dynamics attributes and relations are inherited from
+  GenerationUnit unchanged; this class adds only the physical/design
+  attributes specific to solar installations, which do not apply to any
+  other generation technology.
+
+  Use hasTechnology to reference a GeneratorType such as:
+  "Generation.Renewable.Solar.PV.Rooftop", "Generation.Renewable.Solar.PV.Utility",
+  "Generation.Renewable.Solar.CSP".
+attributes:
+- id: tilt_angle
+  required: false
+  belongsToGroup: [technical]
+- id: azimuth_angle
+  required: false
+  belongsToGroup: [technical]
+- id: tracking_type
+  required: false
+  belongsToGroup: [technical]
+- id: panel_technology
+  required: false
+  belongsToGroup: [technical]

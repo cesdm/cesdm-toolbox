@@ -1,0 +1,19 @@
+name: DynamicMachineModelType
+parents:
+- SemanticEntity
+abstract: true
+description: >-
+  Abstract base class for reusable dynamic-machine model parameter sets.
+
+  A DynamicMachineModelType describes the mathematical parameters of a
+  dynamic machine model independently of a particular deployed generator.
+  Multiple GenerationUnit entities may therefore reference the same model
+  type through usesDynamicModelType when they share an identical parameter
+  set.
+
+  Generator-specific rated quantities, including rated_apparent_power and
+  rated_voltage, remain on GenerationUnit. Per-unit parameters stored on the
+  model type are interpreted on each generator's own rated base.
+
+  Concrete subclasses represent specific dynamic-model families. Do not
+  instantiate DynamicMachineModelType directly; use a concrete subclass.

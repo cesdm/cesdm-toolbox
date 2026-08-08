@@ -1,0 +1,13 @@
+name: WaterBus
+parents:
+- NetworkNode
+description: |
+  A NetworkNode within a water or hydro CarrierDomain. Carries the nominal
+  hydraulic head at this node, which together with flow determines hydraulic power.
+
+  Examples: a reservoir at 650 m head, a downstream tailwater node at 420 m head.
+
+attributes:
+- id: nominal_head
+  required: false
+relations: null

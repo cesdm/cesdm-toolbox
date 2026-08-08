@@ -1,0 +1,33 @@
+name: Transformer
+parents:
+- TransmissionElement
+description: 'A specific deployed two-winding power transformer connecting two ElectricalBuses
+  at different voltage levels. Electrical parameters (rated primary/secondary voltage,
+  short-circuit voltage, thermal rating) are declared directly on this class.
+  Topological connection (fromNode, toNode, switch states) is declared directly here as well.
+
+  Maps to FlexEco class PN_TR2.
+
+  Examples: a 380/220 kV autotransformer, a 110/20 kV distribution transformer, a
+  220/110 kV step-down transformer.
+
+  '
+attributes:
+- id: rated_primary_voltage
+  required: false
+  belongsToGroup: [power_flow]
+- id: rated_secondary_voltage
+  required: false
+  belongsToGroup: [power_flow]
+- id: short_circuit_voltage_in_percentage
+  required: false
+  belongsToGroup: [power_flow]
+- id: thermal_capacity_rating
+  required: false
+  belongsToGroup: [power_flow]
+- id: tap_ratio
+  required: false
+  belongsToGroup: [power_flow]
+- id: phase_shift_angle
+  required: false
+  belongsToGroup: [power_flow]

@@ -1,0 +1,72 @@
+name: HydroGenerationUnit
+parents:
+- GenerationUnit
+description: 'Generation unit that converts hydraulic head or water flow into electricity,
+  with or without pumping capability.
+
+  Covers all hydraulic turbine-generator machines: - Pure turbine (reservoir-hydro,
+  RoR): is_reversible = false - Reversible pump-turbine (PHS):       is_reversible
+  = true
+
+  Physical asset attributes: hydraulic_head   — net head at design conditions [m]
+  turbine_type     — pelton / francis / kaplan / bulb / reversible_francis / ternary
+  / quaternary is_reversible    — true = PHS pump-turbine; false = turbine only
+
+  Water-flow relations: drawsFromReservoir      → ReservoirStorageUnit (upper reservoir
+  / source) Water is withdrawn from here during generation. dischargesToReservoir
+  → ReservoirStorageUnit (lower reservoir / next cascade stage) Water is delivered
+  here after generation. Optional: end-of-cascade units discharge to river (no entity).
+  For PHS: this is the lower reservoir that feeds the pump. suppliesResourceTo    →
+  inverse of drawsFromReservoir (on ReservoirStorageUnit)
+
+  Cascade modelling: ReservoirA.drawsFromReservoir ← Gen1 → dischargesToReservoir
+  → ReservoirB ReservoirA.drawsFromReservoir ← Gen2 → dischargesToReservoir → ReservoirB
+  ReservoirB.drawsFromReservoir ← Gen3 → dischargesToReservoir → ReservoirC
+
+  PHS modelling: drawsFromReservoir       → upper ReservoirStorageUnit dischargesToReservoir  →
+  lower ReservoirStorageUnit Pump mode: water flows in reverse (lower → upper), governed
+  by pumping_efficiency and maximum_pumping_power, declared directly on this class.
+
+  This class adds hydro-specific identity attributes (hydraulic_head,
+  turbine_type, is_reversible), the reservoir-coupling relations above, and
+  hydro-specific dispatch attributes not applicable to other generation
+  technologies (machine_role, turbine_efficiency, maximum_pumping_power,
+  pumping_efficiency). nominal_power_capacity and every other generic
+  dispatch/topology/power-flow/dynamics attribute continues to be inherited
+  from GenerationUnit unchanged.
+
+  Reservoir-level parameters (inflow, volume) are declared directly on the
+  linked ReservoirStorageUnit entity itself.
+
+  Use hasTechnology to reference a GeneratorType such as: "Generation.Renewable.Hydro.RunOfRiver"
+  "Generation.Renewable.Hydro.Reservoir" "Generation.Renewable.Hydro.PHS.ClosedLoop"
+  "Generation.Renewable.Hydro.PHS.OpenLoop" '
+attributes:
+- id: hydraulic_head
+  required: false
+- id: turbine_type
+  required: false
+- id: is_reversible
+  required: false
+- id: machine_role
+  required: false
+  belongsToGroup: [dispatch]
+- id: turbine_efficiency
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_pumping_power
+  required: false
+  belongsToGroup: [dispatch]
+- id: pumping_efficiency
+  required: false
+  belongsToGroup: [dispatch]
+relations:
+- id: hasTechnology
+  required: false
+  target: GeneratorType
+- id: drawsFromReservoir
+  required: false
+  target: ReservoirStorageUnit
+- id: dischargesToReservoir
+  required: false
+  target: ReservoirStorageUnit

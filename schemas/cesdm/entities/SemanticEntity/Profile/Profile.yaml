@@ -1,0 +1,28 @@
+name: Profile
+parents:
+- SemanticEntity
+description: "Represents a named time series of scalar values associated with an energy\
+  \ system entity (generator resource potential, demand shape, inflow volume, price\
+  \ signal, etc.).\nThe Profile entity carries only interpretation metadata as attributes.\
+  \ The numeric payload — a float64 array of length equal to the TimestampSeries length\
+  \ — is stored exclusively in the HDF5 file under /profiles/<entity_id>/values. This\
+  \ strict separation keeps the YAML model human-readable and version-controllable\
+  \ while delegating bulk numeric storage to HDF5.\nThree profile types are supported:\n\
+  \  as_SI                    Values are in absolute SI units (e.g. MW,\n        \
+  \                   MWh, m3/s). Multiply by 1.0 to use directly.\n  as_capacity_factor\
+  \       Dimensionless fractions [0, 1]. Multiply by\n                          \
+  \ the asset nominal_power_capacity to obtain\n                           absolute\
+  \ power values.\n  as_normalized_annual_energy  Dimensionless fractions that sum\
+  \ to 1.0\n                           over the full year. Multiply by the asset\n\
+  \                           annual_energy_demand or annual_resource_potential\n\
+  \                           to obtain absolute energy values per timestep.\n"
+attributes:
+- id: profile_type
+  required: true
+- id: profile_unit
+  required: false
+- id: data_reference
+  required: true
+relations:
+- id: hasTimestampSeries
+  required: true

@@ -1,0 +1,30 @@
+name: TransmissionElement
+parents:
+- EnergyAssetInstance
+description: "Abstract base class for all assets that transport a carrier between\
+  \ two Buses within the same CarrierDomain via a directed branch.\nThe identity entity\
+  \ carries only name and optional hasTechnology. All physical, electrical, and operational\
+  \ parameters are declared directly on each concrete subclass, tagged belongsToGroup (dispatch/topology/power_flow/...).\nConcrete subclasses:\n\
+  \  TransmissionLine  — AC/DC overhead lines and underground cables.\n          \
+  \            Carries r, x, b,\n                   \
+  \   length, parallel circuits, thermal rating directly.\n  Transformer       — Two-winding\
+  \ power transformers.\n                      Carries UR1,\
+  \ UR2, Usc,\n                      thermal rating directly.\n  Interconnector    — NTC interconnectors\
+  \ and HVDC links where only\n                      transfer capacity matters (no\
+  \ detailed impedance).\n                      Carries\
+  \ P1max, P2max directly.\n"
+attributes:
+- id: from_switch_closed
+  required: false
+  belongsToGroup: [topology]
+- id: to_switch_closed
+  required: false
+  belongsToGroup: [topology]
+relations:
+- id: fromNode
+  required: false
+  belongsToGroup: [topology]
+- id: toNode
+  required: false
+  belongsToGroup: [topology]
+abstract: true
