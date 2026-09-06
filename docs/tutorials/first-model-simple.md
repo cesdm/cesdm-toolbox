@@ -2,4 +2,4 @@
 
 This page has moved.
 
-See **[Your First Model (Simple)](../getting-started/first-model-simple.md)** in Getting Started.
+See **[Build a Small Electricity System](../getting-started/first-model-simple.md)** in the Build section.

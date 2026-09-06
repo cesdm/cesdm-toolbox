@@ -1,38 +1,66 @@
-# Your First Model (Simple)
+# Build a Small Electricity System
 
-!!! abstract "Before you start"
-    - **Prerequisites:** [Installation](installation.md) or [Quickstart](quickstart.md)
-    - **Time:** ~10 minutes
-    - **You'll learn:** load schemas, create a tiny electricity model, mix Core and Proxy API, validate, export
+!!! abstract "You will"
+    - Build one bus, wind, PV, reservoir hydro, and demand
+    - See how CESDM names those objects and their connections
+    - Run the script, validate, and export YAML + profiles
+    - **Time:** ~10 minutes after [Quickstart](quickstart.md) / [Installation](installation.md)
 
-This is the **recommended first hands-on tutorial**. It builds a minimal single-domain model — one bus, one wind farm, one demand unit — in about 40 lines of Python.
+In 10 minutes you create this system, validate it, and export it.
 
-[Building your CESDM Model](../tutorials/building-first-model/overview.md) goes much further (gas, heat, hydro, profiles, interconnectors). Start here first.
+The same script is `docs/examples/minimal_electricity_model.py`. This page walks through it.
+
+The [CH + neighbours tutorial](../tutorials/building-first-model/overview.md) adds other countries, gas, heat, and interconnectors. Start here first.
 
 ---
 
-## What you will build
+## 1. What are we building?
 
 ```text
-EnergySystemModel  DEMO_2030
-    └── CarrierDomain  domain.electricity
-            ├── ElectricalBus  bus.demo
-            ├── GenerationUnit  gen.demo.wind   → library wind technology
-            └── DemandUnit      dem.demo
+Wind 500 MW ───┐
+PV 300 MW ─────┼──► Bus (380 kV) ───► Demand 2 TWh/year
+Hydro 200 MW ──┘
+      ▲
+      └── Reservoir 50 GWh  +  seasonal inflow
 ```
 
-| Step | API | What you create |
-|------|-----|-----------------|
-| 1 | Setup | Schema + default library |
-| 2 | **Core [EAR](../community/glossary.md#ear)** | System container + electricity domain |
-| 3 | **[Proxy API](../community/glossary.md#proxy-api)** | Bus, generator, demand |
-| 4 | Either | Validate + export |
+One aggregated node. Wind and PV have hourly availability. Demand and reservoir inflow have hourly shapes. Everything sits in study `DEMO_2030` and the electricity carrier domain from the default library.
 
 ---
 
-## Run the complete script
+## 2. How does CESDM represent it?
 
-From the **cesdm-toolbox repository root**:
+| Physical object | CESDM entity | Key links |
+|-----------------|--------------|-----------|
+| Study | `EnergySystemModel` `DEMO_2030` | — |
+| Electricity domain | `CarrierDomain` (from library) | `belongsToCarrierDomain` on the bus |
+| Switzerland | `GeographicalRegion` `region.country.CH` | `belongsToGeographicalRegion` on the bus |
+| Grid node | `ElectricalBus` `bus.demo` | 380 kV |
+| Wind farm | `GenerationUnit` `gen.demo.wind` | `atNode` → bus; library wind technology |
+| Utility PV | `GenerationUnit` `gen.demo.pv` | `atNode` → bus; library PV technology |
+| Reservoir | `HydraulicStorageUnit` `storage.demo.reservoir` | stores water; inflow profile |
+| Hydro turbines | `HydroGenerationUnit` `gen.demo.hydro` | `atNode` → bus; `drawsFromHydraulicStorage` |
+| Load | `DemandUnit` `dem.demo` | `atNode` → bus; 2 TWh/year |
+| Hourly shapes | `Profile` + `TimestampSeries` | demand, wind CF, PV CF, inflow |
+
+```text
+PHYSICAL SYSTEM                      CESDM MODEL
+
+  Wind / PV / Hydro                    GenerationUnit / HydroGenerationUnit
+       │                                        │
+       ▼                                        │ atNode
+     Bus ──────── Demand              ElectricalBus ◄── atNode ── DemandUnit
+       ▲
+    Reservoir                      HydraulicStorageUnit
+```
+
+You do not redefine wind or PV technology. You **reference** library types.
+
+---
+
+## 3. Python implementation
+
+Run the complete script from the **repository root**:
 
 ```bash
 python docs/examples/minimal_electricity_model.py
@@ -41,32 +69,28 @@ python docs/examples/minimal_electricity_model.py
 Expected output:
 
 ```text
-Validated N entities and exported to output/minimal_electricity_model
+Validated model and exported to output/minimal_electricity_model
+  profiles: demand, wind CF, PV CF, hydro inflow (8760 h → profiles.h5)
 ```
 
-Inspect `output/minimal_electricity_model/demo_2030.yaml`, `profiles.h5`, and the `frictionless/` folder.
+Inspect `output/minimal_electricity_model/demo_2030.yaml`, `profiles.h5`, and `frictionless/`.
 
----
+The same model, step by step:
 
-## Step-by-step (same model)
-
-### 1 — Load schema and library
+### Load schema and libraries
 
 ```python
 from cesdm_toolbox import build_model_from_yaml
-from cesdm.default_library import Carriers, GeneratorTypes
+from cesdm.default_library import CarrierDomains, GeneratorTypes, NaturalResources
 
 model = build_model_from_yaml("schemas/cesdm")
 model.import_library("library/default_library")
+model.import_library("library/regions_library")
 ```
 
-### 2 — Core EAR API: system; electricity domain from the library
-
-Use the three core operations explicitly for the study container — this is what every CESDM model uses under the hood. Default CarrierDomains come from the library after `import_library`:
+### Study container and shared objects
 
 ```python
-from cesdm.default_library import CarrierDomains
-
 model.add_entity(entity_class="EnergySystemModel", entity_id="DEMO_2030")
 model.add_attribute(
     entity_id="DEMO_2030",
@@ -75,36 +99,62 @@ model.add_attribute(
 )
 
 electricity = model.get_entity(CarrierDomains.DOMAIN_ELECTRICITY)
+region_ch = model.get_entity("region.country.CH")
+
+ts = model.add_entity("TimestampSeries", "ts.hourly.2030")
+ts.start_datetime = "2030-01-01T00:00:00"
+ts.resolution = "PT1H"
+ts.length = 8760
+ts.timezone = "UTC"
 ```
 
-### 3 — Proxy API: bus, generator, demand
-
-For assets, the Proxy API is shorter and easier to read:
+### Bus, generation, storage, demand
 
 ```python
 bus = model.add_entity("ElectricalBus", "bus.demo")
 bus.name = "Demo bus 380 kV"
 bus.nominal_voltage = (380, "kV")
 bus.belongsToCarrierDomain = electricity
+bus.belongsToGeographicalRegion = region_ch
 
-gen = model.add_entity("GenerationUnit", "gen.demo.wind")
-gen.name = "Demo wind farm"
-gen.nominal_power_capacity = (500, "MW")
-gen.hasTechnology = GeneratorTypes.GENERATION_RENEWABLE_WIND_ONSHORE
-gen.atNode = bus
+wind = model.add_entity("GenerationUnit", "gen.demo.wind")
+wind.name = "Demo wind farm"
+wind.nominal_power_capacity = (500, "MW")
+wind.hasTechnology = GeneratorTypes.GENERATION_RENEWABLE_WIND_ONSHORE
+wind.hasInputResource = NaturalResources.RESOURCE_RENEWABLE_WIND
+wind.atNode = bus
+
+pv = model.add_entity("GenerationUnit", "gen.demo.pv")
+pv.name = "Demo utility PV"
+pv.nominal_power_capacity = (300, "MW")
+pv.hasTechnology = GeneratorTypes.GENERATION_RENEWABLE_SOLAR_PV_UTILITY
+pv.hasInputResource = NaturalResources.RESOURCE_RENEWABLE_SOLAR
+pv.atNode = bus
+
+reservoir = model.add_entity("HydraulicStorageUnit", "storage.demo.reservoir")
+reservoir.energy_storage_capacity = (50_000, "MWh")
+reservoir.annual_natural_inflow_energy = (200_000, "MWh/year")
+reservoir.storesResource = NaturalResources.RESOURCE_WATER
+
+hydro = model.add_entity("HydroGenerationUnit", "gen.demo.hydro")
+hydro.nominal_power_capacity = (200, "MW")
+hydro.atNode = bus
+hydro.drawsFromHydraulicStorage = reservoir
 
 demand = model.add_entity("DemandUnit", "dem.demo")
-demand.name = "Demo electricity demand"
 demand.annual_energy_demand = (2_000_000, "MWh/year")  # 2 TWh/year
 demand.atNode = bus
 ```
 
+The script also attaches **hourly profiles** (demand shape, wind and PV capacity factors, reservoir inflow) and writes them to `profiles.h5`. See [Profiles](../guides/profiles.md) for the pattern.
+
 !!! tip "Units"
-    CESDM validates attribute units against the schema. `annual_energy_demand` must use **`MWh/year`** (not `GWh`). Convert: 1 GWh = 1,000 MWh.
+    `annual_energy_demand` must use **`MWh/year`** (not `GWh`). 1 GWh = 1,000 MWh.
 
-Both APIs write to the **same model**. Core API is explicit; Proxy API is what you will use most often for your own studies — see [Object-oriented Proxy API](../guides/proxy-api.md).
+!!! abstract "Two Python styles"
+    This tutorial assigns attributes on entity handles (`bus.name = …`, `gen.atNode = bus`). That is the day-to-day style. The same model can be built with explicit `add_attribute` / `add_relation` calls — see [Proxy API](../guides/proxy-api.md) when you need that distinction.
 
-### 4 — Validate and export
+### Validate and export
 
 ```python
 errors = model.validate()
@@ -124,35 +174,37 @@ model.export_frictionless(
 
 ---
 
-## Optional: run in Jupyter
+## 4. Result
 
-Copy the steps above into a new notebook, or run the script in a single cell:
+| Output | Meaning |
+|--------|---------|
+| `validate()` with no errors | Schema-ready system description |
+| `demo_2030.yaml` | Hierarchical model you can version-control |
+| `profiles.h5` | 8760-hour demand, wind CF, PV CF, inflow |
+| `frictionless/` | Tabular package for spreadsheets and pipelines |
+
+Optional in Jupyter:
 
 ```python
 %run docs/examples/minimal_electricity_model.py
 ```
 
-You do **not** need Jupyter for this tutorial; the script is enough for a first win.
-
 ---
 
-## What this tutorial deliberately skips
+## What this tutorial skips
 
-To stay short, this example omits:
+- Neighbouring countries and interconnectors
+- Gas, heat, and conversion units
+- Multi-bus network detail
 
-- geographical regions and multi-country scope;
-- gas, heat, and other [carrier domains](../community/glossary.md#carrier-domain);
-- [profiles](../guides/profiles.md) and [timestamp series](../community/glossary.md#timestamp-series);
-- interconnectors and conversion units.
-
-Those appear in [Building your CESDM Model](../tutorials/building-first-model/overview.md).
+Those are in [Building your CESDM Model](../tutorials/building-first-model/overview.md).
 
 ---
 
 ## Next step
 
-1. **[Core Concepts](core-concepts.md)** — name what you did (class vs instance, [EAR](../community/glossary.md#ear))
-2. **[Proxy API](../guides/proxy-api.md)** — build your own models efficiently
-3. **[Building your CESDM Model](../tutorials/building-first-model/overview.md)** — full multi-domain reference when you are ready
+1. **[How CESDM represents your system](core-concepts.md)** — class vs instance, attributes, relations
+2. **[Modelling workflow](../guides/modelling-workflow.md)** — build → validate → export
+3. **[Building your CESDM Model](../tutorials/building-first-model/overview.md)** — full multi-domain reference
 
-→ [Modeller cheat sheet](modeller-cheat-sheet.md)
+→ [Cheat sheet](modeller-cheat-sheet.md)

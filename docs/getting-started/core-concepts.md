@@ -1,11 +1,11 @@
-# Core Concepts
+# How CESDM Represents Your System
 
 The previous chapters introduced **why CESDM is needed** and **what CESDM is**.
 
 This chapter explains **how CESDM represents an energy system** — in terms a energy system modeller can use immediately, without reading the full schema reference first. Terms marked with links point to the [Glossary](../community/glossary.md).
 
 !!! abstract "Before you continue"
-    **Recommended:** Complete the [Quickstart](quickstart.md) or [Your First Model (Simple)](first-model-simple.md) tutorial first so you have already created entities in practice. This page names what you were doing.
+    **Recommended:** Complete [Build a Small Electricity System](first-model-simple.md) first so you have already created entities in practice. This page names what you were doing.
 
 ---
 

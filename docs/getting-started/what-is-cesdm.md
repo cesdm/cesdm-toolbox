@@ -168,6 +168,6 @@ The analysis tools named in this chapter are independent open-source or in-house
 
 ## Next Step
 
-**Energy system modellers:** [Core Concepts](core-concepts.md) (~10 min) — or [Quickstart](quickstart.md) if you prefer to install first.
+**Energy system modellers:** [Build a Small Electricity System](first-model-simple.md) — or [CESDM in 5 Minutes](cesdm-in-5-minutes.md) if you have not installed yet.
 
-→ [Concepts overview](concepts.md) · [Core Concepts](core-concepts.md) · [← Learning path](choose-your-path.md)
+→ [How CESDM represents your system](core-concepts.md) · [CESDM vs other tools](cesdm-vs-others.md) · [Choose your path](choose-your-path.md)

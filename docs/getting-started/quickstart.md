@@ -1,6 +1,6 @@
 # Quickstart for Energy System Modellers
 
-From zero to a **validated, exportable CESDM model** in about **20 minutes**. No need to read schemas or [EAR](../community/glossary.md#ear) theory first — you pick that up as you build.
+From zero to a **validated, exportable CESDM model** in about **20 minutes**. No need to read schemas first — you pick that up as you build.
 
 !!! abstract "What you will do"
     1. Install and verify the toolbox (~10 min)
@@ -9,7 +9,8 @@ From zero to a **validated, exportable CESDM model** in about **20 minutes**. No
 
 !!! info "Time"
     ~10 min install + ~10 min hands-on.  
-    **Run the script first**, then read [Your First Model (Simple)](first-model-simple.md) to understand each line.
+    **Prefer to read first?** [CESDM in 5 Minutes](cesdm-in-5-minutes.md) (no install).  
+    **Run the script first**, then read [Build a Small Electricity System](first-model-simple.md).
 
 !!! tip "Need uv, Poetry, or Conda?"
     This page uses plain `venv` + `pip`. Other environment managers are in the [Installation guide](installation.md).
@@ -72,7 +73,7 @@ Validated model and exported to .../output/minimal_electricity_model
 - [ ] File `profiles.h5` holds the synthetic hourly arrays
 - [ ] Subfolder `frictionless/` contains tabular export files
 
-If validation fails, see [Troubleshooting](#troubleshooting) or the [First Model tutorial](first-model-simple.md).
+If validation fails, see [Troubleshooting](#troubleshooting) or [Build a Small Electricity System](first-model-simple.md).
 
 ---
 
@@ -85,15 +86,15 @@ If validation fails, see [Troubleshooting](#troubleshooting) or the [First Model
 | `profiles.h5` | Synthetic hourly demand, wind/PV capacity factors, hydro inflow |
 | `frictionless/` | Tabular [Frictionless](../community/glossary.md#frictionless-data-package) package for tools and pipelines |
 
-This is an **agreed description of the physical system** — the [Goal](../index.md#what-is-cesdm) of CESDM: harmonised data you can exchange with collaborators and use as a common basis when comparing results.
+This is an **agreed description of the physical system** — the [goal](what-is-cesdm.md) of CESDM: harmonised data you can exchange with collaborators and use as a common basis when comparing results.
 
-The script uses the **Core [EAR](../community/glossary.md#ear) API** for the system container and carrier domain, and the **[Proxy API](../community/glossary.md#proxy-api)** for buses and assets — the pattern you will use in your own studies.
+The script creates the study container, then assigns attributes and relations on entity handles (`bus.name = …`, `gen.atNode = bus`). That is enough for this first run.
 
 ---
 
 ## Step 4 — Understand what you ran
 
-**Next:** open **[Your First Model (Simple)](first-model-simple.md)** (~10 min read) — it walks through the same script line by line.
+**Next:** open **[Build a Small Electricity System](first-model-simple.md)** (~10 min) — physical picture, CESDM mapping, then the same script.
 
 Optional deeper path later: [Building your CESDM Model](../tutorials/building-first-model/overview.md) (`pip install -e ".[jupyter]"` for the notebook).
 
@@ -103,11 +104,11 @@ Optional deeper path later: [Building your CESDM Model](../tutorials/building-fi
 
 | Order | Page | Why |
 |-------|------|-----|
-| 1 | [Core Concepts](core-concepts.md) | Name what you did — entities, attributes, relations |
+| 1 | [How CESDM represents your system](core-concepts.md) | Name what you did — entities, attributes, relations |
 | 2 | [What is CESDM?](what-is-cesdm.md) | Why exchange and multi-analysis matter |
-| 3 | [Proxy API](../guides/proxy-api.md) | Build your own study models efficiently |
-| 4 | [Modelling Workflow](../guides/modelling-workflow.md) | Full build → validate → export lifecycle |
-| 5 | [Modeller cheat sheet](modeller-cheat-sheet.md) | Quick patterns while modelling |
+| 3 | [Modelling workflow](../guides/modelling-workflow.md) | Full build → validate → export lifecycle |
+| 4 | [Cheat sheet](modeller-cheat-sheet.md) | Quick patterns while modelling |
+| 5 | [Proxy API](../guides/proxy-api.md) | Optional — Python style when you write your own study |
 
 Lookup: [Glossary](../community/glossary.md) · [FAQ](../community/faq.md) · [Documentation map](choose-your-path.md#documentation-map)
 
@@ -120,11 +121,11 @@ Lookup: [Glossary](../community/glossary.md) · [FAQ](../community/faq.md) · [D
 | `ModuleNotFoundError: cesdm_toolbox` | Activate venv; run `pip install -e .` from repo root |
 | `FileNotFoundError: schemas/cesdm` | Run commands from **cesdm-toolbox** root, not `docs/` |
 | `No such file: docs/examples/minimal_electricity_model.py` | Update to a recent toolbox clone; script ships in `docs/examples/` |
-| Validation errors | Wrong units or missing relations — see [First Model tutorial](first-model-simple.md) |
+| Validation errors | Wrong units or missing relations — see [Build a Small Electricity System](first-model-simple.md) |
 | Python &lt; 3.11 | Upgrade Python; see [Installation](installation.md) |
 
 More: [Installation — Troubleshooting](installation.md#troubleshooting).
 
 ---
 
-→ **[Your First Model (Simple)](first-model-simple.md)** — understand the script you just ran
+→ **[Build a Small Electricity System](first-model-simple.md)** — understand the script you just ran

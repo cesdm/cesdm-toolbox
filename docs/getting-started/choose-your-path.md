@@ -1,144 +1,103 @@
 # Choose Your Path
 
-CESDM documentation is organised around what you want to accomplish. **Lost?** Use the [documentation map](#documentation-map) below. **Ready to build?** Start with the [Quickstart](quickstart.md).
+Pick the shortest path for what you want to do. Lost? Use the [map](#documentation-map) at the bottom.
 
-!!! abstract "Concepts tab — essential vs on demand"
-    **Essential (~45 min):** [What is CESDM?](what-is-cesdm.md) → [Core Concepts](core-concepts.md) → [Schemas](schemas.md) → [Validation](validation.md) → [Proxy API](../guides/proxy-api.md) → [Libraries](../guides/libraries.md) — then [Building Models](../guides/modelling-workflow.md).  
-    Full guide: [Concepts overview](concepts.md).
-
-!!! tip "Default Modelling path"
-    [Quickstart](quickstart.md) (~20 min) → [Your First Model (Simple)](first-model-simple.md) (~10 min) → [Core Concepts](core-concepts.md) → [Schemas](schemas.md) → [Validation](validation.md) → [Proxy API](../guides/proxy-api.md) → [Libraries](../guides/libraries.md)
+!!! tip "Default path (energy-system modeller)"
+    [CESDM in 5 Minutes](cesdm-in-5-minutes.md) → [Build a Small Electricity System](first-model-simple.md) → [How CESDM represents your system](core-concepts.md) → [Schemas](schemas.md) → [Validation](validation.md)
 
 ---
 
-## Energy system modeller
+## Energy-system modeller
 
-*You study energy systems and want a shared, tool-independent model of the physical system.*
+*I want to build or exchange models.*
+
+**Start:** [Build a Small Electricity System](first-model-simple.md) (or [Quickstart](quickstart.md) if you still need to install).
 
 | Step | Page | Why |
 |------|------|-----|
-| 1 | [Quickstart](quickstart.md) | Install, run script, confirm exports (~20 min) |
-| 2 | [Your First Model (Simple)](first-model-simple.md) | Understand the script — Core + Proxy API (~10 min) |
-| 3 | [What is CESDM?](what-is-cesdm.md) | Why harmonised exchange and comparison matter |
-| 4 | [Core Concepts](core-concepts.md) | Entities, attributes, relations |
-| 5 | [Schemas](schemas.md) | Vocabulary layer |
-| 6 | [Validation](validation.md) | Schema and analysis-specific checks |
-| 7 | [Proxy API](../guides/proxy-api.md) | Day-to-day Python access |
-| 8 | [Libraries](../guides/libraries.md) | Import shared reference entities |
-| 9 | [Modelling Workflow](../guides/modelling-workflow.md) | Build → validate → export lifecycle |
-| 10 | [Building your CESDM Model](../tutorials/building-first-model/overview.md) | Full multi-domain reference (~45 min, optional) |
-| 11 | [Conversion Units](../tutorials/conversion-units/overview.md) | Heat pump, electrolyser, boiler, fuel cell, CHP (~30 min) |
-| 12 | [Modeller cheat sheet](modeller-cheat-sheet.md) | Quick patterns while modelling |
+| 1 | [CESDM in 5 Minutes](cesdm-in-5-minutes.md) | Problem and picture, no install |
+| 2 | [Quickstart](quickstart.md) | Install and run the script (~20 min) |
+| 3 | [Build a Small Electricity System](first-model-simple.md) | Wind, PV, hydro, demand — validate and export |
+| 4 | [How CESDM represents your system](core-concepts.md) | Entities, attributes, relations |
+| 5 | [Schemas](schemas.md) · [Validation](validation.md) | Vocabulary and checks |
+| 6 | [Libraries](../guides/libraries.md) · [Profiles](../guides/profiles.md) | Shared types and time series |
+| 7 | [Building your CESDM Model](../tutorials/building-first-model/overview.md) | CH + neighbours, multi-carrier (optional) |
+| 8 | [Cheat sheet](modeller-cheat-sheet.md) | Patterns while modelling |
 
-**Typical questions:** *How do I add a wind farm?* → [Cheat sheet](modeller-cheat-sheet.md) + [Proxy API](../community/glossary.md#proxy-api). *Load profile?* → [Profiles](../guides/profiles.md). *Ready for power flow?* → [Validation — analysis-specific](validation.md#analysis-specific-validation).
+Python style for day-to-day work lives under [Develop — Proxy API](../guides/proxy-api.md) when you need it — not in the first hour.
+
+---
+
+## Existing PyPSA / pandapower user
+
+*I want to convert an existing model.*
+
+**Start:** [Tool adapters](../guides/tool-adapters.md).
+
+Then: [Validation](validation.md) → export formats in [Modelling workflow](../guides/modelling-workflow.md).
 
 ---
 
 ## Tool developer
 
-*You integrate CESDM into analysis software or data pipelines.*
+*I want to integrate CESDM into my software.*
 
-| Step | Page |
-|------|------|
-| 1 | [Schemas](schemas.md) |
-| 2 | [Schema Augmentation](schemas-in-depth.md) |
-| 3 | [EAR API Reference](../reference/api-reference.md) |
+**Start:** [Schemas](schemas.md) → [Schema augmentation](schemas-in-depth.md) → [EAR API Reference](../reference/api-reference.md).
+
+See also [Project status](project-status.md) and [CESDM vs other tools](cesdm-vs-others.md).
 
 ---
 
 ## Curious reader
 
-*Understand CESDM before installing anything.*
+*Understand CESDM before installing.*
 
-| Step | Page |
-|------|------|
-| 1 | [Welcome](../index.md) |
-| 2 | [What is CESDM?](what-is-cesdm.md) |
-| 3 | [Core Concepts](core-concepts.md) |
-| 4 | [FAQ](../community/faq.md) |
+[CESDM in 5 Minutes](cesdm-in-5-minutes.md) → [What is CESDM?](what-is-cesdm.md) → [CESDM vs other tools](cesdm-vs-others.md) → [FAQ](../community/faq.md)
 
 No Python required.
 
 ---
 
-## Visual overview
-
-```mermaid
-flowchart LR
-    A[Quickstart] --> B[First Model]
-    B --> C[Core Concepts]
-    C --> D[Proxy API]
-    D --> E[Your study]
-    E --> F[Validate and export]
-```
-
-Optional: [Building your CESDM Model](../tutorials/building-first-model/overview.md) after you are comfortable with the simple model.
-
----
-
 ## Documentation map
 
-How the site is organised by tab.
-
-### Home
+### Learn
 
 | Page | Content |
 |------|---------|
-| [Welcome](../index.md) | What / Why / Architecture — links to Quickstart |
+| [CESDM in 5 Minutes](cesdm-in-5-minutes.md) | Physical system → CESDM names |
+| [What is CESDM?](what-is-cesdm.md) | Motivation and hub vs chain |
+| [CESDM vs other tools](cesdm-vs-others.md) | PyPSA, CIM, CrossContract |
+| [Project status](project-status.md) | Available / experimental / planned |
+| [How CESDM represents your system](core-concepts.md) | Entities, attributes, relations |
+| [Schemas](schemas.md) · [Validation](validation.md) | Rules and checks |
 
-### Getting Started (~30 min core path)
-
-| Page | Time |
-|------|------|
-| [Quickstart](quickstart.md) | ~20 min — install, run script, confirm exports |
-| [Your First Model (Simple)](first-model-simple.md) | ~10 min — walk through the script |
-| [Installation](installation.md) | Full install (uv, Poetry, Conda, extras) |
-| [Choose Your Path](choose-your-path.md) | This page — roles and site map |
-
-### Concepts (~45 min essential)
-
-| Page | When |
-|------|------|
-| [Concepts overview](concepts.md) | How this tab fits together |
-| [What is CESDM?](what-is-cesdm.md) | Motivation and scope (~15 min) |
-| [Core Concepts (EAR)](core-concepts.md) | Entities, attributes, relations (~10 min) |
-| [Schemas](schemas.md) | Vocabulary layer — or [CESDM Schema Reference](../reference/schema-reference.md) for lookup |
-| [Validation](validation.md) | Schema and analysis-specific checks |
-| [Proxy API](../guides/proxy-api.md) | Day-to-day Python modelling (~10 min) |
-| [Libraries](../guides/libraries.md) | Import the default library — carriers, technologies, resources |
-| [Carrier Domains](../guides/carrier-domains.md) | Multi-carrier systems |
-
-### Building Models
+### Build
 
 | Page | Content |
 |------|---------|
-| [Modelling Workflow](../guides/modelling-workflow.md) | Build → validate → export lifecycle |
-| [Modeller cheat sheet](modeller-cheat-sheet.md) | Quick patterns while building |
-| [Profiles & Time-series](../guides/profiles.md) | Time-dependent data |
-| [Building your CESDM Model](../tutorials/building-first-model/overview.md) | Notebook or parts — full reference model |
-| [Spatial Aggregation (optional)](../guides/spatial-aggregation.md) | Coarser spatial models |
+| [Build a Small Electricity System](first-model-simple.md) | Canonical first tutorial |
+| [Quickstart](quickstart.md) · [Installation](installation.md) | Install and run |
+| [Building your CESDM Model](../tutorials/building-first-model/overview.md) | Full reference model |
+| [Modelling workflow](../guides/modelling-workflow.md) | Build → validate → export |
 
-### Building Applications
+### Use
 
 | Page | Content |
 |------|---------|
-| [Schema Augmentation](schemas-in-depth.md) | Extend the schema vocabulary |
-| [EAR API Reference](../reference/api-reference.md) | Low-level `ear` engine API |
+| [Profiles](../guides/profiles.md) | Time series |
+| [Libraries](../guides/libraries.md) | Shared technologies and carriers |
+| [Tool adapters](../guides/tool-adapters.md) | PyPSA, pandapower, MATPOWER |
+| [Carrier domains](../guides/carrier-domains.md) | Electricity, gas, heat |
 
-### Reference
+### Look up / Develop
 
-| Page | Use when |
-|------|----------|
-| **[CESDM Schema Reference](../reference/schema-reference.html)** | Look up entity classes, attributes, relations (interactive) |
-| [Modeller Cheat Sheet](modeller-cheat-sheet.md) | Quick patterns while building |
-| [Glossary](../community/glossary.md) | Shared terms |
-| [EAR API Reference](../reference/api-reference.md) | Low-level `ear` engine (integrators) |
-| [Python Typings & Proxies (optional)](../guides/python-typing-proxies.md) | IDE autocomplete and type checking for the Proxy API |
-
-### Community
-
-[FAQ](../community/faq.md) · [Glossary](../community/glossary.md) · [Contributing](../community/contributing.md) · [About](about.md) · [Disclaimer](disclaimer.md)
+| Page | Content |
+|------|---------|
+| **[Schema Reference](../reference/schema-reference.html)** | Classes, attributes, relations |
+| [Cheat sheet](modeller-cheat-sheet.md) · [Glossary](../community/glossary.md) | Patterns and terms |
+| [Proxy API](../guides/proxy-api.md) · [EAR API](../reference/api-reference.md) | Python interfaces |
+| [Schema augmentation](schemas-in-depth.md) | Extend the vocabulary |
 
 ---
 
-→ [Quickstart](quickstart.md)
+→ [CESDM in 5 Minutes](cesdm-in-5-minutes.md)

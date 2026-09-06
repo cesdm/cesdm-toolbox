@@ -4,6 +4,14 @@ Notable documentation releases aligned with the [CESDM Toolbox](https://github.c
 
 For software and schema changes, see the repository [`CHANGELOG.md`](https://github.com/cesdm/cesdm-toolbox/blob/main/CHANGELOG.md), [GitHub Releases](https://github.com/cesdm/cesdm-toolbox/releases), and `schemas/cesdm/SCHEMA_MANIFEST.yaml`.
 
+## 2026 — Intuitive entry path
+
+- Navigation: **Learn · Build · Use · Look up · Develop · Community**
+- New: [CESDM in 5 Minutes](../getting-started/cesdm-in-5-minutes.md), [CESDM vs other tools](../getting-started/cesdm-vs-others.md), [Project status](../getting-started/project-status.md)
+- First tutorial retitled **[Build a Small Electricity System](../getting-started/first-model-simple.md)** (physical system → CESDM mapping → Python → result)
+- Proxy API and EAR internals moved under **Develop**; default modeller path no longer starts with EAR
+- Home and README lead with the energy-system problem, is/is-not, and three actions
+
 ## 2026 — Docs refresh (modeller site)
 
 - Navigation: **Home · Getting Started · Concepts · Building Models · Building Applications · Reference · Community**

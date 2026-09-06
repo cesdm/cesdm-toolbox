@@ -1,29 +1,27 @@
-# Concepts
+# Understand CESDM
 
-The **Concepts** tab explains **why CESDM is structured as it is** and how the **semantic model maps to Python** — schemas, validation, EAR, attribute groups, and reusable library entities. Step-by-step study builds (profiles, export) live under **[Building Models](../guides/modelling-workflow.md)**.
+These pages explain **why CESDM is structured as it is**. Hands-on builds live under **Build**.
 
-!!! tip "Essential if you build CESDM study models (~45 min)"
-    1. [What is CESDM?](what-is-cesdm.md) — motivation and scope (~15 min)
-    2. [Core Concepts (EAR)](core-concepts.md) — entities, attributes, relations (~10 min)
-    3. [Schemas](schemas.md) — vocabulary layer (~10 min)
-    4. [Validation](validation.md) — schema and analysis-specific checks (~10 min)
-    5. [Proxy API](../guides/proxy-api.md) — day-to-day Python access (~10 min)
+!!! tip "After the first model (~30 min)"
+    1. [What is CESDM?](what-is-cesdm.md) — motivation (~15 min)
+    2. [How CESDM represents your system](core-concepts.md) — entities, attributes, relations (~10 min)
+    3. [Schemas](schemas.md) · [Validation](validation.md) — vocabulary and checks
 
-    Then read [Libraries](../guides/libraries.md) and start [Modelling Workflow](../guides/modelling-workflow.md).
+    Day-to-day Python style: [Proxy API](../guides/proxy-api.md) under **Develop** — open it when you write your own study.
 
-!!! note "Read on demand"
+!!! note "On demand"
     | Page | When |
     |------|------|
-    | [Carrier Domains](../guides/carrier-domains.md) | You add gas, heat, or other carriers beyond electricity |
-
-    **Profiles** and **spatial aggregation** live under **[Building Models](../guides/modelling-workflow.md)** — open them when your study needs them.
-
----
-
-## Curious reader (no install)
-
-[What is CESDM?](what-is-cesdm.md) → [Core Concepts](core-concepts.md) → [FAQ](../community/faq.md)
+    | [CESDM vs other tools](cesdm-vs-others.md) | You already use PyPSA, CIM, or CrossContract |
+    | [Project status](project-status.md) | You need maturity, not tutorials |
+    | [Carrier domains](../guides/carrier-domains.md) | You add gas or heat |
 
 ---
 
-→ [Core Concepts (EAR)](core-concepts.md) · [Schemas](schemas.md) · [Choose your path](choose-your-path.md)
+## No install
+
+[CESDM in 5 Minutes](cesdm-in-5-minutes.md) → [What is CESDM?](what-is-cesdm.md) → [FAQ](../community/faq.md)
+
+---
+
+→ [Choose your path](choose-your-path.md)

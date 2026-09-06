@@ -47,46 +47,43 @@ theme:
 
 nav:
 - Home:
-  - Welcome: index.md
-- Getting Started:
-  - Quickstart (~20 min): getting-started/quickstart.md
-  - Your First Model (~10 min): getting-started/first-model-simple.md
-  - Installation: getting-started/installation.md
-  - Choose Your Path: getting-started/choose-your-path.md
-- Concepts:
-  - Concepts Overview: getting-started/concepts.md
+    - Welcome: index.md
+- Learn:
+  - CESDM in 5 Minutes: getting-started/cesdm-in-5-minutes.md
   - What is CESDM?: getting-started/what-is-cesdm.md
-  - Core Concepts (EAR): getting-started/core-concepts.md
+  - CESDM vs Other Tools: getting-started/cesdm-vs-others.md
+  - Project Status: getting-started/project-status.md
+  - How CESDM Represents Your System: getting-started/core-concepts.md
   - Schemas: getting-started/schemas.md
   - Validation: getting-started/validation.md
-  - Proxy API: guides/proxy-api.md
-  - Libraries: guides/libraries.md
-  - Carrier Domains: guides/carrier-domains.md
-- Building Models:
+  - Understand CESDM: getting-started/concepts.md
+  - Choose Your Path: getting-started/choose-your-path.md
+- Build:
+  - Build a Small Electricity System: getting-started/first-model-simple.md
+  - Quickstart (~20 min): getting-started/quickstart.md
+  - Installation: getting-started/installation.md
   - Modelling Workflow: guides/modelling-workflow.md
-  - Tool adapters: guides/tool-adapters.md
-  - Profiles & Time-series: guides/profiles.md
   - Building your CESDM Model:
     - Overview: tutorials/building-first-model/overview.md
     - Part 1 — System & Network: tutorials/building-first-model/part-1-system-and-network.md
     - Part 2 — Demand & Generation: tutorials/building-first-model/part-2-demand-and-generation.md
     - Part 3 — Profiles & Interconnectors: tutorials/building-first-model/part-3-profiles-and-interconnectors.md
     - Part 4 — Multi-carrier & Export: tutorials/building-first-model/part-4-multicarrier-and-export.md
-  - Conversion Units:
-    - Overview: tutorials/conversion-units/overview.md
-    - Part 1 — System & Carriers: tutorials/conversion-units/part-1-system-and-carriers.md
-    - Part 2 — Supply & Demand: tutorials/conversion-units/part-2-supply-and-demand.md
-    - Part 3 — Conversion Leaves: tutorials/conversion-units/part-3-conversion-units.md
-    - Part 4 — Validate & Export: tutorials/conversion-units/part-4-validate-and-export.md
   - Spatial Aggregation (optional): guides/spatial-aggregation.md
-- Building Applications:
-  - Schema Augmentation: getting-started/schemas-in-depth.md
-- Reference:
+- Use:
+  - Profiles & Time-series: guides/profiles.md
+  - Libraries: guides/libraries.md
+  - Tool adapters: guides/tool-adapters.md
+  - Carrier Domains: guides/carrier-domains.md
+- Look up:
   - CESDM Schema Reference: reference/schema-reference.html
   - Modeller Cheat Sheet: getting-started/modeller-cheat-sheet.md
   - Glossary: community/glossary.md
+- Develop:
+  - Proxy API: guides/proxy-api.md
+  - Schema Augmentation: getting-started/schemas-in-depth.md
   - EAR API Reference: reference/api-reference.md
-  - Python Typings & Proxies (optional): guides/python-typing-proxies.md
+  - Python Typings & Proxies: guides/python-typing-proxies.md
 - Community:
   - FAQ: community/faq.md
   - Contributing: community/contributing.md

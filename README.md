@@ -5,51 +5,46 @@
 <p align="center">
   <a href="https://cesdm.github.io/cesdm-toolbox/"><img src="https://img.shields.io/badge/docs-GitHub%20Pages-2563EB.svg" alt="Documentation"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-16A34A.svg" alt="MIT License"></a>
-  <img src="https://img.shields.io/badge/status-research%20prototype-F59E0B.svg" alt="Research prototype">
+  <img src="https://img.shields.io/badge/status-research%20%2F%20beta-F59E0B.svg" alt="Research / Beta">
 </p>
 
-<p align="center">
-  <strong>A schema-driven, tool-independent semantic framework for interoperable energy-system modelling.</strong>
-</p>
+# CESDM
 
-<p align="center">
-  Build once · Validate once · Exchange everywhere
-</p>
+**A common description of an energy system that different modelling tools can share.**
 
----
+```text
+                  ONE ENERGY SYSTEM
 
-## Why CESDM?
+           ┌─────────────────────────┐
+           │          CESDM          │
+           │                         │
+           │ buses • generators      │
+           │ loads • storage         │
+           │ regions • profiles      │
+           └────────────┬────────────┘
+                        │
+           ┌────────────┼────────────┐
+           ▼            ▼            ▼
+        PyPSA       pandapower     FlexECO
+       planning      grid flow     dispatch
+```
 
-Energy-system studies often combine several specialised tools, each with its own data structures, terminology, and assumptions. Moving models between them usually requires custom conversion logic and repeated interpretation of the same physical system.
+**CESDM describes the system. Tools perform analyses on it.**
 
-**CESDM provides a common semantic representation between data sources, modelling tools, and analysis workflows.**
+### Use CESDM when you want to
 
-| Principle | What it means |
-|---|---|
-| **Tool independent** | Describe the system independently of a particular solver or simulation package. |
-| **Schema driven** | Define entity classes, attributes, relations, and validation rules in YAML. |
-| **Interoperable** | Import, validate, transform, and exchange models across different tools and formats. |
-| **Extensible** | Add domain-specific entities and relations without rewriting the generic EAR engine. |
+- describe an energy system independently of a particular tool;
+- reuse the same system across different analyses;
+- exchange models between tools;
+- validate that a model contains the information required for an analysis.
 
-<p align="center">
-  <img src="docs/illustrations/cesdm_ecosystem.svg" alt="CESDM interoperability ecosystem" width="900">
-</p>
+| CESDM is | CESDM is not |
+|----------|--------------|
+| A common energy-system description | An optimisation model |
+| A semantic data model + validation | A power-flow solver |
+| An interoperability layer | Another PyPSA or a CIM operations standard |
 
----
-
-## Core idea
-
-CESDM applies the generic **Entity–Attribute–Relation (EAR)** paradigm to energy systems.
-
-- An **entity** is an object, such as a generation unit, electrical bus, demand unit, or transmission line.
-- An **attribute** is a property of an entity, such as `nominal_voltage` or `nominal_power_capacity`.
-- A **relation** connects entities, such as `atNode`, `fromNode`, or `hasTechnology`.
-
-Energy-specific semantics live in YAML schemas; the EAR engine itself remains domain independent. Day-to-day Python modelling usually uses the **[Proxy API](docs/guides/proxy-api.md)** (`bus.name = …`, `gen.atNode = bus`); the Core EAR API (`add_attribute` / `add_relation`) is always available underneath.
-
-<p align="center">
-  <img src="docs/illustrations/cesdm_ear.svg" alt="Entity Attribute Relation concept" width="820">
-</p>
+Docs: **[CESDM in 5 Minutes](https://cesdm.github.io/cesdm-toolbox/getting-started/cesdm-in-5-minutes/)** · **[Build a Small Electricity System](https://cesdm.github.io/cesdm-toolbox/getting-started/first-model-simple/)** · [Project status](docs/getting-started/project-status.md)
 
 ---
 
@@ -87,145 +82,74 @@ poetry shell
 | PyPSA | `pip install -e ".[pypsa]"` |
 | pandapower | `pip install -e ".[pandapower]"` |
 | MATPOWER | `pip install -e ".[matpower]"` |
-| Jupyter notebook tutorial | `pip install -e ".[jupyter]"` |
-| Development tools | `pip install -e ".[dev]"` |
+| Jupyter | `pip install -e ".[jupyter]"` |
 | Everything (toolbox extras) | `pip install -e ".[all]"` |
-| FlexECO (in-house, **separate** package) | `pip install -e /path/to/cesdm-flexeco` — see [Tool adapters](docs/guides/tool-adapters.md) |
-
-External TYNDP / PyPSA sample data (large): `cesdm-download-data` → writes under `external_data/`.
 
 ---
 
 ## Quick start
 
-Preferred path — run the canonical intro scripts from the repository root:
-
 ```bash
-# 1) Minimal electricity model (~1 bus, wind/PV/hydro, demand + profiles)
 python docs/examples/minimal_electricity_model.py
-
-# 2) Full CH + neighbours reference (fleet, hydro, NTCs, energy balance)
-python docs/examples/reference_energy_system_model.py
 ```
 
-Outputs land in `output/minimal_electricity_model/` and `output/reference_energy_system_model/` (YAML, Frictionless, `profiles.h5`).
+Wind + PV + reservoir hydro + demand, then YAML, Frictionless, and `profiles.h5` under `output/minimal_electricity_model/`.
 
-Walkthroughs: **[Quickstart](docs/getting-started/quickstart.md)** → **[Your First Model](docs/getting-started/first-model-simple.md)** → **[Building your CESDM Model](docs/tutorials/building-first-model/overview.md)** (Parts 1–4 + [notebook](notebooks/building_your_cesdm_model.ipynb)).
+Walkthrough: **[Build a Small Electricity System](docs/getting-started/first-model-simple.md)** · full site: **[cesdm.github.io/cesdm-toolbox](https://cesdm.github.io/cesdm-toolbox/)**
+
+---
 
 <details>
-<summary>Minimal Core EAR snippet (same API the reference script uses)</summary>
+<summary>How CESDM works internally (EAR)</summary>
 
-```python
-from cesdm_toolbox import build_model_from_yaml
-from cesdm.default_library import GeneratorTypes
+CESDM uses **Entity–Attribute–Relation (EAR)**:
 
-model = build_model_from_yaml("schemas/cesdm")
-model.import_library("library/default_library")
+- An **entity** is an object (generation unit, bus, demand, line).
+- An **attribute** is a property (`nominal_voltage`, `nominal_power_capacity`).
+- A **relation** connects entities (`atNode`, `hasTechnology`).
 
-model.add_entity("EnergySystemModel", "demo")
-bus = model.add_entity("ElectricalBus", "bus.1")
-bus.add_attribute("nominal_voltage", 380, unit="kV")
-
-gen = model.add_entity("GenerationUnit", "gen.gas.1")
-gen.add_attribute("nominal_power_capacity", 400, unit="MW")
-gen.add_relation("atNode", "bus.1")
-gen.add_relation("hasTechnology", GeneratorTypes.GENERATION_THERMAL_GAS_CCGT_NEW)
-
-model.validate_or_raise()
-print(model.summary())
-```
+Energy-specific semantics live in YAML schemas. Day-to-day Python uses entity handles (`bus.name = …`, `gen.atNode = bus`). See [How CESDM represents your system](docs/getting-started/core-concepts.md).
 
 </details>
 
 ---
 
-## What CESDM provides
-
-- Schema-driven construction and validation (EAR + Proxy API)
-- Reusable libraries: `library/default_library/` and optional `library/tyndp_library/`
-- Exchange formats: YAML, Frictionless, HDF5 profiles, CSV/Excel, …
-- Public tool adapters: PyPSA, pandapower, MATPOWER; TYNDP data import
-- Analysis validation profiles (`cesdm` / `tools/validate_analysis.py`)
-- Schema extensions (e.g. agent-based) without rewriting the EAR engine
-
-In-house solvers (e.g. FlexECO) live in **separate adapter packages**, not in this toolbox core.
-
----
-
-## Import and export
-
-| Interface | In this toolbox |
-|---|---|
-| YAML / Frictionless / HDF5 profiles | Core exchange |
-| PyPSA | Import (`tools/import_pypsa.py`) |
-| TYNDP | Import (`examples/example_import_tyndp*.py`) |
-| pandapower / MATPOWER | Import and export |
-| FlexECO | Separate package [`cesdm-flexeco`](docs/guides/tool-adapters.md) |
-
----
-
-## Examples
+## Examples and adapters
 
 | Script | Role |
 |---|---|
-| [`docs/examples/minimal_electricity_model.py`](docs/examples/minimal_electricity_model.py) | **Intro 1** — smallest useful study model |
-| [`docs/examples/reference_energy_system_model.py`](docs/examples/reference_energy_system_model.py) | **Intro 2** — CH + DE/FR/IT/AT reference |
-| [`notebooks/building_your_cesdm_model.ipynb`](notebooks/building_your_cesdm_model.ipynb) | Interactive Proxy walkthrough of the reference |
-| [`examples/`](examples/) | Further: PyPSA/TYNDP import, hydro plant, multi-energy, … |
+| [`docs/examples/minimal_electricity_model.py`](docs/examples/minimal_electricity_model.py) | First model — wind, PV, hydro, demand |
+| [`docs/examples/reference_energy_system_model.py`](docs/examples/reference_energy_system_model.py) | CH + neighbours reference |
+| [`notebooks/building_your_cesdm_model.ipynb`](notebooks/building_your_cesdm_model.ipynb) | Interactive walkthrough |
+| [`examples/`](examples/) | PyPSA / TYNDP import, hydro, multi-energy |
+
+| Interface | In this toolbox |
+|---|---|
+| YAML / Frictionless / HDF5 | Core exchange |
+| PyPSA, pandapower, MATPOWER | [Tool adapters](docs/guides/tool-adapters.md) |
 
 ---
 
 ## Documentation
 
-| Topic | Link |
+| I want to… | Page |
 |---|---|
-| Choose your path | [docs/getting-started/choose-your-path.md](docs/getting-started/choose-your-path.md) |
-| What is CESDM? | [docs/getting-started/what-is-cesdm.md](docs/getting-started/what-is-cesdm.md) |
-| Core concepts | [docs/getting-started/core-concepts.md](docs/getting-started/core-concepts.md) |
-| Libraries | [docs/guides/libraries.md](docs/guides/libraries.md) |
-| Tool adapters | [docs/guides/tool-adapters.md](docs/guides/tool-adapters.md) |
-| Profiles | [docs/guides/profiles.md](docs/guides/profiles.md) |
-| FAQ · Glossary | [faq](docs/community/faq.md) · [glossary](docs/community/glossary.md) |
-
-Full site: **[cesdm.github.io/cesdm-toolbox](https://cesdm.github.io/cesdm-toolbox/)**
-
----
-
-## Repository structure
-
-```text
-.
-├── ear/                      # Generic EAR engine
-├── cesdm/                    # Energy-system domain layer
-├── schemas/cesdm/            # YAML schemas
-├── library/
-│   ├── default_library/      # Carriers, GeneratorTypes, …
-│   └── tyndp_library/        # Optional TYNDP vintage technologies
-├── tools/                    # CLI utilities, public importers/exporters
-├── docs/
-│   ├── examples/             # Canonical intro scripts
-│   ├── getting-started/      # Quickstart & concepts
-│   ├── tutorials/            # Building-your-model Parts 1–4
-│   └── guides/               # Proxy API, libraries, adapters, …
-├── notebooks/                # Interactive reference tutorial
-├── examples/                 # Further runnable examples
-├── analysis_profiles/        # power_flow, optimal_dispatch, …
-└── typings/                  # Generated editor stubs
-```
+| Understand CESDM | [CESDM in 5 Minutes](docs/getting-started/cesdm-in-5-minutes.md) |
+| Compare with PyPSA / CIM | [CESDM vs other tools](docs/getting-started/cesdm-vs-others.md) |
+| See maturity | [Project status](docs/getting-started/project-status.md) |
+| Choose a role path | [Choose your path](docs/getting-started/choose-your-path.md) |
 
 ---
 
 ## Project status
 
-CESDM is a **research prototype** (SWEET-CoSi). Schemas and APIs evolve; treat releases as methodology demonstrators unless pinned.
+Research / beta (SWEET-CoSi). Schemas and APIs evolve. Details: [Project status](docs/getting-started/project-status.md).
 
 ---
 
 ## Contributing
 
-Schema changes, adapters, validation profiles, examples, and docs are welcome. Open an issue before large structural changes. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
----
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). Open an issue before large structural changes.
 
 ## License
 
