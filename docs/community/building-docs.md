@@ -38,7 +38,7 @@ DISABLE_MKDOCS_2_WARNING=true mkdocs serve
 Then open **http://127.0.0.1:8000/cesdm-toolbox/** (note the `/cesdm-toolbox/` prefix).  
 Stop the server with `Ctrl+C`.
 
-Do **not** open `site/index.html` as a file. Directory URLs and the live `site_url` will look broken.
+After `mkdocs build`, you can open `site/index.html` directly (`file://…`). A post-build hook rewrites directory links to `…/index.html` so they work without a server.
 
 A large red **MkDocs 2.0** box in the terminal is a Material-for-MkDocs warning, not a failed build. Hide it with `DISABLE_MKDOCS_2_WARNING=true`.
 
