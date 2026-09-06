@@ -46,8 +46,7 @@ theme:
       name: Switch to light mode
 
 nav:
-- Home:
-    - Welcome: index.md
+- Home: index.md
 - Learn:
   - CESDM in 5 Minutes: getting-started/cesdm-in-5-minutes.md
   - What is CESDM?: getting-started/what-is-cesdm.md
@@ -69,6 +68,12 @@ nav:
     - Part 2 — Demand & Generation: tutorials/building-first-model/part-2-demand-and-generation.md
     - Part 3 — Profiles & Interconnectors: tutorials/building-first-model/part-3-profiles-and-interconnectors.md
     - Part 4 — Multi-carrier & Export: tutorials/building-first-model/part-4-multicarrier-and-export.md
+  - Conversion Units:
+    - Overview: tutorials/conversion-units/overview.md
+    - Part 1 — System & Carriers: tutorials/conversion-units/part-1-system-and-carriers.md
+    - Part 2 — Supply & Demand: tutorials/conversion-units/part-2-supply-and-demand.md
+    - Part 3 — Conversion Leaves: tutorials/conversion-units/part-3-conversion-units.md
+    - Part 4 — Validate & Export: tutorials/conversion-units/part-4-validate-and-export.md
   - Spatial Aggregation (optional): guides/spatial-aggregation.md
 - Use:
   - Profiles & Time-series: guides/profiles.md

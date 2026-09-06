@@ -27,22 +27,28 @@ pip install "git+https://github.com/cesdm/cesdm-toolbox.git@main"
 pip install -r docs-requirements.txt
 ```
 
-## Preview
+## Preview (this is what you open in the browser)
+
+`mkdocs build` only writes files under `site/`. It does **not** start a server and does **not** update [GitHub Pages](https://cesdm.github.io/cesdm-toolbox/).
 
 ```bash
-mkdocs serve
+DISABLE_MKDOCS_2_WARNING=true mkdocs serve
 ```
 
-Open the URL shown in the terminal (usually `http://127.0.0.1:8000/cesdm-toolbox/`).  
+Then open **http://127.0.0.1:8000/cesdm-toolbox/** (note the `/cesdm-toolbox/` prefix).  
 Stop the server with `Ctrl+C`.
+
+Do **not** open `site/index.html` as a file. Directory URLs and the live `site_url` will look broken.
+
+A large red **MkDocs 2.0** box in the terminal is a Material-for-MkDocs warning, not a failed build. Hide it with `DISABLE_MKDOCS_2_WARNING=true`.
 
 ## Production build
 
 ```bash
-mkdocs build --strict
+DISABLE_MKDOCS_2_WARNING=true mkdocs build --strict
 ```
 
-Output is written to `site/`. The GitHub Actions workflow in `.github/workflows/docs.yml` runs the same strict build and deploys to GitHub Pages on pushes to `main` (or via manual `workflow_dispatch`).
+Output is written to `site/`. The GitHub Actions workflow in `.github/workflows/docs.yml` runs the same strict build and deploys to GitHub Pages **only after a merge to `main`**. A documentation PR does not change the public site until it is merged.
 
 ## What the site includes
 
