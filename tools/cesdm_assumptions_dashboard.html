@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CESDM Scenario Assumptions</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f3f4f6;
+      --panel: #ffffff;
+      --line: #d5d8de;
+      --text: #111111;
+      --muted: #4a5060;
+      --accent: #0f7a74;
+      --accent-dim: #d7f3f0;
+      --plot: #ffffff;
+      --tick: #111111;
+      --tab-on: #e8eaee;
+      --scen-wash: #d6ebfb;
+      --scen-on: #1570c4;
+      --font: "Segoe UI", system-ui, -apple-system, Helvetica, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg-2); color: var(--text); font-family: var(--font); font-size: 15px; }
+    header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      padding: 18px 28px 16px;
+    }
+    .header-row { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+    .kicker { font-size: 12px; letter-spacing: 1.1px; text-transform: uppercase; color: var(--muted); }
+    h1 { margin: 6px 0 4px; font-size: 26px; font-weight: 700; }
+    .sub { color: var(--muted); font-size: 14px; }
+    .load-box { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 180px; }
+    .load-btn { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 650; padding: 8px 14px; }
+    .load-btn:hover { filter: brightness(1.05); }
+    .load-btn:disabled { opacity: .65; cursor: wait; }
+    .load-status { font-size: 12px; color: var(--muted); text-align: right; max-width: 280px; }
+    .layout { display: grid; grid-template-columns: 280px 1fr; gap: 18px; padding: 18px 28px 36px; align-items: start; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+    .lab { font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 8px; }
+    select, .chip {
+      font: inherit; color: var(--text); background: var(--bg);
+      border: 1px solid var(--line); border-radius: 8px;
+    }
+    select { width: 100%; padding: 8px 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { padding: 6px 10px; cursor: pointer; background: #fff; }
+    .chip.on { background: var(--scen-wash); border-color: var(--scen-on); color: #0b4f8a; font-weight: 650; }
+    .hint { margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
+    .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+    .kpi .lab { margin-bottom: 4px; }
+    .kpi .val { font-size: 22px; font-weight: 700; }
+    .stage-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+    .stage-title { font-size: 18px; font-weight: 700; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px 12px; justify-content: flex-end; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+    .swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+    .chart { min-height: 360px; }
+    .bar-row { display: grid; grid-template-columns: 64px 1fr 88px; gap: 8px; align-items: center; margin: 7px 0; }
+    .bar-lab { font-size: 13px; font-weight: 650; }
+    .bar-track { height: 22px; background: #eef1f5; border-radius: 5px; overflow: hidden; display: flex; }
+    .bar-seg { height: 100%; }
+    .bar-val { font-size: 12px; color: var(--muted); text-align: right; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    th { color: var(--muted); font-weight: 650; }
+    .empty { color: var(--muted); padding: 48px 12px; text-align: center; }
+    #tooltip {
+      position: fixed; pointer-events: none; display: none; z-index: 20;
+      background: #fff; border: 1px solid var(--line); border-radius: 8px;
+      padding: 8px 10px; box-shadow: 0 6px 20px rgba(0,0,0,.08); font-size: 13px;
+    }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <div>
+        <div class="kicker">Common Energy System Domain Model</div>
+        <h1 id="page-title">Scenario Assumptions</h1>
+        <div class="sub" id="page-sub"></div>
+      </div>
+      <div class="load-box">
+        <input type="file" id="yaml-file" accept=".yaml,.yml" hidden />
+        <button type="button" class="chip load-btn" id="load-yaml">Load YAML</button>
+        <div class="load-status" id="load-status"></div>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="panel">
+      <div class="lab">Variable</div>
+      <select id="metric"></select>
+      <div class="lab" style="margin-top:16px;">Country</div>
+      <div class="chips" id="countries"></div>
+      <div class="lab" style="margin-top:16px;">View</div>
+      <div class="chips">
+        <button type="button" class="chip on" data-view="chart">Chart</button>
+        <button type="button" class="chip" data-view="table">Table</button>
+      </div>
+      <p class="hint">Same families as the Sensitivities Scenario Assumptions tab: capacity, demand, storage, available energy and cross-border limits. Use <strong>Load YAML</strong> to open another CESDM hierarchical YAML.</p>
+    </aside>
+    <main>
+      <section class="kpis" id="kpis"></section>
+      <section class="panel">
+        <div class="stage-head">
+          <div>
+            <div class="stage-title" id="stage-title">Installed capacity mix</div>
+            <div class="sub" id="stage-note"></div>
+          </div>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div class="chart" id="chart"></div>
+      </section>
+    </main>
+  </div>
+  <div id="tooltip"></div>
+  <script>
+  let DATA = __CESDM_DATA__;
+  const SERVE = __CESDM_SERVE__;
+  const COLORS = {
+    solar: "#f0c14a", pv: "#f0c14a", wind: "#7dce82", nuclear: "#c4b5fd",
+    gas: "#e06b8a", hydrogen: "#38bdf8", coal: "#57534e", lignite: "#a16207",
+    run_of_river: "#5BA3D9", ror: "#5BA3D9", reservoir: "#3ecfc4", hydro: "#3ecfc4",
+    pump: "#6FCF97", phs: "#6FCF97", battery: "#A78BFA", other: "#E89B3C",
+    electricity: "#5BA3D9", electromobility: "#E89B3C", heat: "#E06B8A",
+    electrolysis: "#3ecfc4", conventional: "#8b919c"
+  };
+  const INFLOW_LABELS = {
+    solar_pv: "Solar PV", wind_onshore: "Wind onshore", wind_offshore: "Wind offshore",
+    run_of_river: "Run-of-river", reservoir_natural_inflow: "Reservoir inflow"
+  };
+  const state = { metric: "capacity_mix", country: "ALL", view: "chart" };
+
+  const el = (id) => document.getElementById(id);
+  const pretty = (s) => INFLOW_LABELS[s] || String(s || "").replace(/[_-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const colorOf = (key) => {
+    const k = String(key).toLowerCase();
+    for (const [token, color] of Object.entries(COLORS)) if (k.includes(token)) return color;
+    let h = 0;
+    for (let i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) >>> 0;
+    return `hsl(${h % 360} 42% 52%)`;
+  };
+  const fmt = (v, unit) => {
+    const n = Number(v) || 0;
+    const abs = Math.abs(n);
+    const body = abs >= 100 ? n.toFixed(0) : abs >= 10 ? n.toFixed(1) : n.toFixed(2);
+    return body.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (unit ? " " + unit : "");
+  };
+  const countries = () => DATA.countries || [];
+  const selectedCountries = () => state.country === "ALL" ? countries() : [state.country];
+  const mapGet = (mapping, country) => (mapping && mapping[country]) || {};
+  const sumMap = (mapping, keys) => {
+    const out = {};
+    for (const country of keys) {
+      const row = mapping[country] || {};
+      for (const [k, v] of Object.entries(row)) out[k] = (out[k] || 0) + (Number(v) || 0);
+    }
+    return out;
+  };
+  const unionKeys = (mapping, keys) => {
+    const set = new Set();
+    for (const country of keys) Object.keys(mapping[country] || {}).forEach((k) => set.add(k));
+    return [...set].sort((a, b) => {
+      const sa = keys.reduce((s, c) => s + (Number((mapping[c] || {})[a]) || 0), 0);
+      const sb = keys.reduce((s, c) => s + (Number((mapping[c] || {})[b]) || 0), 0);
+      return sb - sa;
+    });
+  };
+
+  function metrics() {
+    const capKeys = unionKeys(DATA.capacity || {}, countries());
+    const demKeys = unionKeys(DATA.demand_types || {}, countries());
+    const stoKeys = unionKeys(DATA.storage_energy || {}, countries());
+    const inKeys = unionKeys(DATA.inflow || {}, countries());
+    return [
+      ["Mix", [
+        ["capacity_mix", "Installed capacity mix"],
+        ["demand_mix", "Annual demand mix"],
+        ["storage_mix", "Storage energy capacity"],
+        ["inflow_mix", "Annual inflow / available energy"]
+      ]],
+      ["Capacity", capKeys.map((k) => ["cap:" + k, pretty(k)])],
+      ["Demand", [["demand_total", "Annual electricity demand"], ...demKeys.map((k) => ["dem:" + k, pretty(k)])]],
+      ["Storage", stoKeys.map((k) => ["sto:" + k, pretty(k)])],
+      ["Inflow", inKeys.map((k) => ["in:" + k, pretty(k)])],
+      ["Network", [["ntc_mix", "Cross-border transfer limits"], ["network", "Transmission summary"]]]
+    ].filter(([, items]) => items.length);
+  }
+
+  function series() {
+    const cs = selectedCountries();
+    const m = state.metric;
+    if (m === "capacity_mix") return stacked(DATA.capacity, cs, "GW", 1e-3);
+    if (m === "demand_mix") {
+      const types = DATA.demand_types || {};
+      const hasTypes = cs.some((c) => Object.keys(types[c] || {}).length > 1 || (types[c] && Object.keys(types[c]).length));
+      if (hasTypes) return stacked(types, cs, "TWh", 1e-6);
+      return scalar(DATA.demand, cs, "TWh", 1e-6, "Demand");
+    }
+    if (m === "storage_mix") return stacked(DATA.storage_energy, cs, "GWh", 1e-3);
+    if (m === "inflow_mix") return stacked(DATA.inflow, cs, "TWh", 1e-6);
+    if (m === "demand_total") return scalar(DATA.demand, cs, "TWh", 1e-6, "Demand");
+    if (m === "ntc_mix") return ntcSeries(cs);
+    if (m === "network") return networkSeries();
+    const [kind, key] = m.split(":");
+    if (kind === "cap") return scalarCol(DATA.capacity, cs, key, "GW", 1e-3);
+    if (kind === "dem") return scalarCol(DATA.demand_types, cs, key, "TWh", 1e-6);
+    if (kind === "sto") return scalarCol(DATA.storage_energy, cs, key, "GWh", 1e-3);
+    if (kind === "in") return scalarCol(DATA.inflow, cs, key, "TWh", 1e-6);
+    return { unit: "", rows: [], parts: [] };
+  }
+
+  function stacked(mapping, cs, unit, scale) {
+    const parts = unionKeys(mapping || {}, cs).map((k) => ({ key: k, label: pretty(k), color: colorOf(k) }));
+    const rows = cs.map((country) => {
+      const src = mapGet(mapping, country);
+      const values = parts.map((p) => ({ ...p, value: (Number(src[p.key]) || 0) * scale }));
+      return { country, values, total: values.reduce((s, v) => s + v.value, 0) };
+    }).filter((r) => r.total > 0).sort((a, b) => b.total - a.total);
+    return { unit, rows: rows.slice(0, 24), parts };
+  }
+  function scalar(mapping, cs, unit, scale, label) {
+    const color = colorOf(label);
+    const rows = cs.map((country) => {
+      const value = (Number(mapping[country]) || 0) * scale;
+      return { country, values: [{ key: label, label, color, value }], total: value };
+    }).filter((r) => r.total > 0).sort((a, b) => b.total - a.total);
+    return { unit, rows: rows.slice(0, 24), parts: [{ key: label, label, color }] };
+  }
+  function scalarCol(mapping, cs, key, unit, scale) {
+    const label = pretty(key);
+    const color = colorOf(key);
+    const rows = cs.map((country) => {
+      const value = (Number((mapping[country] || {})[key]) || 0) * scale;
+      return { country, values: [{ key, label, color, value }], total: value };
+    }).filter((r) => r.total > 0).sort((a, b) => b.total - a.total);
+    return { unit, rows: rows.slice(0, 24), parts: [{ key, label, color }] };
+  }
+  function ntcSeries(cs) {
+    const set = new Set(cs);
+    const rows = (DATA.ntc || []).filter((r) => state.country === "ALL" || set.has(r.a) || set.has(r.b)).map((r) => {
+      const fwd = (Number(r.fwd_mw) || 0) / 1000;
+      const bwd = (Number(r.bwd_mw) || 0) / 1000;
+      return {
+        country: r.a + "–" + r.b,
+        values: [
+          { key: "fwd", label: "Forward", color: "#1570c4", value: fwd },
+          { key: "bwd", label: "Backward", color: "#3ecfc4", value: bwd }
+        ],
+        total: fwd + bwd
+      };
+    }).filter((r) => r.total > 0).sort((a, b) => b.total - a.total);
+    return { unit: "GW", rows: rows.slice(0, 24), parts: [
+      { key: "fwd", label: "Forward", color: "#1570c4" },
+      { key: "bwd", label: "Backward", color: "#3ecfc4" }
+    ]};
+  }
+  function networkSeries() {
+    const n = DATA.network || {};
+    return {
+      unit: "",
+      rows: [
+        { country: "Lines", values: [{ key: "lines", label: "Count", color: "#1570c4", value: n.lines || 0 }], total: n.lines || 0 },
+        { country: "Line length", values: [{ key: "km", label: "km", color: "#3ecfc4", value: n.line_km || 0 }], total: n.line_km || 0 },
+        { country: "Line rating", values: [{ key: "mva", label: "MVA", color: "#f0c14a", value: n.line_mva || 0 }], total: n.line_mva || 0 },
+        { country: "Transformers", values: [{ key: "tr", label: "Count", color: "#A78BFA", value: n.transformers || 0 }], total: n.transformers || 0 }
+      ],
+      parts: []
+    };
+  }
+
+  function metricTitle() {
+    for (const [, items] of metrics()) {
+      const hit = items.find(([id]) => id === state.metric);
+      if (hit) return hit[1];
+    }
+    return pretty(state.metric);
+  }
+
+  function renderKpis(data) {
+    const meta = DATA.meta || {};
+    const totals = data.rows.map((r) => r.total);
+    const sum = totals.reduce((a, b) => a + b, 0);
+    const top = data.rows[0];
+    const unit = data.unit;
+    const cards = state.metric === "network" ? [
+      ["Entities", (meta.n_entities || 0).toLocaleString()],
+      ["Classes", String(meta.n_classes || 0)],
+      ["Lines", String((DATA.network || {}).lines || 0)],
+      ["Transformers", String((DATA.network || {}).transformers || 0)],
+      ["Interconnectors", String((DATA.network || {}).interconnectors || 0)]
+    ] : [
+      ["Countries", String(state.country === "ALL" ? (meta.n_countries || 0) : 1)],
+      ["Total", sum ? fmt(sum, unit) : "—"],
+      ["Largest", top ? top.country : "—"],
+      ["Largest value", top ? fmt(top.total, unit) : "—"],
+      ["Rows", String(data.rows.length)]
+    ];
+    el("kpis").innerHTML = cards.map(([lab, val]) =>
+      `<div class="kpi"><div class="lab">${lab}</div><div class="val">${val}</div></div>`
+    ).join("");
+  }
+
+  function showTip(evt, html) {
+    const tip = el("tooltip");
+    tip.innerHTML = html;
+    tip.style.display = "block";
+    tip.style.left = (evt.clientX + 12) + "px";
+    tip.style.top = (evt.clientY + 12) + "px";
+  }
+
+  function renderChart(data) {
+    if (!data.rows.length) {
+      el("chart").innerHTML = `<div class="empty">No values for this selection in the CESDM YAML.</div>`;
+      el("legend").innerHTML = "";
+      return;
+    }
+    const max = Math.max(...data.rows.map((r) => r.total), 1e-9);
+    el("legend").innerHTML = (data.parts || []).slice(0, 14).map((p) =>
+      `<span><i class="swatch" style="background:${p.color}"></i>${p.label}</span>`
+    ).join("");
+    el("chart").innerHTML = data.rows.map((row) => {
+      const segs = row.values.filter((v) => v.value > 0).map((v) => {
+        const w = (100 * v.value / max).toFixed(3);
+        return `<div class="bar-seg" style="width:${w}%;background:${v.color}" data-tip="${row.country}: ${v.label} = ${fmt(v.value, data.unit)}"></div>`;
+      }).join("");
+      return `<div class="bar-row"><div class="bar-lab">${row.country}</div><div class="bar-track">${segs}</div><div class="bar-val">${fmt(row.total, data.unit)}</div></div>`;
+    }).join("");
+    el("chart").querySelectorAll("[data-tip]").forEach((node) => {
+      node.addEventListener("mousemove", (ev) => showTip(ev, node.getAttribute("data-tip")));
+      node.addEventListener("mouseleave", () => { el("tooltip").style.display = "none"; });
+    });
+  }
+
+  function renderTable(data) {
+    el("legend").innerHTML = "";
+    if (!data.rows.length) {
+      el("chart").innerHTML = `<div class="empty">No values for this selection in the CESDM YAML.</div>`;
+      return;
+    }
+    const parts = data.parts.length ? data.parts : [{ key: "value", label: data.unit || "Value" }];
+    const head = `<tr><th>Country</th>${parts.map((p) => `<th>${p.label}</th>`).join("")}<th>Total</th></tr>`;
+    const body = data.rows.map((row) => {
+      const lookup = Object.fromEntries(row.values.map((v) => [v.key, v.value]));
+      const cells = parts.map((p) => `<td>${fmt(lookup[p.key] || (p.key === "value" ? row.total : 0), "")}</td>`).join("");
+      return `<tr><td>${row.country}</td>${cells}<td>${fmt(row.total, "")}</td></tr>`;
+    }).join("");
+    el("chart").innerHTML = `<table><thead>${head}</thead><tbody>${body}</tbody></table>`;
+  }
+
+  function render() {
+    const data = series();
+    el("stage-title").textContent = (state.country === "ALL" ? "All countries" : state.country) + " · " + metricTitle();
+    el("stage-note").textContent = (DATA.meta && DATA.meta.yaml_name) || "";
+    renderKpis(data);
+    if (state.view === "table") renderTable(data);
+    else renderChart(data);
+  }
+
+  function fillHeader() {
+    const meta = DATA.meta || {};
+    const empty = !(meta.n_entities);
+    document.title = "CESDM Scenario Assumptions" + (meta.title ? " — " + meta.title : "");
+    el("page-title").textContent = meta.title || "Scenario Assumptions";
+    el("page-sub").textContent = empty
+      ? "Load a CESDM hierarchical YAML to populate the dashboard."
+      : [meta.yaml_name, (meta.n_entities || 0).toLocaleString() + " entities", (meta.n_countries || 0) + " countries"].filter(Boolean).join(" · ");
+  }
+
+  function fillControls() {
+    const available = metrics();
+    const ids = available.flatMap(([, items]) => items.map(([id]) => id));
+    if (!ids.includes(state.metric)) state.metric = ids[0] || "capacity_mix";
+    if (state.country !== "ALL" && !countries().includes(state.country)) state.country = "ALL";
+    const sel = el("metric");
+    sel.innerHTML = available.map(([group, items]) =>
+      `<optgroup label="${group}">${items.map(([id, lab]) => `<option value="${id}">${lab}</option>`).join("")}</optgroup>`
+    ).join("");
+    sel.value = state.metric;
+    const box = el("countries");
+    box.innerHTML = [["ALL", "All"], ...countries().map((c) => [c, c])].map(([id, lab]) =>
+      `<button type="button" class="chip${id === state.country ? " on" : ""}" data-country="${id}">${lab}</button>`
+    ).join("");
+  }
+
+  function applyData(next) {
+    DATA = next || {};
+    state.country = "ALL";
+    state.metric = "capacity_mix";
+    fillHeader();
+    fillControls();
+    render();
+  }
+
+  function setLoadStatus(text) {
+    const node = el("load-status");
+    if (node) node.textContent = text || "";
+  }
+
+  async function loadYamlFile(file) {
+    const btn = el("load-yaml");
+    btn.disabled = true;
+    setLoadStatus("Loading " + file.name + "…");
+    try {
+      const body = new FormData();
+      body.append("yaml", file, file.name);
+      const res = await fetch("/api/load", { method: "POST", body });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(payload.error || ("HTTP " + res.status));
+      applyData(payload);
+      setLoadStatus("Loaded " + file.name);
+    } catch (err) {
+      const offline = String(err && err.message || err);
+      setLoadStatus(
+        SERVE
+          ? "Could not load YAML: " + offline
+          : "To load a YAML here, start: cesdm-assumptions-dashboard --serve"
+      );
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  function bindUI() {
+    el("metric").addEventListener("change", () => { state.metric = el("metric").value; render(); });
+    el("countries").addEventListener("click", (ev) => {
+      const btn = ev.target.closest("[data-country]");
+      if (!btn) return;
+      state.country = btn.getAttribute("data-country");
+      el("countries").querySelectorAll(".chip").forEach((n) => n.classList.toggle("on", n === btn));
+      render();
+    });
+    document.querySelectorAll("[data-view]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.view = btn.getAttribute("data-view");
+        document.querySelectorAll("[data-view]").forEach((n) => n.classList.toggle("on", n === btn));
+        render();
+      });
+    });
+    el("load-yaml").addEventListener("click", () => el("yaml-file").click());
+    el("yaml-file").addEventListener("change", () => {
+      const file = el("yaml-file").files && el("yaml-file").files[0];
+      el("yaml-file").value = "";
+      if (file) loadYamlFile(file);
+    });
+  }
+
+  bindUI();
+  fillHeader();
+  fillControls();
+  render();
+  setLoadStatus(SERVE ? "Choose a CESDM hierarchical YAML." : "Load YAML works when the page is started with --serve.");
+  </script>
+</body>
+</html>

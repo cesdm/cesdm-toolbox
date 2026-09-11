@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">CESDM shared system representation with import and export to modelling tools</title>
+  <desc id="desc">CESDM is the shared system representation. PyPSA, Calliope and pandapower each sit next to your own modelling tool. Both import and export CESDM and can run the same type of analysis: planning, dispatch or power flow.</desc>
+  <style>
+    .title { font: 700 26px Inter, Arial, sans-serif; fill: #0F172A; }
+    .hub { font: 700 32px Inter, Arial, sans-serif; fill: #FFFFFF; }
+    .hubsub { font: 600 16px Inter, Arial, sans-serif; fill: #DBEAFE; }
+    .label { font: 700 16px Inter, Arial, sans-serif; fill: #0F172A; }
+    .small { font: 500 12px Inter, Arial, sans-serif; fill: #475569; }
+    .io { font: 700 14px Inter, Arial, sans-serif; fill: #1D4ED8; }
+    .lead { stroke: #2563EB; stroke-width: 3; fill: none; stroke-linecap: square; stroke-linejoin: miter; }
+    .down { stroke: #64748B; stroke-width: 2.5; fill: none; stroke-linecap: square; stroke-linejoin: miter; }
+    .you { stroke: #7C3AED; stroke-width: 2.5; fill: none; stroke-linecap: square; stroke-linejoin: miter; }
+  </style>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-blue-start" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto">
+      <path d="M8 0 L0 4 L8 8 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-grey" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-you" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#7C3AED"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="700" rx="24" fill="#F8FAFC"/>
+  <text x="600" y="40" text-anchor="middle" class="title">One energy system. Multiple modelling tools and types of analysis.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="360" y="58" width="480" height="100" rx="24" fill="#2563EB"/>
+  </g>
+  <text x="600" y="106" text-anchor="middle" class="hub">CESDM</text>
+  <text x="600" y="134" text-anchor="middle" class="hubsub">shared system representation</text>
+
+  <line x1="600" y1="160" x2="600" y2="292" class="lead" marker-start="url(#arrow-blue-start)" marker-end="url(#arrow-blue)"/>
+  <rect x="508" y="210" width="184" height="28" rx="14" fill="#EFF6FF" stroke="#93C5FD"/>
+  <text x="600" y="229" text-anchor="middle" class="io">import / export</text>
+
+  <!-- Bus to all six tool cards -->
+  <path d="M126 304 H1084" class="lead"/>
+  <path d="M600 292 V304" class="lead"/>
+  <path d="M126 304 V332" class="lead" marker-end="url(#arrow-blue)"/>
+  <path d="M284 304 V332" class="lead" marker-end="url(#arrow-blue)"/>
+  <path d="M526 304 V332" class="lead" marker-end="url(#arrow-blue)"/>
+  <path d="M684 304 V332" class="lead" marker-end="url(#arrow-blue)"/>
+  <path d="M926 304 V332" class="lead" marker-end="url(#arrow-blue)"/>
+  <path d="M1084 304 V332" class="lead" marker-end="url(#arrow-blue)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="52" y="332" width="148" height="80" rx="14" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <rect x="210" y="332" width="148" height="80" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-dasharray="6 4"/>
+    <rect x="452" y="332" width="148" height="80" rx="14" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <rect x="610" y="332" width="148" height="80" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-dasharray="6 4"/>
+    <rect x="852" y="332" width="148" height="80" rx="14" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <rect x="1010" y="332" width="148" height="80" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-dasharray="6 4"/>
+  </g>
+  <text x="126" y="368" text-anchor="middle" class="label">PyPSA</text>
+  <text x="126" y="390" text-anchor="middle" class="small">modelling tool</text>
+  <text x="284" y="362" text-anchor="middle" class="label">Your</text>
+  <text x="284" y="382" text-anchor="middle" class="label">modelling tool</text>
+  <text x="526" y="368" text-anchor="middle" class="label">Calliope</text>
+  <text x="526" y="390" text-anchor="middle" class="small">modelling tool</text>
+  <text x="684" y="362" text-anchor="middle" class="label">Your</text>
+  <text x="684" y="382" text-anchor="middle" class="label">modelling tool</text>
+  <text x="926" y="368" text-anchor="middle" class="label">pandapower</text>
+  <text x="926" y="390" text-anchor="middle" class="small">modelling tool</text>
+  <text x="1084" y="362" text-anchor="middle" class="label">Your</text>
+  <text x="1084" y="382" text-anchor="middle" class="label">modelling tool</text>
+
+  <!-- Each pair joins, then one type of analysis -->
+  <path d="M126 412 V430 H284 V412" class="down"/>
+  <path d="M205 430 V458" class="down" marker-end="url(#arrow-grey)"/>
+  <path d="M526 412 V430 H684 V412" class="down"/>
+  <path d="M605 430 V458" class="down" marker-end="url(#arrow-grey)"/>
+  <path d="M926 412 V430 H1084 V412" class="down"/>
+  <path d="M1005 430 V458" class="down" marker-end="url(#arrow-grey)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="52" y="458" width="306" height="76" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <rect x="452" y="458" width="306" height="76" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <rect x="852" y="458" width="306" height="76" rx="16" fill="#F8FAFC" stroke="#CBD5E1"/>
+  </g>
+  <text x="205" y="492" text-anchor="middle" class="label">Planning</text>
+  <text x="205" y="514" text-anchor="middle" class="small">type of analysis</text>
+  <text x="605" y="492" text-anchor="middle" class="label">Dispatch</text>
+  <text x="605" y="514" text-anchor="middle" class="small">type of analysis</text>
+  <text x="1005" y="492" text-anchor="middle" class="label">Power flow</text>
+  <text x="1005" y="514" text-anchor="middle" class="small">type of analysis</text>
+
+  <text x="600" y="568" text-anchor="middle" class="small">Each named modelling tool is an example. The card to its right is your own modelling tool for that type of analysis.</text>
+  <text x="600" y="592" text-anchor="middle" class="small">All of them import from and export to the same CESDM representation. Dynamics is another example, not shown here.</text>
+</svg>

@@ -1,0 +1,159 @@
+site_name: CESDM
+site_description: Common Energy System Domain Model — shared system representation for import/export across modelling tools and types of analysis
+site_url: https://cesdm.github.io/cesdm-toolbox/
+repo_name: cesdm/cesdm-toolbox
+repo_url: https://github.com/cesdm/cesdm-toolbox
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; Research Center for Energy Networks, ETH Zürich
+strict: true
+use_directory_urls: true
+
+not_in_nav: |
+  GREENFIELD_DESIGN_NOTES.md
+  getting-started/about.md
+  getting-started/disclaimer.md
+  examples/first-model-simple.md
+
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/palette-toggle.js
+  - javascripts/toc-collapse.js
+theme:
+  name: material
+  language: en
+  features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.indexes
+  - navigation.top
+  - navigation.footer
+  - navigation.tracking
+  - toc.follow
+  - search.suggest
+  - search.highlight
+  - content.code.copy
+  - content.action.edit
+  palette:
+  - scheme: default
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - scheme: slate
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+
+nav:
+- Home: index.md
+- Get Started:
+  - What is CESDM?: get-started/what-is-cesdm.md
+  - Installation: get-started/install.md
+  - Build Your First Model: get-started/first-model.md
+- Use CESDM:
+  - use/index.md
+  - Build Models: use/build-models.md
+  - Validate Models: use/validate-models.md
+  - Import and Export: use/import-export.md
+  - Spatial Aggregation: use/spatial-aggregation.md
+  - Convert TYNDP and PyPSA: examples/import-tyndp-and-pypsa.md
+  - Building a CESDM Model:
+    - examples/building-first-model/overview.md
+    - Part 1 — System and Network: examples/building-first-model/part-1-system-and-network.md
+    - Part 2 — Demand and Generation: examples/building-first-model/part-2-demand-and-generation.md
+    - Part 3 — Profiles and Interconnectors: examples/building-first-model/part-3-profiles-and-interconnectors.md
+    - Part 4 — Multi-carrier and Export: examples/building-first-model/part-4-multicarrier-and-export.md
+  - Conversion Units:
+    - examples/conversion-units/overview.md
+    - Part 1 — System and Carriers: examples/conversion-units/part-1-system-and-carriers.md
+    - Part 2 — Supply and Demand: examples/conversion-units/part-2-supply-and-demand.md
+    - Part 3 — Conversion Units: examples/conversion-units/part-3-conversion-units.md
+    - Part 4 — Validate and Export: examples/conversion-units/part-4-validate-and-export.md
+  - Advanced Reference Notebook: examples/advanced-reference-notebook.md
+  - Reference:
+    - reference/index.md
+    - Schema Reference: reference/schema.md
+    - API Reference: reference/api.md
+    - Glossary: reference/glossary.md
+- Understand CESDM:
+  - understand/index.md
+  - Entities and Relationships: understand/entities-and-relationships.md
+  - Schemas: understand/schemas.md
+  - Profiles and Time Series: understand/profiles.md
+  - Libraries: understand/libraries.md
+  - Carrier Domains: understand/carrier-domains.md
+  - Related Work: understand/related-work.md
+- Develop CESDM:
+  - develop/index.md
+  - Python API: develop/python-api.md
+  - Python Typing Proxies: develop/python-typing-proxies.md
+  - EAR Internals: develop/ear-internals.md
+  - Schema Extensions: develop/schema-extensions.md
+  - Adapter Development: develop/adapter-development.md
+  - Governance: develop/governance.md
+- Community:
+  - FAQ: community/faq.md
+  - Roadmap: community/roadmap.md
+  - Release log: community/changelog.md
+  - Citation: community/citation.md
+  - Contributing: community/contributing.md
+  - Building the Docs: community/building-docs.md
+
+plugins:
+- search
+- redirects:
+    redirect_maps:
+      getting-started/what-is-cesdm.md: get-started/what-is-cesdm.md
+      getting-started/installation.md: get-started/install.md
+      getting-started/first-model-simple.md: get-started/first-model.md
+      getting-started/quickstart.md: get-started/first-model.md
+      getting-started/validation.md: use/validate-models.md
+      getting-started/schemas.md: understand/schemas.md
+      getting-started/core-concepts.md: understand/entities-and-relationships.md
+      getting-started/schemas-in-depth.md: develop/schema-extensions.md
+      getting-started/choose-your-path.md: index.md
+      getting-started/concepts.md: understand/index.md
+      getting-started/cesdm-vs-others.md: understand/related-work.md
+      understand/cesdm-vs-others.md: understand/related-work.md
+      guides/modelling-workflow.md: use/build-models.md
+      guides/tool-adapters.md: use/import-export.md
+      guides/profiles.md: understand/profiles.md
+      guides/libraries.md: understand/libraries.md
+      guides/carrier-domains.md: understand/carrier-domains.md
+      guides/proxy-api.md: develop/python-api.md
+      guides/schema-governance.md: develop/governance.md
+      guides/spatial-aggregation.md: use/spatial-aggregation.md
+      guides/python-typing-proxies.md: develop/python-api.md
+      reference/schema-reference.md: reference/schema.md
+      reference/api-reference.md: reference/api.md
+      community/glossary.md: reference/glossary.md
+      tutorials/first-model-simple.md: get-started/first-model.md
+      tutorials/building-first-model/overview.md: examples/building-first-model/overview.md
+      tutorials/advanced-reference-notebook.md: examples/advanced-reference-notebook.md
+      use/import-tyndp-and-pypsa.md: examples/import-tyndp-and-pypsa.md
+markdown_extensions:
+- admonition
+- attr_list
+- def_list
+- footnotes
+- md_in_html
+- meta
+- tables
+- toc:
+    permalink: true
+- pymdownx.details
+- pymdownx.highlight:
+    anchor_linenums: true
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
