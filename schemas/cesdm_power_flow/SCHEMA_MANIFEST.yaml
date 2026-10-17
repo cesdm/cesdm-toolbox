@@ -1,0 +1,23 @@
+# Power-flow extension of the CESDM base schema.
+#
+# Load this package when a study needs load-flow fields (bus type, line
+# impedance, voltage setpoints) or the power-flow result classes.
+# `extends` pulls in schemas/cesdm, so this path alone is enough:
+#
+#   build_model_from_yaml("schemas/cesdm_power_flow")
+
+version: "1.0.0"
+
+description: >
+  Power-flow fields and classes for CESDM. Builds on the dispatch base schema.
+
+extends:
+  - ../cesdm
+
+stability:
+  assets: experimental
+  attributes: experimental
+  relations: experimental
+  power_flow: experimental
+  results.power_flow: experimental
+  system.run_records.power_flow: experimental

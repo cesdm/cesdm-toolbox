@@ -1,0 +1,10 @@
+attributes:
+  name:
+    description: The author's name.
+    value: {type: string}
+  title:
+    description: The title of the book.
+    value: {type: string}
+  year:
+    description: The year the book was published.
+    value: {type: integer, constraints: {minimum: 1}}

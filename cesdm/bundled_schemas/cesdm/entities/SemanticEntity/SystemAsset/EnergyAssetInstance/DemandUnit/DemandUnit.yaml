@@ -1,0 +1,64 @@
+name: DemandUnit
+parents:
+- EnergyAssetInstance
+description: >
+  Demand or load that withdraws a carrier, with demand volumes, profiles,
+  and optional flexibility parameters.
+
+  Location: atNode on a NetworkNode (nodal), or belongsToGeographicalRegion
+  on a GeographicalRegion (zonal). A zonal study does not need an ElectricalBus
+  only to place demand.
+
+  Carrier rule: implied by atNode → CarrierDomain when a node is attached.
+  hasCarrier defaults to electricity and may be overwritten (heat, gas, …).
+  In a zonal model that is the usual carrier handle.
+
+attributes:
+- id: annual_energy_demand
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_power_demand
+  required: false
+  belongsToGroup: [dispatch]
+- id: demand_type
+  required: false
+  belongsToGroup: [dispatch]
+- id: is_demand_flexible
+  required: false
+  belongsToGroup: [dispatch]
+- id: flexibility_time_resolution
+  required: false
+  belongsToGroup: [dispatch]
+- id: flexibility_window_time_start
+  required: false
+  belongsToGroup: [dispatch]
+- id: flexibility_window_time_end
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_upward_adjustment
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_downward_adjustment
+  required: false
+  belongsToGroup: [dispatch]
+- id: value_of_lost_load
+  required: false
+  belongsToGroup: [dispatch]
+- id: variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+relations:
+- id: hasCarrier
+  required: false
+  target: Carrier
+  default: carrier.electricity
+- id: hasDemandProfile
+  required: false
+  belongsToGroup: [dispatch]
+- id: atNode
+  required: false
+  belongsToGroup: [topology]
+- id: belongsToGeographicalRegion
+  required: false
+  belongsToGroup: [topology]
+  target: GeographicalRegion

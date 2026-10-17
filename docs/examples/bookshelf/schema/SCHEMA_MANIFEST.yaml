@@ -1,0 +1,5 @@
+# A schema of its own. It does not extend schemas/cesdm.
+version: "1.0.0"
+description: >
+  Bookshelf schema for the EAR example. An author and a book, and the
+  book points at its author. No energy classes.

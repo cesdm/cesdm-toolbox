@@ -1,0 +1,20 @@
+# Attach ownedBy to CESDM classes. The living-lab package does not
+# edit DemandUnit, SolarGenerationUnit or StorageUnit. Each asset
+# points at one household, so a household can own several assets
+# without a multi-target link on the household itself.
+augmentations:
+  DemandUnit:
+    groups:
+      living_lab:
+        relations:
+          - id: ownedBy
+  SolarGenerationUnit:
+    groups:
+      living_lab:
+        relations:
+          - id: ownedBy
+  StorageUnit:
+    groups:
+      living_lab:
+        relations:
+          - id: ownedBy

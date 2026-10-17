@@ -1,0 +1,17 @@
+name: community_potential
+description: >
+  Joint socio-technical analysis: how large would an energy community be if
+  the willing households joined? Linking answers to meter data needs consent
+  and an answer. Every demand names its household with ownedBy. A household
+  with no meter has no demand, so that gap shows up in the comparison.
+requirements:
+  - entity_class: SurveyResponse
+    checks:
+      - attribute: consent_data_linkage
+        required: true
+        constraints:
+          enum: [true]
+      - {attribute: willingness_to_join, required: true}
+  - entity_class: DemandUnit
+    checks:
+      - {attribute: ownedBy, required: true}

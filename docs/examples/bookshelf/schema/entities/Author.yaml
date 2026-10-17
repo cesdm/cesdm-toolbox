@@ -1,0 +1,5 @@
+name: Author
+description: A person who wrote a book.
+attributes:
+  - id: name
+    required: true

@@ -1,0 +1,21 @@
+name: SurveyResponse
+parents: [SemanticEntity]
+description: >
+  The answers of one household to one survey wave. Answers are optional:
+  "don't know" and refusals are left unset, never coded as a number.
+attributes:
+  - id: willingness_to_join
+  - id: willingness_to_pay
+  - id: environmental_concern
+  - id: tenure
+  - id: household_size
+  - id: reports_pv
+  - id: consent_data_linkage
+    required: true
+relations:
+  - id: respondent
+    target: Household
+    required: true
+  - id: partOfSurvey
+    target: Survey
+    required: true

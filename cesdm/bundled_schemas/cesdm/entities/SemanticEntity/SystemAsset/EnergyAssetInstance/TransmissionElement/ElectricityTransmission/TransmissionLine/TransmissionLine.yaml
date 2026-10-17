@@ -1,0 +1,11 @@
+name: TransmissionLine
+parents:
+- ElectricityTransmission
+description: 'AC or DC transmission line or cable between two ElectricalBuses, with impedance, charging,
+  length, and thermal rating.
+
+  '
+attributes:
+- id: thermal_capacity_rating
+  required: false
+  belongsToGroup: [dispatch, power_flow]

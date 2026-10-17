@@ -1,0 +1,53 @@
+relations:
+  hasAutomaticVoltageRegulator:
+    description: 'Relates a GenerationUnit to its associated AVR/excitation controller. A generator may
+      reference zero or one Controller.AVR.* entity. The inverse relation (controller → machine) is controlsGenerationUnit,
+      declared directly on the Controller.AVR.* entity.
+
+      '
+    required: false
+    target:
+    - Controller.AVR
+  hasTurbineGovernor:
+    description: 'Relates a GenerationUnit to its associated turbine governor controller. A generator
+      may reference zero or one Controller.GOV.* entity. The inverse relation (controller → machine) is
+      controlsGenerationUnit, declared directly on the Controller.GOV.* entity.
+
+      '
+    required: false
+    target:
+    - Controller.GOV
+  hasPowerSystemStabilizer:
+    description: 'Relates a GenerationUnit to its associated power system stabiliser. A generator may
+      reference zero or one Controller.PSS.* entity. The inverse relation (controller → machine) is controlsGenerationUnit,
+      declared directly on the Controller.PSS.* entity.
+
+      '
+    required: false
+    target:
+    - Controller.PSS
+  usesDynamicModelType:
+    description: Relates a GenerationUnit to a reusable dynamic-machine model type. Multiple generators
+      may reference the same DynamicMachineModelType entity when they share the same parameter set. Generator-specific
+      rated values remain on GenerationUnit.
+    required: false
+    target:
+    - DynamicMachineModelType
+  controlsGenerationUnit:
+    description: 'Links a controller (AVR/GOV/PSS) to the GenerationUnit it controls.'
+    target:
+    - GenerationUnit
+  hasRotorAngleProfile:
+    description: 'Links a GenerationUnit.DynamicResult to a Profile entity containing the rotor angle
+      deviation time series [deg].
+
+      '
+    target:
+    - Profile
+  hasSpeedDeviationProfile:
+    description: 'Links a GenerationUnit.DynamicResult to a Profile entity containing the rotor speed
+      deviation time series [p.u.].
+
+      '
+    target:
+    - Profile

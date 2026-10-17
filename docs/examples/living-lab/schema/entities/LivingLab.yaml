@@ -1,0 +1,10 @@
+name: LivingLab
+parents: [SemanticEntity]
+description: A living lab — a real neighbourhood where residents and researchers test solutions together.
+attributes:
+  - id: name
+    required: true
+relations:
+  - id: locatedIn
+    target: Municipality
+    required: true

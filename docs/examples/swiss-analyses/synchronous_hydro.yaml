@@ -1,0 +1,19 @@
+# What the shipped dynamics profile does not ask: every hydro unit in this
+# system is a synchronous machine, so it must point at a machine model
+# and carry the base that model's per-unit values are read on.
+#
+# This does not apply to wind or PV. It also does not see the gas and
+# nuclear units of the Swiss system: those are plain GenerationUnit, and
+# a requirement on that class would include wind and PV as well.
+#
+#     model.validate_for_analysis("docs/examples/swiss-analyses/synchronous_hydro.yaml")
+name: synchronous_hydro
+description: >
+  Every HydroGenerationUnit links a dynamic machine model and states
+  the rated base that model's per-unit parameters are interpreted on.
+requirements:
+  - entity_class: HydroGenerationUnit
+    checks:
+      - {attribute: usesDynamicModelType, required: true}
+      - {attribute: rated_apparent_power, required: true}
+      - {attribute: rated_voltage, required: true}

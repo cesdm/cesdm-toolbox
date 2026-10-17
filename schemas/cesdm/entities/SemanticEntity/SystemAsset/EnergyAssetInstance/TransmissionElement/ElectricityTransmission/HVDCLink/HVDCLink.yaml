@@ -1,0 +1,14 @@
+name: HVDCLink
+parents:
+- ElectricityTransmission
+description: >
+  HVDC branch under ElectricityTransmission. Converter technology is LCC or VSC via converter_technology;
+  capacity-only HVDC/NTC without converter physics uses GenericInterconnector. Use max_flow for transfer
+  capacity (dispatch and power-flow); do not duplicate as p_max_hvdc / hvdc_technology_type.
+attributes:
+- id: max_flow
+  required: false
+  belongsToGroup: [dispatch, power_flow]
+- id: variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]

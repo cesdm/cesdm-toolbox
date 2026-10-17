@@ -1,0 +1,13 @@
+name: Municipality
+role: domain
+parents:
+  - SemanticEntity
+description: >
+  The municipality in which the living lab and its households are located.
+attributes:
+  - id: name
+    required: false
+relations:
+  - id: isPartOf
+    target: Canton
+    required: true

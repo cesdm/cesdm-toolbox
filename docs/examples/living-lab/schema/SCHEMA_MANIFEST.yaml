@@ -1,0 +1,10 @@
+# Living-lab extension: households, the place they live,
+# and the survey that asks those households about joining. Builds on
+# schemas/cesdm for the energy assets the survey points at.
+version: "1.0.0"
+description: >
+  Living-lab extension for the energy-and-society example. Households,
+  municipalities and the survey live here; generation, storage and demand
+  stay in schemas/cesdm.
+extends:
+  - ../../../../schemas/cesdm

@@ -1,0 +1,5 @@
+relations:
+  writtenBy:
+    description: The author of the book.
+    target:
+      - Author

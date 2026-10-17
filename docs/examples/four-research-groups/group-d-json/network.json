@@ -1,0 +1,33 @@
+{
+  "problem": "economic_dispatch",
+  "units": {
+    "capacity": "kW",
+    "demand": "MWh/year",
+    "efficiency": "percent",
+    "variable_cost": "EUR/kWh"
+  },
+  "regions": [
+    {"code": "CHE", "label": "Switzerland"}
+  ],
+  "demand": [
+    {"region": "CHE", "annual_mwh": 58000000}
+  ],
+  "generators": [
+    {"id": "che-ccgt", "region": "CHE", "technology": "gas_ccgt", "capacity_kw": 400000, "efficiency_pc": 58, "variable_cost_eur_per_kwh": 0.045},
+    {"id": "che-nuc", "region": "CHE", "technology": "nuclear", "capacity_kw": 3000000, "efficiency_pc": 33, "variable_cost_eur_per_kwh": 0.009},
+    {"id": "che-wind", "region": "CHE", "technology": "wind_onshore", "capacity_kw": 100000, "variable_cost_eur_per_kwh": 0},
+    {"id": "che-pv", "region": "CHE", "technology": "solar_pv", "capacity_kw": 6500000, "variable_cost_eur_per_kwh": 0},
+    {
+      "id": "che-hydro",
+      "region": "CHE",
+      "technology": "reservoir_hydro",
+      "capacity_kw": 8500000,
+      "reservoir_id": "CHE_RES",
+      "reservoir_mwh": 8800000,
+      "inflow_mwh": 20000000,
+      "efficiency_pc": 90,
+      "variable_cost_eur_per_kwh": 0
+    },
+    {"id": "che-ror", "region": "CHE", "technology": "run_of_river", "capacity_kw": 4000000, "inflow_mwh": 16000000, "efficiency_pc": 90, "variable_cost_eur_per_kwh": 0}
+  ]
+}

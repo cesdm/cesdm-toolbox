@@ -1,0 +1,87 @@
+name: StorageUnit
+parents:
+- EnergyAssetInstance
+description: >
+  Deployed storage that absorbs and re-releases a single carrier at one location:
+  atNode on a NetworkNode (nodal), or belongsToGeographicalRegion on a GeographicalRegion (zonal).
+
+  A single-basin hydro plant (one reservoir, one turbine limit, natural inflow) is one StorageUnit:
+  energy_storage_capacity, maximum_discharging_power, and annual_natural_inflow_energy with
+  hasNaturalInflowProfile. maximum_charging_power is 0 when it cannot pump. Inflow is energy (MWh/year),
+  the same quantity as on HydraulicStorageUnit.
+
+  A cascade, two basins, or a machine that a power flow or a dynamic study must see stays
+  HydroGenerationUnit plus HydraulicStorageUnit. HydraulicStorageUnit is not a subclass of StorageUnit.
+
+  Carrier rule: the stored carrier is implied by atNode → CarrierDomain; optional storesCarrier is an
+  override, and is the usual carrier handle when only belongsToGeographicalRegion is set. hasTechnology → StorageType for shared techno-economic defaults.
+
+attributes:
+- id: nominal_power_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: energy_storage_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: annual_natural_inflow_energy
+  required: false
+  belongsToGroup: [dispatch]
+- id: charging_efficiency
+  required: false
+  belongsToGroup: [dispatch]
+- id: discharging_efficiency
+  required: false
+  belongsToGroup: [dispatch]
+- id: self_discharge_rate
+  required: false
+  belongsToGroup: [dispatch]
+- id: minimum_state_of_charge
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_state_of_charge
+  required: false
+  belongsToGroup: [dispatch]
+- id: initial_state_of_charge
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_ramp_rate_up
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_ramp_rate_down
+  required: false
+  belongsToGroup: [dispatch]
+- id: variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+- id: charging_variable_operating_cost
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_charging_power
+  required: false
+  belongsToGroup: [dispatch]
+- id: maximum_discharging_power
+  required: false
+  belongsToGroup: [dispatch]
+- id: storage_technology_type
+  required: false
+  belongsToGroup: [dispatch]
+relations:
+- id: hasTechnology
+  required: false
+  target: StorageType
+- id: storesCarrier
+  required: false
+  target: Carrier
+- id: storesResource
+  required: false
+  target: NaturalResource
+- id: hasNaturalInflowProfile
+  required: false
+  belongsToGroup: [dispatch]
+- id: atNode
+  required: false
+  belongsToGroup: [topology]
+- id: belongsToGeographicalRegion
+  required: false
+  belongsToGroup: [topology]
+  target: GeographicalRegion

@@ -1,0 +1,16 @@
+relations:
+  conductedIn:
+    description: The living lab in which a survey was conducted.
+    target: [LivingLab]
+  respondent:
+    description: The household that gave the answers.
+    target: [Household]
+  partOfSurvey:
+    description: The survey wave the answers belong to.
+    target: [Survey]
+  ownedBy:
+    description: The household this demand, PV system or battery belongs to.
+    target: [Household]
+  isPartOf:
+    description: Relates a municipality to its canton.
+    target: [Canton]

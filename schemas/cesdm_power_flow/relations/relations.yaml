@@ -1,0 +1,43 @@
+relations:
+  hasVoltageMagnitudeProfile:
+    description: 'Links an ElectricalBus.PowerFlowResult to a Profile entity containing the bus voltage
+      magnitude time series [p.u.].
+
+      '
+    target:
+    - Profile
+  hasVoltageAngleProfile:
+    description: 'Links an ElectricalBus.PowerFlowResult to a Profile entity containing the bus voltage
+      angle time series [deg].
+
+      '
+    target:
+    - Profile
+  hasLoadingProfile:
+    description: 'Links a TransmissionElement.PowerFlowResult to a Profile entity containing the thermal
+      loading time series [%].
+
+      '
+    target:
+    - Profile
+  hasActivePowerLossProfile:
+    description: 'Links a TransmissionElement.PowerFlowResult to a Profile entity containing the active
+      power loss time series [MW].
+
+      '
+    target:
+    - Profile
+  hasActivePowerOutputProfile:
+    description: 'Links a GenerationUnit.PowerFlowResult to a Profile entity containing the active power
+      output time series [MW].
+
+      '
+    target:
+    - Profile
+  hasReactivePowerOutputProfile:
+    description: 'Links a GenerationUnit.PowerFlowResult to a Profile entity containing the reactive power
+      output time series [MVAr].
+
+      '
+    target:
+    - Profile

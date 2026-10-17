@@ -1,0 +1,12 @@
+# Codebook, energy community survey wave 1 (team A)
+
+| Variable | Question | Codes |
+|---|---|---|
+| id | household, pseudonymous | LL-01 … |
+| q1_beitritt | Würden Sie einer lokalen Energiegemeinschaft beitreten? | 1 sicher nicht … 5 sicher; 99 weiss nicht |
+| q2_zahlung | Wie viel mehr würden Sie pro Monat für lokalen Solarstrom bezahlen? | CHF pro Monat; -9 keine Angabe |
+| q3_umwelt | Der Klimawandel beunruhigt mich. | 1 gar nicht … 5 sehr |
+| q4_wohnform | Wohnen Sie im Eigentum oder zur Miete? | 1 Eigentum; 2 Miete |
+| q5_personen | Personen im Haushalt | Anzahl |
+| q6_pv | Hat Ihr Haushalt eine Photovoltaikanlage? | 1 ja; 2 nein |
+| einwilligung | Einwilligung zur Verknüpfung mit Zählerdaten | 1 ja; 0 nein |

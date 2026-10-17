@@ -1,0 +1,17 @@
+/* Diagrams: keep their light panel readable in dark mode, never wider than the text */
+.md-typeset img[src$=".svg"] {
+  display: block;
+  margin: 1.2rem auto;
+  max-width: 100%;
+  border-radius: 0.6rem;
+}
+
+/* Console output blocks read as output, not code to copy */
+.md-typeset .language-text code {
+  font-size: 0.78rem;
+}
+
+/* Tables with long identifiers wrap instead of overflowing */
+.md-typeset table:not([class]) td code {
+  overflow-wrap: anywhere;
+}

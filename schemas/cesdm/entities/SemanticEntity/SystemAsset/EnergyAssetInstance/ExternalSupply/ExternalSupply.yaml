@@ -1,0 +1,34 @@
+name: ExternalSupply
+parents:
+- EnergyAssetInstance
+description: >
+  Boundary supply that injects a carrier and can act as slack for the modelled
+  system (imports, undefined grid infeed, angular reference). Unlike GenerationUnit, it is a
+  system-boundary condition rather than an internal physical plant; capacity may be unbounded.
+
+  Location: atNode on a NetworkNode (nodal), or belongsToGeographicalRegion on a GeographicalRegion (zonal).
+
+  Carrier rule: implied by atNode → CarrierDomain; optional hasOutputCarrier is an import
+  override, and is the usual carrier handle when only belongsToGeographicalRegion is set.
+
+attributes:
+- id: supply_price
+  required: false
+  belongsToGroup: [dispatch]
+- id: supply_capacity
+  required: false
+  belongsToGroup: [dispatch]
+- id: is_slack
+  required: false
+  belongsToGroup: [dispatch]
+relations:
+- id: hasOutputCarrier
+  required: false
+  target: Carrier
+- id: atNode
+  required: false
+  belongsToGroup: [topology]
+- id: belongsToGeographicalRegion
+  required: false
+  belongsToGroup: [topology]
+  target: GeographicalRegion

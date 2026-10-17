@@ -1,0 +1,16 @@
+name: GasBus
+parents:
+- NetworkNode
+description: |
+  A NetworkNode within a natural gas CarrierDomain. Carries the nominal operating
+  pressure of the gas network at this node.
+
+  Examples: a high-pressure transmission node (70 bar), a distribution pressure
+  node (4 bar).
+
+attributes:
+- id: nominal_pressure
+  required: false
+relations:
+- id: belongsToCarrierDomain
+  fixed: domain.gas
