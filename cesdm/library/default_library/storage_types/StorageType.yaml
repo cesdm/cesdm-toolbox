@@ -1,0 +1,31 @@
+StorageType:
+  Storage.Hydro.Reservoir:
+    attributes:
+    - id: name
+      value: Storage.Hydro.Reservoir
+    - id: discharging_efficiency
+      value: 1.0
+    - id: charging_efficiency
+      value: 1.0
+    - id: variable_operating_cost
+      value: 0.0
+    - id: storage_technology_type
+      value: hydro_reservoir
+    relations:
+    - id: hasCarrier
+      fixed: carrier.electricity
+  Storage.Electrochemical.Battery:
+    attributes:
+    - id: name
+      value: Storage.Electrochemical.Battery
+    - id: discharging_efficiency
+      value: 0.95
+    - id: charging_efficiency
+      value: 0.9
+    - id: variable_operating_cost
+      value: 0.0
+    - id: storage_technology_type
+      value: battery
+    relations:
+    - id: hasCarrier
+      fixed: carrier.electricity

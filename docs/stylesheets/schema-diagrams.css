@@ -1,0 +1,49 @@
+/* Schema diagrams (docs/reference/schema-diagrams/), rendered by
+   javascripts/schema-diagrams.js: natural size in a scrollable frame. */
+.md-typeset .schema-diagram {
+  margin: 1em 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.4rem;
+  background: var(--md-default-bg-color);
+}
+.md-typeset .schema-diagram__toolbar {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.7rem;
+}
+.md-typeset .schema-diagram__toolbar button {
+  min-width: 2rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+}
+.md-typeset .schema-diagram__toolbar button:hover,
+.md-typeset .schema-diagram__toolbar button:focus-visible {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+.md-typeset .schema-diagram__level {
+  margin-left: auto;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .schema-diagram__canvas {
+  overflow: auto;
+  max-height: 80vh;
+  padding: 0.5rem;
+}
+.md-typeset .schema-diagram__canvas svg {
+  display: block;
+  max-width: none;
+}
+/* Before the script runs, or without JavaScript: show the source compactly. */
+.md-typeset pre.cesdm-uml {
+  max-height: 20rem;
+  overflow: auto;
+}
+.md-typeset .schema-diagram__canvas { cursor: grab; }
+.md-typeset .schema-diagram__canvas.is-panning { cursor: grabbing; user-select: none; }

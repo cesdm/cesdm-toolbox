@@ -1,0 +1,36 @@
+attributes:
+  wave:
+    description: Number of the survey wave, 1 for the first.
+    value: {type: integer, constraints: {minimum: 1}}
+  fieldwork_start:
+    description: First day of fieldwork, ISO 8601.
+    value: {type: string, constraints: {pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'}}
+  fieldwork_end:
+    description: Last day of fieldwork, ISO 8601.
+    value: {type: string, constraints: {pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'}}
+  willingness_to_join:
+    description: >
+      "Would you join a local energy community?" 1 = certainly not … 5 = certainly.
+    value: {type: integer, constraints: {minimum: 1, maximum: 5}}
+  willingness_to_pay:
+    description: Extra amount per month the household would pay for electricity from the community's PV.
+    value: {type: decimal, constraints: {minimum: 0.0}}
+    unit: {constraints: {enum: [CHF/month]}}
+  environmental_concern:
+    description: Agreement with "Climate change worries me". 1 = not at all … 5 = very much.
+    value: {type: integer, constraints: {minimum: 1, maximum: 5}}
+  tenure:
+    description: Whether the household owns or rents its dwelling.
+    value: {type: string, constraints: {enum: [owner, tenant]}}
+  household_size:
+    description: Number of persons living in the household.
+    value: {type: integer, constraints: {minimum: 1}}
+  reports_pv:
+    description: The household's own answer to "Do you have a PV system?" — stated, not measured.
+    value: {type: boolean}
+  consent_data_linkage:
+    description: The household agreed that its answers may be linked to its meter and asset data.
+    value: {type: boolean}
+  has_ev:
+    description: Whether the household has an electric vehicle, as recorded by the meter team.
+    value: {type: boolean}

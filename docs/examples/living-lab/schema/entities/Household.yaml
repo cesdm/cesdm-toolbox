@@ -1,0 +1,14 @@
+name: Household
+role: domain
+parents:
+- SemanticEntity
+description: >
+  A residential household in the living lab. The household is the unit
+  of social analysis; its meters and assets are separate CESDM objects.
+attributes:
+- id: has_ev
+  required: false
+relations:
+- id: locatedIn
+  target: Municipality
+  required: true

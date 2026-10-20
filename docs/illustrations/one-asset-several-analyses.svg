@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 490" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<title>One hydro unit carries topology, dispatch, power-flow and dynamics data; Part 1 filled only the first two</title>
+<rect width="860" height="490" rx="14" fill="#F6F7F9"/>
+<rect x="24" y="20" width="560" height="450" rx="12" fill="#FFFFFF" stroke="#3E4C5E" stroke-width="2"/>
+<text x="44" y="52" fill="#26303D" font-size="17" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">gen.CH_HYD_ROR</text>
+<text x="236" y="52" fill="#6B7585" font-size="14">HydroGenerationUnit</text>
+<line x1="24" y1="66" x2="584" y2="66" stroke="#D5DBE3"/>
+<rect x="36" y="78" width="6" height="60" rx="2" fill="#3E4C5E"/>
+<text x="54" y="92" fill="#3E4C5E" font-size="12" font-weight="700" letter-spacing="0.5">LOCATION</text>
+<text x="54" y="112" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">belongsToGeographicalRegion</text>
+<text x="330" y="112" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">→ region.country.CH</text>
+<text x="54" y="134" fill="#9AA3B0" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">atNode</text>
+<rect x="330" y="121" width="200" height="17" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<rect x="36" y="160" width="6" height="82" rx="2" fill="#2E6E8E"/>
+<text x="54" y="174" fill="#2E6E8E" font-size="12" font-weight="700" letter-spacing="0.5">DISPATCH</text>
+<text x="54" y="194" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">nominal_power_capacity</text>
+<text x="330" y="194" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">4000 MW</text>
+<text x="54" y="216" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">generator_technology_type</text>
+<text x="330" y="216" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">run_of_river</text>
+<text x="54" y="238" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">drawsFromHydroReservoir</text>
+<text x="330" y="238" fill="#26303D" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">→ storage.CH_ROR</text>
+<rect x="36" y="264" width="6" height="82" rx="2" fill="#A5622A"/>
+<text x="54" y="278" fill="#A5622A" font-size="12" font-weight="700" letter-spacing="0.5">POWER FLOW</text>
+<text x="54" y="298" fill="#9AA3B0" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">active_power_setpoint</text>
+<rect x="330" y="285" width="200" height="17" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<text x="54" y="320" fill="#9AA3B0" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">voltage_magnitude_setpoint</text>
+<rect x="330" y="307" width="200" height="17" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<text x="54" y="342" fill="#9AA3B0" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">max./min. reactive power</text>
+<rect x="330" y="329" width="200" height="17" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<rect x="36" y="368" width="6" height="82" rx="2" fill="#6B4E8E"/>
+<text x="54" y="382" fill="#6B4E8E" font-size="12" font-weight="700" letter-spacing="0.5">DYNAMICS</text>
+<text x="54" y="402" fill="#9AA3B0" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">usesDynamicModelType</text>
+<rect x="330" y="389" width="200" height="17" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<text x="54" y="424" fill="#9AA3B0" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">hasAutomaticVoltageRegulator</text>
+<rect x="330" y="411" width="200" height="17" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<text x="54" y="446" fill="#9AA3B0" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">hasTurbineGovernor</text>
+<rect x="330" y="433" width="200" height="17" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<rect x="610" y="78" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#26303D"/>
+<text x="636" y="91" fill="#26303D" font-size="13" font-weight="600">filled in Part 1</text>
+<text x="636" y="110" fill="#4A5463" font-size="12.5">what the four groups</text>
+<text x="636" y="127" fill="#4A5463" font-size="12.5">exchange</text>
+<rect x="610" y="150" width="16" height="16" rx="3" fill="none" stroke="#B8C0CC" stroke-dasharray="4 3"/>
+<text x="636" y="163" fill="#26303D" font-size="13" font-weight="600">empty</text>
+<text x="636" y="182" fill="#4A5463" font-size="12.5">added in Part 2, to the</text>
+<text x="636" y="199" fill="#4A5463" font-size="12.5">same object</text>
+<text x="610" y="420" fill="#3E4C5E" font-size="13" font-weight="600">One asset.</text>
+<text x="610" y="439" fill="#3E4C5E" font-size="13" font-weight="600">Each analysis reads</text>
+<text x="610" y="458" fill="#3E4C5E" font-size="13" font-weight="600">the part it needs.</text>
+</svg>

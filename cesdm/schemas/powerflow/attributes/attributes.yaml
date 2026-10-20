@@ -1,0 +1,339 @@
+attributes:
+  powerflow_bus_type:
+    label: Power Flow Bus Type
+    description: AC power-flow bus classification (PQ, PV, slack, …) used by the load-flow formulation.
+    provenance_ref: 'IEEE Std 399-1997 (Brown Book), Section 7; MATPOWER User''s Manual, Table B-1; PSS/E
+      Program Operation Manual, Bus Data.
+
+      '
+    value:
+      type: string
+      constraints:
+        enum:
+        - slack
+        - PV
+        - PQ
+  rated_primary_voltage:
+    description: 'Rated line-to-line voltage on the primary (high-voltage) winding of a power transformer,
+      expressed in kV. Used to define the voltage transformation ratio and for per-unit system normalisation
+      in power flow calculations.
+
+      '
+    label: Rated Primary Voltage
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - kV
+  rated_secondary_voltage:
+    description: 'Rated line-to-line voltage on the secondary (low-voltage) winding of a power transformer,
+      expressed in kV. Combined with rated_primary_voltage this defines the nominal transformation ratio.
+
+      '
+    label: Rated Secondary Voltage
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - kV
+  short_circuit_voltage_in_percentage:
+    description: 'Short-circuit voltage of a transformer expressed as a percentage of rated voltage (%).
+      Determines the transformer''s series reactance in per-unit: x_pu = short_circuit_voltage_in_percentage
+      / 100. Used directly in power flow and fault analysis calculations.
+
+      '
+    label: Short Circuit Voltage
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - '%'
+  tap_ratio:
+    description: Off-nominal transformer tap ratio. In MATPOWER, a value of 0 or 1 indicates no off-nominal
+      tap; values different from 1 represent transformer branch behaviour.
+    label: Tap Ratio
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+  phase_shift_angle:
+    description: Transformer phase-shift angle in degrees. Maps to the MATPOWER branch angle column and
+      pandapower transformer shift_degree where applicable.
+    label: Phase Shift Angle
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - deg
+  dc_voltage_kv:
+    label: DC Voltage [kV]
+    description: Nominal DC pole-to-pole voltage of the HVDC link [kV].
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - kV
+  active_power_setpoint_from_to:
+    label: Scheduled Active Power [MW]
+    description: 'Operator-set active power transfer on the HVDC link [MW]. Positive = fromNode → toNode.
+
+      '
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MW
+  p_min_hvdc:
+    label: P min HVDC [MW]
+    description: Minimum active power [MW]. Negative = reverse direction allowed.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MW
+  converter_loss_coefficient:
+    label: Converter Loss Coefficient
+    description: Fractional converter losses as proportion of transferred power [pu].
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  converter_rating_from:
+    label: Converter Rating fromNode [MVA]
+    description: Apparent power rating of the converter station at the fromNode end.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MVA
+  converter_rating_to:
+    label: Converter Rating toNode [MVA]
+    description: Apparent power rating of the converter station at the toNode end.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MVA
+  active_power_injection:
+    label: Shunt Active Power [MW]
+    description: Active power component of a static shunt element at nominal voltage, expressed in MW.
+      For MATPOWER this maps to the bus Gs column at V = 1.0 p.u.; for pandapower this maps to net.shunt
+      p_mw.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MW
+  reactive_power_injection:
+    label: Shunt Reactive Power Injection [MVAr]
+    description: 'Reactive power injection of a static shunt element at nominal voltage, expressed in
+      MVAr. This follows the MATPOWER bus Bs convention: positive values inject reactive power at V =
+      1.0 p.u. When exchanging with pandapower, whose shunt q_mvar uses the opposite load-oriented sign
+      convention, the importer/exporter converts the sign.
+
+      '
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MVAr
+  active_power_demand:
+    description: 'The instantaneous active power consumed by the demand entity. Active power represents
+      the real electrical power required to perform useful work and is typically expressed in MW.
+
+      '
+    label: Active Power Demand
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  reactive_power_demand:
+    description: 'The instantaneous reactive power consumed by the demand entity. Reactive power represents
+      the non-working power required for maintaining electric and magnetic fields in AC systems and is
+      typically expressed in MVAr.
+
+      '
+    label: Reactive Power Demand
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MVAr
+  power_factor:
+    description: 'Ratio between active power and apparent power associated with the demand entity. The
+      power factor characterizes the efficiency of electrical power utilization and indicates the phase
+      shift between voltage and current in AC systems.
+
+      '
+    label: Power Factor
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  active_power_setpoint:
+    description: 'The target active power output assigned to the generator within the power flow calculation.
+      This value defines the scheduled real power injection of the generator into the electrical network
+      and is typically expressed in MW.
+
+      '
+    label: Active Power Setpoint
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MW
+  reactive_power_setpoint:
+    description: 'The target reactive power output assigned to the generator within the power flow calculation.
+      This value defines the scheduled reactive power injection used for voltage support and reactive
+      power balancing in the electrical network and is typically expressed in MVAr.
+
+      '
+    label: Reactive Power Setpoint
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MVAr
+  maximum_active_power_output:
+    description: 'Maximum active power output of a generator in power-flow or OPF formulations. This corresponds
+      to MATPOWER QMAX and is expressed in MW.
+
+      '
+    label: Maximum active Power Output
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MW
+  minimum_active_power_output:
+    description: 'Minimum active power output of a generator in power-flow or OPF formulations. This corresponds
+      to MATPOWER QMIN and is expressed in MW.
+
+      '
+    label: Minimum active Power Output
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MW
+  maximum_reactive_power_output:
+    description: 'Maximum reactive power output of a generator in power-flow or OPF formulations. This
+      corresponds to MATPOWER QMAX and is expressed in MVAr.
+
+      '
+    label: Maximum Reactive Power Output
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MVAr
+  minimum_reactive_power_output:
+    description: 'Minimum reactive power output of a generator in power-flow or OPF formulations. This
+      corresponds to MATPOWER QMIN and is expressed in MVAr.
+
+      '
+    label: Minimum Reactive Power Output
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - MVAr
+  voltage_magnitude_setpoint:
+    description: 'The target voltage magnitude maintained by the generator at its connected network node
+      during the power flow analysis. This value is commonly used for PV bus modelling and voltage regulation
+      studies and is typically expressed in per unit.
+
+      '
+    label: Voltage Setpoint
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  voltage_angle_setpoint:
+    description: 'The voltage phase angle associated with the generator bus within the power flow solution.
+      The voltage angle represents the phase displacement of the bus voltage relative to the system reference
+      angle and is typically expressed in degrees.
+
+      '
+    label: Voltage Angle
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - deg
+  converter_technology:
+    description: HVDC converter technology classification, e.g. LCC or VSC.
+    label: Converter Technology
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - LCC
+        - VSC

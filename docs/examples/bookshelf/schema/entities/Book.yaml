@@ -1,0 +1,10 @@
+name: Book
+description: One book.
+attributes:
+  - id: title
+    required: true
+  - id: year
+    required: true
+relations:
+  - id: writtenBy
+    required: true

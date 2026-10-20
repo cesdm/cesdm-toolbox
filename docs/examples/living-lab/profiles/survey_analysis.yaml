@@ -1,0 +1,9 @@
+name: survey_analysis
+description: >
+  Descriptive analysis of the survey on its own: every response needs the
+  two key answers.
+requirements:
+  - entity_class: SurveyResponse
+    checks:
+      - {attribute: willingness_to_join, required: true}
+      - {attribute: tenure, required: true}

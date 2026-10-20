@@ -1,0 +1,82 @@
+# CESDM schema manifest
+#
+# Declares the version of this schema tree and a stability tier per
+# schema family. This file is read by ear.schema_manifest.SchemaManifest
+# and attached to every loaded model as model.schema_manifest.
+#
+# Family keys are logical groupings (not always 1:1 with directories).
+# A dotted key names a narrower family than its prefix.
+# Lookup is exact via SchemaManifest.stability_for(family).
+#
+# --------------------------------------------------------------------
+# Versioning policy (semver: MAJOR.MINOR.PATCH)
+# --------------------------------------------------------------------
+# PATCH  — wording/typo fixes, clarified descriptions, no structural change.
+# MINOR  — additive, backward-compatible change: a new optional attribute
+#          or relation, or a new entity class.
+#          Existing valid models remain valid.
+# MAJOR  — breaking change: a renamed/removed class, attribute, or
+#          relation; a changed cardinality or required-ness; a changed
+#          inheritance root. Existing models may need migration.
+#
+# CesdmModel.import_yaml() compares the schema packages recorded in an
+# exported model's _cesdm_meta block against the packages that are
+# loaded and warns when one is missing or its major version differs.
+# See ear/model/persistence_yaml_json.py.
+#
+# The version history of the toolbox is CHANGELOG.md at the repository root.
+# What is stable is summarised in docs/project/roadmap.md.
+
+# Recorded in exported files. The folder is ``base``; the package is
+# not, so another extension can use a folder of that name.
+name: cesdm
+
+version: "1.0.0"
+
+description: >
+  CESDM dispatch base schema (electricity/gas/heat/hydrogen/water energy
+  systems). Power-flow fields live in cesdm/schemas/powerflow and dynamic
+  models in cesdm/schemas/dynamics. See docs/project/roadmap.md.
+
+stability:
+  # Structural backbone: SemanticEntity, Port, SystemAsset. Changes here
+  # are the most disruptive possible, so this is held to the highest bar.
+  core: stable
+
+  # Asset entity classes (GenerationUnit, StorageUnit, DemandUnit,
+  # ConversionUnit family, TransmissionElement electrical leaves, …).
+  # Round-trip tested against PyPSA and TYNDP imports.
+  assets: stable
+
+  # NetworkNode and its per-carrier subclasses.
+  nodes: stable
+
+  # Carrier, NaturalResource.
+  carrier: stable
+
+  # Central attribute and relation registries.
+  attributes: stable
+  relations: stable
+  units: stable
+
+  # EnergySystemModel, GeographicalRegion.
+  system: stable
+
+  # GeneratorType and StorageType templates.
+  technology: stable
+
+  # Attribute groups (belongsToGroup). Load-flow impedance is not in
+  # this package; its stability is declared by cesdm/schemas/powerflow.
+  dispatch: stable
+  topology: stable
+  power_flow: experimental
+  spatial: experimental
+  capacity_expansion: experimental
+  technical: experimental
+  dynamics: experimental
+
+  # IEEE AVR/governor/PSS controller model schemas.
+  controllers: experimental
+
+  # Time-series/profile schema classes.
+  profiles: stable

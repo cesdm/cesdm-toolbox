@@ -1,0 +1,1562 @@
+attributes:
+  machine_model_order:
+    label: Machine Model
+    description: 'Dynamic model order identifier used in the simulation.
+
+      '
+    value:
+      type: string
+      constraints:
+        enum:
+        - classical
+        - two_axis
+        - subtransient_4th
+        - subtransient_6th
+        - subtransient_8th
+  inertia_constant:
+    label: H — inertia constant
+    description: 'Stored kinetic energy at rated speed / rated MVA [s]. H = ½·J·ω₀² / Sn. Governs dω/dt
+      = (Pm − Pe) / (2H).
+
+      '
+    provenance_ref: Anderson & Fouad (2003), Eq. 2.33.
+    value:
+      type: decimal
+      default: 5.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  damping_coefficient:
+    label: D — mechanical damping coefficient
+    description: 'Damping torque proportional to speed deviation (pu torque / pu speed). Dimensionless.
+      Typical range 0–3; default 0.
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  d_axis_synchronous_reactance:
+    label: Xd — d-axis synchronous reactance
+    description: 'Direct-axis synchronous reactance [pu on machine base]. Steady-state d-axis air-gap
+      impedance. Typical range 1.0–2.0 pu.
+
+      '
+    provenance_ref: IEEE Std 1110-2002, Table 3.
+    value:
+      type: decimal
+      default: 1.8
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  q_axis_synchronous_reactance:
+    label: Xq — q-axis synchronous reactance
+    description: 'Quadrature-axis synchronous reactance [pu on machine base].
+
+      '
+    value:
+      type: decimal
+      default: 1.7
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  d_axis_transient_reactance:
+    label: X'd — d-axis transient reactance
+    description: 'Direct-axis transient reactance [pu on machine base].
+
+      '
+    value:
+      type: decimal
+      default: 0.3
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  q_axis_transient_reactance:
+    label: X'q — q-axis transient reactance
+    description: 'Quadrature-axis transient reactance [pu on machine base].
+
+      '
+    value:
+      type: decimal
+      default: 0.55
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  d_axis_transient_open_circuit_time_constant:
+    label: T'd0 — d-axis transient open-circuit time constant
+    description: 'Direct-axis transient open-circuit time constant [s].
+
+      '
+    value:
+      type: decimal
+      default: 8.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  q_axis_transient_open_circuit_time_constant:
+    label: T'q0 — q-axis transient open-circuit time constant
+    description: 'Quadrature-axis transient open-circuit time constant [s].
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  d_axis_subtransient_reactance:
+    label: X''d — d-axis subtransient reactance
+    description: 'Direct-axis subtransient reactance [pu on machine base]. Governs first-cycle behaviour
+      after a disturbance.
+
+      '
+    value:
+      type: decimal
+      default: 0.25
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  q_axis_subtransient_reactance:
+    label: X''q — q-axis subtransient reactance
+    description: 'Quadrature-axis subtransient reactance [pu on machine base].
+
+      '
+    value:
+      type: decimal
+      default: 0.25
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  d_axis_subtransient_open_circuit_time_constant:
+    label: T''d0 — d-axis subtransient open-circuit time constant
+    description: 'Direct-axis subtransient open-circuit time constant [s].
+
+      '
+    value:
+      type: decimal
+      default: 0.03
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  q_axis_subtransient_open_circuit_time_constant:
+    label: T''q0 — q-axis subtransient open-circuit time constant
+    description: 'Quadrature-axis subtransient open-circuit time constant [s].
+
+      '
+    value:
+      type: decimal
+      default: 0.05
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  armature_resistance:
+    label: Ra — armature resistance
+    description: 'Armature (stator) resistance [pu on machine base]. Typically 0.002–0.005 pu; often neglected
+      in simplified models.
+
+      '
+    value:
+      type: decimal
+      default: 0.003
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  stator_leakage_reactance:
+    label: Xl — stator leakage reactance
+    description: 'Stator leakage reactance [pu on machine base].
+
+      '
+    value:
+      type: decimal
+      default: 0.2
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_Efd_min:
+    label: Efd_min — minimum field voltage
+    description: 'Minimum field voltage limit [pu on machine air-gap base]. Prevents field reversal under
+      leading power factor operation.
+
+      '
+    value:
+      type: decimal
+      default: -6.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_Efd_max:
+    label: Efd_max — maximum (ceiling) field voltage
+    description: 'Ceiling field voltage limit [pu on machine air-gap base]. Represents AVR forcing capability
+      (typically 3–6 pu).
+
+      '
+    value:
+      type: decimal
+      default: 6.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_Va_min:
+    label: Va_min — regulator output lower limit
+    description: 'Lower limit on voltage regulator output before the exciter block [pu].
+
+      '
+    value:
+      type: decimal
+      default: -10.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_Va_max:
+    label: Va_max — regulator output upper limit
+    description: 'Upper limit on voltage regulator output before the exciter block [pu].
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_Vr_min:
+    label: Vr_min — exciter lower output limit
+    description: 'Lower limit on the internal regulator reference signal [pu]. IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: -1.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_Vr_max:
+    label: Vr_max — exciter upper output limit
+    description: 'Upper limit on the internal regulator reference signal [pu]. IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_Tr:
+    label: Tr — voltage transducer time constant
+    description: 'Terminal voltage transducer / filter time constant [s]. Common to IEEET1, AC1A, ST1A.
+      Typical: 0.01–0.05 s.
+
+      '
+    value:
+      type: decimal
+      default: 0.02
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_SEXS_Ka:
+    label: Ka — voltage regulator gain
+    description: 'Regulator forward gain [pu]. Efd = Ka/(1+s·Ta) · (Vref − Vt + Vs).
+
+      '
+    provenance_ref: PSS/E Model Library, SEXS.
+    value:
+      type: decimal
+      default: 200.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_SEXS_Ta:
+    label: Ta — regulator time constant
+    description: 'First-order regulator lag time constant [s].
+
+      '
+    value:
+      type: decimal
+      default: 0.01
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_IEEET1_Ka:
+    label: Ka — voltage regulator gain
+    description: 'Regulator gain [pu]. IEEE Std 421.5-2016, IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: 400.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_IEEET1_Ta:
+    label: Ta — regulator time constant
+    description: 'Regulator lag time constant [s]. IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: 0.02
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_IEEET1_Ke:
+    label: Ke — exciter constant
+    description: 'Self-excitation constant of the DC exciter [pu]. IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_IEEET1_Te:
+    label: Te — exciter time constant
+    description: 'Exciter field circuit time constant [s]. IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: 0.8
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_IEEET1_Kf:
+    label: Kf — rate feedback gain
+    description: 'Exciter stabilising rate-feedback gain [pu]. IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: 0.03
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_IEEET1_Tf:
+    label: Tf — rate feedback time constant
+    description: 'Exciter stabilising feedback filter time constant [s]. IEEET1.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_AC1A_Ka:
+    label: Ka — voltage regulator gain
+    description: 'Regulator gain [pu]. IEEE Std 421.5-2016, AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 400.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_AC1A_Ta:
+    label: Ta — regulator time constant
+    description: 'Regulator lag time constant [s]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 0.02
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_AC1A_Tb:
+    label: Tb — TGR denominator time constant
+    description: 'Transient gain reduction (TGR) lag time constant [s]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_AC1A_Tc:
+    label: Tc — TGR numerator time constant
+    description: 'Transient gain reduction (TGR) lead time constant [s]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_AC1A_Ke:
+    label: Ke — exciter constant
+    description: 'Self-excitation constant [pu]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_AC1A_Te:
+    label: Te — exciter time constant
+    description: 'Exciter field circuit time constant [s]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 0.8
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_AC1A_Kf:
+    label: Kf — rate feedback gain
+    description: 'Stabilising rate-feedback gain [pu]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 0.03
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_AC1A_Tf:
+    label: Tf — rate feedback time constant
+    description: 'Stabilising feedback time constant [s]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_AC1A_Kc:
+    label: Kc — rectifier loading factor
+    description: 'Rectifier voltage drop factor accounting for commutation [pu]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 0.2
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_AC1A_Kd:
+    label: Kd — demagnetising factor
+    description: 'd-axis generator reaction to exciter demagnetising factor [pu]. AC1A.
+
+      '
+    value:
+      type: decimal
+      default: 0.38
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_ST1A_Ka:
+    label: Ka — voltage regulator gain
+    description: 'Regulator gain [pu]. IEEE Std 421.5-2016, ST1A.
+
+      '
+    value:
+      type: decimal
+      default: 200.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  AVR_ST1A_Ta:
+    label: Ta — regulator time constant
+    description: 'Regulator lag time constant [s]. ST1A.
+
+      '
+    value:
+      type: decimal
+      default: 0.02
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_ST1A_Tb:
+    label: Tb — TGR denominator time constant
+    description: 'Transient gain reduction lag time constant [s]. ST1A.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_ST1A_Tc:
+    label: Tc — TGR numerator time constant
+    description: 'Transient gain reduction lead time constant [s]. ST1A.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  AVR_ST1A_Kl:
+    label: Kl — field weakening gain
+    description: 'Gain applied when regulator input is below threshold [pu]. ST1A. Typically 0 (disabled).
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_Pmax:
+    label: Pmax — maximum mechanical power
+    description: 'Maximum mechanical power from the prime mover [MW on machine base].
+
+      '
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  GOV_Pmin:
+    label: Pmin — minimum mechanical power
+    description: 'Minimum mechanical power from the prime mover [MW on machine base].
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  GOV_Db:
+    label: Db — governor speed deadband
+    description: 'Speed error deadband around rated frequency [pu]. Governor does not respond within ±Db.
+      Common to IEEEG1, GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_IEEEG1_R:
+    label: R — speed droop
+    description: 'Permanent speed droop [pu]. 0.05 = 5 % droop. IEEEG1.
+
+      '
+    value:
+      type: decimal
+      default: 0.05
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_IEEEG1_T1:
+    label: T1 — governor lag time constant
+    description: 'First lag time constant of the governor control loop [s]. IEEEG1.
+
+      '
+    value:
+      type: decimal
+      default: 0.1
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_IEEEG1_T2:
+    label: T2 — governor lead time constant
+    description: 'Lead time constant of the governor lead-lag compensator [s]. IEEEG1. Set to 0 for pure
+      lag.
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_IEEEG1_T3:
+    label: T3 — turbine time constant
+    description: 'Steam chest / prime mover time constant [s]. IEEEG1.
+
+      '
+    value:
+      type: decimal
+      default: 0.3
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_GGOV1_R:
+    label: R — speed droop
+    description: 'Permanent speed droop [pu]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.04
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_GGOV1_Tpelec:
+    label: Tpelec — electrical power transducer time constant
+    description: 'Electrical power measurement filter time constant [s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_GGOV1_Kpgov:
+    label: Kpgov — PID proportional gain
+    description: 'Speed governor proportional gain [pu]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_GGOV1_Kigov:
+    label: Kigov — PID integral gain
+    description: 'Speed governor integral gain [pu/s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 2.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_GGOV1_Kdgov:
+    label: Kdgov — PID derivative gain
+    description: 'Speed governor derivative gain [pu·s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_GGOV1_Tdgov:
+    label: Tdgov — derivative filter time constant
+    description: 'Derivative controller filter time constant [s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_GGOV1_Tact:
+    label: Tact — actuator time constant
+    description: 'Valve/gate actuator time constant [s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.5
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_GGOV1_T3:
+    label: T3 — fuel system / turbine time constant
+    description: 'Combustor / turbine delay time constant [s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.85
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_GGOV1_Ropen:
+    label: Ropen — valve opening rate limit
+    description: 'Maximum valve opening rate [pu/s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.1
+    unit:
+      constraints:
+        enum:
+        - pu/s
+  GOV_GGOV1_Rclose:
+    label: Rclose — valve closing rate limit
+    description: 'Maximum valve closing rate [pu/s] (negative). GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: -0.1
+    unit:
+      constraints:
+        enum:
+        - pu/s
+  GOV_GGOV1_Kimw:
+    label: Kimw — load control integral gain
+    description: 'Load control / power error integration gain [pu/s]. GGOV1. Set to 0 to disable droop
+      reset.
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_GGOV1_Aset:
+    label: Aset — acceleration limiter setpoint
+    description: 'Acceleration limiter setpoint [pu/s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.01
+    unit:
+      constraints:
+        enum:
+        - pu/s
+  GOV_GGOV1_Ka:
+    label: Ka — acceleration limiter gain
+    description: 'Acceleration limiter proportional gain [pu]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_GGOV1_Ta:
+    label: Ta — acceleration limiter time constant
+    description: 'Acceleration limiter filter time constant [s]. GGOV1.
+
+      '
+    value:
+      type: decimal
+      default: 0.1
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_HYGOV_R:
+    label: R — permanent droop
+    description: 'Permanent (steady-state) speed droop [pu]. HYGOV.
+
+      '
+    value:
+      type: decimal
+      default: 0.05
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_HYGOV_r:
+    label: r — temporary droop
+    description: 'Temporary droop [pu]. HYGOV. Provides faster transient response than permanent droop
+      R before decaying via dashpot Tr.
+
+      '
+    value:
+      type: decimal
+      default: 0.3
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_HYGOV_Tr:
+    label: Tr — dashpot reset time constant
+    description: 'Dashpot (temporary droop) reset time constant [s]. HYGOV.
+
+      '
+    value:
+      type: decimal
+      default: 5.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_HYGOV_Tf:
+    label: Tf — pilot valve / gate servo time constant
+    description: 'Pilot valve and gate servo time constant [s]. HYGOV.
+
+      '
+    value:
+      type: decimal
+      default: 0.05
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_HYGOV_Tg:
+    label: Tg — main gate time constant
+    description: 'Main gate (penstock flow) time constant [s]. HYGOV.
+
+      '
+    value:
+      type: decimal
+      default: 0.5
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_HYGOV_Tw:
+    label: Tw — water starting time
+    description: 'Water column (penstock) starting time constant [s]. HYGOV. Tw = L·Q0 / (g·H0·A).
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  GOV_HYGOV_At:
+    label: At — turbine gain
+    description: 'Turbine gain factor [pu]. HYGOV. Ratio of full-gate power to rated power at rated head.
+
+      '
+    value:
+      type: decimal
+      default: 1.2
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_HYGOV_Dturb:
+    label: Dturb — turbine damping
+    description: 'Turbine self-regulation factor [pu power / pu speed]. HYGOV.
+
+      '
+    value:
+      type: decimal
+      default: 0.5
+    unit:
+      constraints:
+        enum:
+        - pu
+  GOV_HYGOV_qNL:
+    label: qNL — no-load flow
+    description: 'No-load water flow at rated head [pu of rated flow]. HYGOV.
+
+      '
+    value:
+      type: decimal
+      default: 0.08
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_Vs_max:
+    label: Vs_max — PSS output upper limit
+    description: 'Upper saturation limit on PSS supplementary voltage output [pu]. Injected at AVR summing
+      junction. Typical: 0.05–0.15 pu.
+
+      '
+    value:
+      type: decimal
+      default: 0.1
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_Vs_min:
+    label: Vs_min — PSS output lower limit
+    description: 'Lower saturation limit on PSS supplementary voltage output [pu].
+
+      '
+    value:
+      type: decimal
+      default: -0.1
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_STAB1_Kstab:
+    label: Kstab — stabiliser gain
+    description: 'PSS forward path gain [pu]. STAB1 / PSS1A.
+
+      '
+    provenance_ref: IEEE Std 421.5-2016, PSS1A.
+    value:
+      type: decimal
+      default: 20.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_STAB1_Tw:
+    label: Tw — washout time constant
+    description: 'Washout high-pass filter time constant [s]. STAB1. Removes DC and low-frequency components.
+      Typical: 5–20 s.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_STAB1_T1:
+    label: T1 — first lead time constant
+    description: 'First lead-lag stage numerator time constant [s]. STAB1.
+
+      '
+    value:
+      type: decimal
+      default: 0.05
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_STAB1_T2:
+    label: T2 — first lag time constant
+    description: 'First lead-lag stage denominator time constant [s]. STAB1.
+
+      '
+    value:
+      type: decimal
+      default: 0.02
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_STAB1_T3:
+    label: T3 — second lead time constant
+    description: 'Second lead-lag stage numerator time constant [s]. STAB1.
+
+      '
+    value:
+      type: decimal
+      default: 3.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_STAB1_T4:
+    label: T4 — second lag time constant
+    description: 'Second lead-lag stage denominator time constant [s]. STAB1.
+
+      '
+    value:
+      type: decimal
+      default: 5.4
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_Ks1:
+    label: Ks1 — first path gain
+    description: 'Gain of the speed signal path [pu]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 5.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_PSS2A_Ks2:
+    label: Ks2 — second path gain
+    description: 'Gain of the integral-of-accelerating-power path [pu]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.2
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_PSS2A_T6:
+    label: T6 — speed transducer time constant
+    description: 'Rotor speed transducer filter time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_T7:
+    label: T7 — power transducer time constant
+    description: 'Active power transducer filter time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 2.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_T8:
+    label: T8 — ramp tracking numerator time constant
+    description: 'Ramp-tracking filter numerator time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.5
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_T9:
+    label: T9 — ramp tracking denominator time constant
+    description: 'Ramp-tracking filter denominator time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.1
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_M:
+    label: M — ramp tracking numerator order
+    description: 'Integer order M of ramp-tracking numerator (1+s·T8)^M. PSS2A: M=5.
+
+      '
+    value:
+      type: integer
+      default: 5
+      constraints:
+        minimum: 1
+  PSS_PSS2A_N:
+    label: N — ramp tracking denominator order
+    description: 'Integer order N of ramp-tracking denominator (1+s·T9)^N. PSS2A: N=1.
+
+      '
+    value:
+      type: integer
+      default: 1
+      constraints:
+        minimum: 1
+  PSS_PSS2A_Tw1:
+    label: Tw1 — first speed-path washout
+    description: 'First washout time constant on speed signal path [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_Tw2:
+    label: Tw2 — second speed-path washout
+    description: 'Second washout time constant on speed signal path [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_Tw3:
+    label: Tw3 — power-path washout
+    description: 'Washout time constant on integral-of-power path [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_T1:
+    label: T1 — first lead time constant
+    description: 'First lead-lag stage numerator time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.15
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_T2:
+    label: T2 — first lag time constant
+    description: 'First lead-lag stage denominator time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.03
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_T3:
+    label: T3 — second lead time constant
+    description: 'Second lead-lag stage numerator time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.15
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2A_T4:
+    label: T4 — second lag time constant
+    description: 'Second lead-lag stage denominator time constant [s]. PSS2A.
+
+      '
+    value:
+      type: decimal
+      default: 0.03
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_Ks1:
+    label: Ks1 — first path gain
+    description: 'Gain of the speed signal path [pu]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 5.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_PSS2B_Ks2:
+    label: Ks2 — second path gain
+    description: 'Gain of the integral-of-accelerating-power path [pu]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.2
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_PSS2B_Ks3:
+    label: Ks3 — third path gain
+    description: 'Gain of the additional third signal path [pu]. PSS2B only.
+
+      '
+    value:
+      type: decimal
+      default: 1.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  PSS_PSS2B_T6:
+    label: T6 — speed transducer time constant
+    description: 'Rotor speed transducer filter time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_T7:
+    label: T7 — power transducer time constant
+    description: 'Active power transducer filter time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 2.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_T8:
+    label: T8 — ramp tracking numerator time constant
+    description: 'Ramp-tracking filter numerator time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.5
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_T9:
+    label: T9 — ramp tracking denominator time constant
+    description: 'Ramp-tracking filter denominator time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.1
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_M:
+    label: M — ramp tracking numerator order
+    description: 'Integer order M of ramp-tracking numerator (1+s·T8)^M. PSS2B.
+
+      '
+    value:
+      type: integer
+      default: 5
+      constraints:
+        minimum: 1
+  PSS_PSS2B_N:
+    label: N — ramp tracking denominator order
+    description: 'Integer order N of ramp-tracking denominator (1+s·T9)^N. PSS2B.
+
+      '
+    value:
+      type: integer
+      default: 1
+      constraints:
+        minimum: 1
+  PSS_PSS2B_Tw1:
+    label: Tw1 — first speed-path washout
+    description: 'First washout time constant on speed path [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_Tw2:
+    label: Tw2 — second speed-path washout
+    description: 'Second washout time constant on speed path [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_Tw3:
+    label: Tw3 — power-path washout
+    description: 'Washout on integral-of-power path [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_Tw4:
+    label: Tw4 — fourth washout time constant
+    description: 'Additional washout time constant [s]. PSS2B only.
+
+      '
+    value:
+      type: decimal
+      default: 10.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_T1:
+    label: T1 — first lead time constant
+    description: 'First lead-lag stage numerator time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.15
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_T2:
+    label: T2 — first lag time constant
+    description: 'First lead-lag stage denominator time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.03
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_T3:
+    label: T3 — second lead time constant
+    description: 'Second lead-lag stage numerator time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.15
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s
+  PSS_PSS2B_T4:
+    label: T4 — second lag time constant
+    description: 'Second lead-lag stage denominator time constant [s]. PSS2B.
+
+      '
+    value:
+      type: decimal
+      default: 0.03
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - s

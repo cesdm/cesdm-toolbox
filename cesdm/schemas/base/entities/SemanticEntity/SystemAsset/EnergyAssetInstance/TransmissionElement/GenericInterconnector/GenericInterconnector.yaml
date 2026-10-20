@@ -1,0 +1,29 @@
+name: GenericInterconnector
+parents:
+- TransmissionElement
+description: >
+  Capacity-only transfer link (NTC / max flow) — no line, pipe, or converter
+  physics.
+
+  Nodal: fromNode / toNode on NetworkNodes (carrier implied by the nodes).
+  Zonal: fromRegion / toRegion on GeographicalRegions; a zonal NTC does not
+  need an ElectricalBus.
+
+  Prefer electrical leaves (TransmissionLine, HVDCLink, Transformer) when
+  physics matters. Legacy class name: Interconnector.
+relations:
+- id: fromRegion
+  required: false
+  belongsToGroup: [topology]
+  target: GeographicalRegion
+- id: toRegion
+  required: false
+  belongsToGroup: [topology]
+  target: GeographicalRegion
+attributes:
+- id: maximum_power_flow_from_to
+  required: false
+  belongsToGroup: [dispatch, power_flow]
+- id: maximum_power_flow_to_from
+  required: false
+  belongsToGroup: [dispatch, power_flow]

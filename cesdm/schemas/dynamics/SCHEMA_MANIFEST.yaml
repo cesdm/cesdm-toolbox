@@ -1,0 +1,26 @@
+# Dynamics extension of the CESDM base schema.
+#
+# Load this package when a study needs machine models or controllers.
+# It extends the dispatch base, not the power-flow
+# package. A study that needs both passes both paths:
+#
+#   build_model_from_yaml(["cesdm/schemas/powerflow", "cesdm/schemas/dynamics"])
+
+# Recorded in exported files. The folder is ``dynamics``.
+name: cesdm-dynamics
+
+version: "1.0.0"
+
+description: >
+  Dynamic machine models and controllers for CESDM.
+  Builds on the dispatch base schema.
+
+extends:
+  - ../base
+
+stability:
+  assets: experimental
+  attributes: experimental
+  relations: experimental
+  dynamics: experimental
+  controllers: experimental

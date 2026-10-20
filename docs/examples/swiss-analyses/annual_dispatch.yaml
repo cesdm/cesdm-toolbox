@@ -1,0 +1,44 @@
+# Analysis profile of the four research groups: what THEIR analysis needs.
+#
+# All four run an annual, zonal energy-balance dispatch of Switzerland.
+# They need a technology category or a library technology, a region and a
+# capacity per unit, a turbine drawing from a basin for hydro, energy and
+# inflow on each basin, and annual demand per region. No hourly profiles
+# and no nodes.
+#
+#     model.validate_for_analysis("docs/examples/swiss-analyses/annual_dispatch.yaml")
+name: annual_dispatch
+description: >
+  Annual zonal dispatch: a technology category or a library technology,
+  region and capacity for every unit, a hydro turbine drawing from its
+  basin, energy and inflow on each basin, annual demand per region.
+requirements:
+  - entity_class: GenerationUnit            # covers Wind-, Solar- and HydroGenerationUnit
+    checks:
+      - attribute: hasTechnology
+        required: true
+        when: "not generator_technology_type"
+      - attribute: generator_technology_type
+        required: true
+        when: "not hasTechnology"
+      - {attribute: belongsToGeographicalRegion, required: true}
+      - attribute: nominal_power_capacity
+        required: true
+        constraints: {minimum: 0}
+  - entity_class: HydroGenerationUnit
+    checks:
+      - {attribute: drawsFromHydroReservoir, required: true}
+  - entity_class: HydroReservoir
+    checks:
+      - attribute: energy_storage_capacity
+        required: true
+        constraints: {minimum: 0}
+      - attribute: annual_natural_inflow_energy
+        required: true
+        constraints: {minimum: 0}
+  - entity_class: DemandUnit
+    checks:
+      - {attribute: belongsToGeographicalRegion, required: true}
+      - attribute: annual_energy_demand
+        required: true
+        constraints: {minimum: 0}

@@ -1,0 +1,7 @@
+units:
+  CHF/month:
+    symbol: CHF/month
+    quantity_kind: monetary_rate
+    description: Swiss francs per month — what a household states it would pay.
+    qudt_iri: null
+    qudt_status: unverified

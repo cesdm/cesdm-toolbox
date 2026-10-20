@@ -1,0 +1,5 @@
+description: "CESDM regions library — Eurostat NUTS 0–3 GeographicalRegion entities (name,\
+  \ long_name, description, region_level, nuts_code, iso_country_code, isSubRegionOf).\n\
+  \nImport after the default library:\n\n    model.import_library('cesdm/library/default_library')\n\
+  \    model.import_library('cesdm/library/regions_library')\n\nRegenerate from the NUTS\
+  \ shapefile with:\n    python tools/generate_regions_library.py\n"

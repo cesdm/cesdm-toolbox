@@ -1,0 +1,13 @@
+name: Survey
+parents: [SemanticEntity]
+description: One wave of a household survey in a living lab.
+attributes:
+  - id: name
+    required: true
+  - id: wave
+  - id: fieldwork_start
+  - id: fieldwork_end
+relations:
+  - id: conductedIn
+    target: LivingLab
+    required: true

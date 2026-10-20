@@ -1,0 +1,108 @@
+# Attaches analysis-specific fields to base classes.
+# The base schema stays valid without this file.
+augmentations:
+  DemandUnit:
+    attributes:
+      - id: active_power_demand
+        required: false
+        belongsToGroup: [power_flow]
+      - id: reactive_power_demand
+        required: false
+        belongsToGroup: [power_flow]
+      - id: power_factor
+        required: false
+        belongsToGroup: [power_flow]
+  ElectricalBus:
+    attributes:
+      - id: powerflow_bus_type
+        required: false
+        belongsToGroup: [power_flow]
+      - id: voltage_magnitude_setpoint
+        required: false
+        belongsToGroup: [power_flow]
+      - id: voltage_angle_setpoint
+        required: false
+        belongsToGroup: [power_flow]
+  GenerationUnit:
+    attributes:
+      - id: voltage_magnitude_setpoint
+        required: false
+        belongsToGroup: [power_flow]
+      - id: voltage_angle_setpoint
+        required: false
+        belongsToGroup: [power_flow]
+      - id: active_power_setpoint
+        required: false
+        belongsToGroup: [power_flow]
+      - id: reactive_power_setpoint
+        required: false
+        belongsToGroup: [power_flow]
+      - id: maximum_active_power_output
+        required: false
+        belongsToGroup: [power_flow]
+      - id: minimum_active_power_output
+        required: false
+        belongsToGroup: [power_flow]
+      - id: maximum_reactive_power_output
+        required: false
+        belongsToGroup: [power_flow]
+      - id: minimum_reactive_power_output
+        required: false
+        belongsToGroup: [power_flow]
+  HVDCLink:
+    attributes:
+      - id: converter_technology
+        required: false
+        belongsToGroup: [power_flow]
+      - id: dc_voltage_kv
+        required: false
+        belongsToGroup: [power_flow]
+      - id: active_power_setpoint_from_to
+        required: false
+        belongsToGroup: [power_flow]
+      - id: p_min_hvdc
+        required: false
+        belongsToGroup: [power_flow]
+      - id: converter_loss_coefficient
+        required: false
+        belongsToGroup: [power_flow]
+      - id: converter_rating_from
+        required: false
+        belongsToGroup: [power_flow]
+      - id: converter_rating_to
+        required: false
+        belongsToGroup: [power_flow]
+  Transformer:
+    attributes:
+      - id: rated_primary_voltage
+        required: false
+        belongsToGroup: [power_flow]
+      - id: rated_secondary_voltage
+        required: false
+        belongsToGroup: [power_flow]
+      - id: short_circuit_voltage_in_percentage
+        required: false
+        belongsToGroup: [power_flow]
+      - id: tap_ratio
+        required: false
+        belongsToGroup: [power_flow]
+      - id: phase_shift_angle
+        required: false
+        belongsToGroup: [power_flow]
+  TransmissionLine:
+    attributes:
+      - id: series_resistance_per_km
+        required: false
+        belongsToGroup: [power_flow]
+      - id: series_reactance_per_km
+        required: false
+        belongsToGroup: [power_flow]
+      - id: shunt_susceptance_per_km
+        required: false
+        belongsToGroup: [power_flow]
+      - id: line_length
+        required: false
+        belongsToGroup: [power_flow]
+      - id: parallel_circuit_count
+        required: false
+        belongsToGroup: [power_flow]

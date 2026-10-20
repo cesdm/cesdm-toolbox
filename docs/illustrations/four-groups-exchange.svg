@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 420" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<title>Four research groups store the same reservoir in four ways and exchange it through one CESDM representation</title>
+<defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6B7585"/></marker></defs>
+<rect width="860" height="420" rx="14" fill="#F6F7F9"/>
+<rect x="24" y="24" width="240" height="138" rx="10" fill="#FFFFFF" stroke="#2E6E8E" stroke-width="2"/>
+<path d="M24 60 V34 a10 10 0 0 1 10 -10 H254 a10 10 0 0 1 10 10 V60 Z" fill="#2E6E8E"/>
+<text x="40" y="48" fill="#FFFFFF" font-size="15" font-weight="600">Group A</text>
+<text x="40" y="86" fill="#26303D" font-size="13" font-weight="600">CSV, German headers</text>
+<text x="40" y="114" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Typ = 6</text>
+<text x="40" y="138" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Pmax = 8500 (MW)</text>
+<rect x="596" y="24" width="240" height="138" rx="10" fill="#FFFFFF" stroke="#3C7D4E" stroke-width="2"/>
+<path d="M596 60 V34 a10 10 0 0 1 10 -10 H826 a10 10 0 0 1 10 10 V60 Z" fill="#3C7D4E"/>
+<text x="612" y="48" fill="#FFFFFF" font-size="15" font-weight="600">Group B</text>
+<text x="612" y="86" fill="#26303D" font-size="13" font-weight="600">Excel, PyPSA-like</text>
+<text x="612" y="114" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">carrier = hydro</text>
+<text x="612" y="138" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">p_nom = 8500 (MW)</text>
+<rect x="24" y="258" width="240" height="138" rx="10" fill="#FFFFFF" stroke="#A5622A" stroke-width="2"/>
+<path d="M24 294 V268 a10 10 0 0 1 10 -10 H254 a10 10 0 0 1 10 10 V294 Z" fill="#A5622A"/>
+<text x="40" y="282" fill="#FFFFFF" font-size="15" font-weight="600">Group C</text>
+<text x="40" y="320" fill="#26303D" font-size="13" font-weight="600">YAML, nested by region</text>
+<text x="40" y="348" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">tech: reservoir_hydro</text>
+<text x="40" y="372" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">cap_gw: 8.5</text>
+<rect x="596" y="258" width="240" height="138" rx="10" fill="#FFFFFF" stroke="#6B4E8E" stroke-width="2"/>
+<path d="M596 294 V268 a10 10 0 0 1 10 -10 H826 a10 10 0 0 1 10 10 V294 Z" fill="#6B4E8E"/>
+<text x="612" y="282" fill="#FFFFFF" font-size="15" font-weight="600">Group D</text>
+<text x="612" y="320" fill="#26303D" font-size="13" font-weight="600">JSON, flat lists</text>
+<text x="612" y="348" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">technology: reservoir_hydro</text>
+<text x="612" y="372" fill="#4A5463" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">capacity_kw: 8500000</text>
+<rect x="300" y="120" width="260" height="180" rx="12" fill="#3E4C5E"/>
+<text x="430.0" y="152" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="700">CESDM</text>
+<text x="322" y="178" fill="#FFFFFF" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">HydroGenerationUnit</text>
+<text x="322" y="195" fill="#D5DBE3" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">nominal_power_capacity</text>
+<text x="322" y="212" fill="#9FD3C7" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">  = 8500 MW</text>
+<text x="322" y="229" fill="#D5DBE3" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">generator_technology_type</text>
+<text x="322" y="246" fill="#9FD3C7" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">  = reservoir_hydro</text>
+<text x="322" y="263" fill="#D5DBE3" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">belongsToGeographicalRegion</text>
+<text x="322" y="280" fill="#9FD3C7" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">  → region.country.CH</text>
+<path d="M268 132 L296 150" stroke="#6B7585" stroke-width="2" marker-start="url(#m)" marker-end="url(#m)"/>
+<path d="M600 132 L564 150" stroke="#6B7585" stroke-width="2" marker-start="url(#m)" marker-end="url(#m)"/>
+<path d="M268 288 L296 270" stroke="#6B7585" stroke-width="2" marker-start="url(#m)" marker-end="url(#m)"/>
+<path d="M600 288 L564 270" stroke="#6B7585" stroke-width="2" marker-start="url(#m)" marker-end="url(#m)"/>
+</svg>

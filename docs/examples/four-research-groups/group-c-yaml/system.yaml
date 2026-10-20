@@ -1,0 +1,18 @@
+# Group C — same example energy system as Groups A, B and D.
+# Capacities in GW. Demand, reservoir energy and inflow in TWh.
+# eta is a fraction. var_cost is EUR/MWh. Both are this group's numbers.
+
+problem: economic_dispatch
+units: {capacity: GW, energy: TWh}
+
+regions:
+  CHE:
+    name: Switzerland
+    demand_twh: 58
+    plants:
+      - {id: ccgt, tech: ccgt, cap_gw: 0.4, eta: 0.58, var_cost: 45}
+      - {id: nuc, tech: nuclear, cap_gw: 3.0, eta: 0.33, var_cost: 9}
+      - {id: wind, tech: onshore_wind, cap_gw: 0.1, var_cost: 0}
+      - {id: pv, tech: solar_pv, cap_gw: 6.5, var_cost: 0}
+      - {id: hydro, tech: reservoir_hydro, cap_gw: 8.5, reservoir_id: CHE_RES, reservoir_twh: 8.8, inflow_twh: 20, eta: 0.9, var_cost: 0}
+      - {id: ror, tech: run_of_river, cap_gw: 4.0, inflow_twh: 16, eta: 0.9, var_cost: 0}

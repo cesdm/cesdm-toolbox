@@ -1,0 +1,74 @@
+# What the living lab manages and both teams share: the place, the survey
+# wave and the households under pseudonymous ids. Everything here is invented;
+# the setting is inspired by SWEET LANTERN's living labs, not taken from them.
+Canton:
+  canton.VS:
+    attributes:
+    - {id: name, value: Valais}
+    relations: []
+Municipality:
+  mun.montvert:
+    attributes:
+    - {id: name, value: Montvert (invented)}
+    relations:
+    - {id: isPartOf, target: canton.VS}
+LivingLab:
+  livinglab.montvert:
+    attributes:
+    - {id: name, value: Montvert neighbourhood living lab}
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+Survey:
+  survey.wave1:
+    attributes:
+    - {id: name, value: Energy community survey, wave 1}
+    - {id: wave, value: 1}
+    - {id: fieldwork_start, value: '2025-03-03'}
+    - {id: fieldwork_end, value: '2025-03-28'}
+    relations:
+    - {id: conductedIn, target: livinglab.montvert}
+Household:
+  hh.ll01:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll02:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll03:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll04:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll05:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll06:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll07:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll08:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll09:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll10:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}
+  hh.ll11:
+    attributes: []
+    relations:
+    - {id: locatedIn, target: mun.montvert}

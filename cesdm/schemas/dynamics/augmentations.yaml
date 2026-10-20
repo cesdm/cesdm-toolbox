@@ -1,0 +1,17 @@
+# Attaches analysis-specific fields to base classes.
+# The base schema stays valid without this file.
+augmentations:
+  GenerationUnit:
+    relations:
+      - id: usesDynamicModelType
+        required: false
+        belongsToGroup: [dynamics]
+      - id: hasAutomaticVoltageRegulator
+        required: false
+        belongsToGroup: [dynamics]
+      - id: hasTurbineGovernor
+        required: false
+        belongsToGroup: [dynamics]
+      - id: hasPowerSystemStabilizer
+        required: false
+        belongsToGroup: [dynamics]

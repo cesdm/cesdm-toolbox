@@ -1,0 +1,232 @@
+site_name: CESDM
+site_description: Common Energy System Domain Model — exchange energy-system models between research groups, each keeping its own tool and representation
+site_url: https://cesdm.github.io/cesdm-toolbox/
+repo_name: cesdm/cesdm-toolbox
+repo_url: https://github.com/cesdm/cesdm-toolbox
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; Research Center for Energy Networks, ETH Zürich
+strict: true
+use_directory_urls: true
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/schema-diagrams.css
+extra_javascript:
+  - javascripts/palette-toggle.js
+  - javascripts/toc-collapse.js
+  - javascripts/schema-diagrams.js
+
+theme:
+  name: material
+  language: en
+  features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.indexes
+  - navigation.top
+  - navigation.footer
+  - navigation.tracking
+  - toc.follow
+  - search.suggest
+  - search.highlight
+  - content.code.copy
+  - content.code.annotate
+  - content.tabs.link
+  - content.action.edit
+  palette:
+  - scheme: default
+    primary: indigo
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - scheme: slate
+    primary: indigo
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+
+nav:
+- Home: index.md
+- Get started: get-started.md
+- Tutorial:
+  - "Part 1: Data exchange between four groups":
+    - tutorial/index.md
+    - 1. Writing adapters: tutorial/1-map.md
+    - 2. Validation of CESDM files: tutorial/2-check.md
+    - 3. Exchanging with other groups: tutorial/3-exchange.md
+  - "Part 2: Multiple analyses on the same data":
+    - tutorial/analyses/index.md
+    - 1. Checking for completeness: tutorial/analyses/1-complete.md
+    - 2. The dispatch layer: tutorial/analyses/2-dispatch.md
+    - 3. The power-flow layer: tutorial/analyses/3-power-flow.md
+    - 4. The dynamics layer: tutorial/analyses/4-dynamics.md
+- Concepts:
+  - Why CESDM: concepts/index.md
+  - Entity, attribute, relation: concepts/ear.md
+  - The EAR engine and CESDM: concepts/engine.md
+  - Schemas: concepts/schemas.md
+  - Validation: concepts/validation.md
+  - Classes and libraries: concepts/classes-and-libraries.md
+  - Files and time series: concepts/files-and-time-series.md
+- Guides:
+  - guides/index.md
+  - Write an adapter: guides/write-an-adapter.md
+  - Build a model directly: guides/build-a-model.md
+  - Write models with the proxy API: guides/proxy-api.md
+  - Carrier domains: guides/carrier-domains.md
+  - Extend the schema: guides/extend.md
+- Use cases:
+  - use-cases/index.md
+  - "Bookshelf: an EAR example": use-cases/bookshelf.md
+  - "Living lab: survey and meter data": use-cases/living-lab.md
+  - Kundur's two-area system: use-cases/kundur.md
+  - Use TYNDP and PyPSA data: use-cases/tyndp-pypsa.md
+- Reference:
+  - reference/index.md
+  - Using the schema reference: reference/using-schema-reference.md
+  - API: reference/api.md
+  - Schema diagrams:
+    - reference/schema-diagrams/index.md
+    - Assets: reference/schema-diagrams/assets.md
+    - Network: reference/schema-diagrams/network.md
+    - Conversion units: reference/schema-diagrams/conversion.md
+    - Technologies: reference/schema-diagrams/technologies.md
+    - System and time series: reference/schema-diagrams/time-series.md
+    - Dynamics: reference/schema-diagrams/dynamics.md
+  - Glossary: reference/glossary.md
+- About:
+  - FAQ: project/faq.md
+  - Roadmap and releases: project/roadmap.md
+  - Contribute and cite: project/contribute.md
+  - Acknowledgement: project/acknowledgement.md
+  - Related work: project/related-work.md
+
+plugins:
+- search
+- redirects:
+    redirect_maps:
+      # --- Pages of the previous documentation (until Oct 2026) ---------
+      get-started/install.md: get-started.md
+      get-started/what-is-cesdm.md: concepts/index.md
+      get-started/first-model.md: guides/build-a-model.md
+      examples/four-research-groups/overview.md: tutorial/index.md
+      examples/building-first-model/overview.md: guides/build-a-model.md
+      examples/building-first-model/part-1-system-and-network.md: guides/build-a-model.md
+      examples/building-first-model/part-2-demand-and-generation.md: guides/build-a-model.md
+      examples/building-first-model/part-3-profiles-and-interconnectors.md: guides/build-a-model.md
+      examples/building-first-model/part-4-multicarrier-and-export.md: guides/build-a-model.md
+      examples/advanced-reference-notebook.md: guides/build-a-model.md
+      examples/conversion-units/overview.md: guides/carrier-domains.md
+      examples/conversion-units/part-1-system-and-carriers.md: guides/carrier-domains.md
+      examples/conversion-units/part-2-supply-and-demand.md: guides/carrier-domains.md
+      examples/conversion-units/part-3-conversion-units.md: guides/carrier-domains.md
+      examples/conversion-units/part-4-validate-and-export.md: guides/carrier-domains.md
+      examples/import-tyndp-and-pypsa.md: use-cases/tyndp-pypsa.md
+      use/index.md: guides/write-an-adapter.md
+      use/adapter-system-a.md: tutorial/1-map.md
+      use/system-a.md: tutorial/index.md
+      use/import-export.md: concepts/files-and-time-series.md#files
+      use/build-models.md: guides/build-a-model.md
+      use/spatial-aggregation.md: use-cases/tyndp-pypsa.md#reduce-it-to-the-scale-you-need
+      develop/index.md: guides/extend.md
+      develop/adapter-development.md: guides/write-an-adapter.md
+      develop/python-api.md: reference/api.md
+      develop/python-typing-proxies.md: guides/proxy-api.md#types-in-the-editor
+      develop/ear-internals.md: concepts/engine.md
+      develop/schema-extensions.md: guides/extend.md
+      develop/governance.md: project/roadmap.md#versioning
+      understand/index.md: concepts/index.md
+      understand/entities-and-relationships.md: concepts/ear.md
+      understand/schemas.md: concepts/schemas.md
+      understand/profiles.md: concepts/files-and-time-series.md#time-series
+      understand/libraries.md: concepts/classes-and-libraries.md#libraries
+      understand/carrier-domains.md: guides/carrier-domains.md
+      understand/related-work.md: project/related-work.md
+      reference/schema.md: reference/index.md
+      community/faq.md: project/faq.md
+      community/roadmap.md: project/roadmap.md
+      community/changelog.md: project/roadmap.md
+      community/citation.md: project/contribute.md#cite
+      community/contributing.md: project/contribute.md
+      community/building-docs.md: project/contribute.md
+      # --- Older legacy URLs, retargeted to the new pages -----------------
+      getting-started/what-is-cesdm.md: concepts/index.md
+      getting-started/what-is-coser.md: index.md
+      get-started/what-is-coser.md: index.md
+      getting-started/installation.md: get-started.md
+      getting-started/first-model-simple.md: guides/build-a-model.md
+      getting-started/quickstart.md: get-started.md
+      getting-started/validation.md: concepts/validation.md
+      use/validate-models.md: concepts/validation.md
+      use/system-a-tables.md: tutorial/index.md
+      getting-started/schemas.md: concepts/schemas.md
+      getting-started/core-concepts.md: concepts/ear.md
+      getting-started/schemas-in-depth.md: concepts/schemas.md#extending-without-forking
+      getting-started/choose-your-path.md: index.md
+      getting-started/concepts.md: concepts/index.md
+      getting-started/cesdm-vs-others.md: project/related-work.md
+      getting-started/coser-vs-others.md: project/related-work.md
+      understand/cesdm-vs-others.md: project/related-work.md
+      understand/coser-vs-others.md: project/related-work.md
+      guides/modelling-workflow.md: guides/build-a-model.md
+      guides/tool-adapters.md: guides/write-an-adapter.md
+      guides/profiles.md: concepts/files-and-time-series.md#time-series
+      guides/libraries.md: concepts/classes-and-libraries.md#libraries
+      #guides/carrier-domains.md: guides/carrier-domains.md
+      guides/schema-governance.md: project/roadmap.md#versioning
+      guides/energy-and-society.md: use-cases/living-lab.md
+      guides/real-data.md: use-cases/tyndp-pypsa.md
+      guides/spatial-aggregation.md: use-cases/tyndp-pypsa.md#reduce-it-to-the-scale-you-need
+      guides/python-typing-proxies.md: guides/proxy-api.md#types-in-the-editor
+      reference/schema-reference.md: reference/index.md
+      reference/api-reference.md: reference/api.md
+      community/glossary.md: reference/glossary.md
+      tutorials/first-model-simple.md: guides/build-a-model.md
+      tutorials/building-first-model/overview.md: guides/build-a-model.md
+      tutorials/advanced-reference-notebook.md: guides/build-a-model.md
+      # --- Pages moved into Concepts (Oct 2026) and remaining old paths ---
+      guides/core-concepts.md: concepts/ear.md
+      guides/data-model.md: concepts/classes-and-libraries.md
+      concepts/energy-model.md: concepts/classes-and-libraries.md
+      getting-started/modeller-cheat-sheet.md: reference/index.md
+      getting-started/disclaimer.md: project/roadmap.md
+      getting-started/about.md: project/acknowledgement.md
+      getting-started/documentation-structure.md: index.md
+      tutorials/building-first-model/part-1-system-and-network.md: guides/build-a-model.md
+      tutorials/building-first-model/part-2-demand-and-generation.md: guides/build-a-model.md
+      tutorials/building-first-model/part-3-profiles-and-interconnectors.md: guides/build-a-model.md
+      tutorials/building-first-model/part-4-multicarrier-and-export.md: guides/build-a-model.md
+      tutorials/conversion-units/overview.md: guides/carrier-domains.md
+      tutorials/conversion-units/part-1-system-and-carriers.md: guides/carrier-domains.md
+      tutorials/conversion-units/part-2-supply-and-demand.md: guides/carrier-domains.md
+      tutorials/conversion-units/part-3-conversion-units.md: guides/carrier-domains.md
+      tutorials/conversion-units/part-4-validate-and-export.md: guides/carrier-domains.md
+
+markdown_extensions:
+- admonition
+- attr_list
+- def_list
+- footnotes
+- md_in_html
+- meta
+- tables
+- toc:
+    permalink: true
+- pymdownx.details
+- pymdownx.highlight:
+    anchor_linenums: true
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+      - name: cesdm-uml
+        class: cesdm-uml
+        format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg

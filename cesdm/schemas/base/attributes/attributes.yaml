@@ -1,0 +1,1636 @@
+attributes:
+  name:
+    comment: Descriptive name.
+    label: Name
+    description: Descriptive name.
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  long_name:
+    comment: Long description
+    label: Long Name
+    description: Long description
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  description:
+    comment: Human-readable explanation of the entity.
+    label: Description
+    description: Textual description providing additional semantic, contextual, or explanatory information
+      about the entity.
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  comment:
+    description: Optional comment/notes.
+    label: Comment
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  region_level:
+    description: >
+      Administrative / statistical level of a GeographicalRegion:
+      country (ISO / NUTS 0), nuts1, nuts2, nuts3, or other custom regions.
+    label: Region Level
+    provenance_ref: Eurostat NUTS / ISO 3166-1.
+    value:
+      type: string
+      constraints:
+        enum:
+        - country
+        - nuts1
+        - nuts2
+        - nuts3
+        - other
+  nuts_code:
+    description: >
+      Official NUTS code for the region when region_level is country/nuts1/nuts2/nuts3
+      (e.g. CH, CH0, CH01, CH011). Empty for non-NUTS custom regions.
+    label: NUTS Code
+    provenance_ref: Eurostat NUTS.
+    value:
+      type: string
+  iso_country_code:
+    description: >
+      ISO 3166-1 alpha-2 country code associated with the region (e.g. CH, DE).
+      For NUTS regions this is typically the two-letter country prefix (with EL→GR
+      and UK→GB remapping applied where relevant).
+    label: ISO Country Code
+    provenance_ref: ISO 3166-1.
+    value:
+      type: string
+  base_mva:
+    label: base_mva
+    description: 'The system-wide apparent power base used for per-unit calculations. All per-unit quantities
+      are referenced to this base power.
+
+      '
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  annual_resource_potential:
+    description: 'Specifies the total annually available quantity of a resource or carrier that can be
+      utilized, harvested, extracted, or converted by the represented entity under the assumptions of
+      the associated scenario or resource representation.
+
+      '
+    label: Annual Resource Potential
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MWh/year
+  retirement_date:
+    description: Planned or actual date when the generator is permanently retired from service. Used for
+      asset replacement planning and system expansion studies.
+    label: Retirement Date
+    provenance_ref: Define the provenance here.
+    value:
+      type: dateTime
+    unit:
+      constraints:
+        enum:
+        - date
+  retrofit_date:
+    description: Date of major upgrade or efficiency retrofit. Impacts operational efficiency, lifetime
+      extension, and emission calculations.
+    label: Retrofit Date
+    provenance_ref: Define the provenance here.
+    value:
+      type: dateTime
+    unit:
+      constraints:
+        enum:
+        - date
+  maximum_ramp_rate_down:
+    description: The maximum percentage decrease in output power per unit time during ramp-down operations.
+      Expressed as %/min or %/s, capturing the asset's downward operational flexibility (a generator ramping
+      down, or a storage device changing its charging/discharging rate).
+    label: Maximum Ramp Rate Down
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - '%/h'
+  maximum_ramp_rate_up:
+    description: The maximum increase in output power per unit time, typically expressed in kW/s or MW/min.
+      Represents the upward operational flexibility of the asset (a generator ramping up, or a storage
+      device discharging faster).
+    label: Maximum Ramp Rate Up
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - '%/h'
+  minimum_down_time:
+    description: 'Minimum number of hours a unit must remain offline after shutdown. Used in unit commitment
+      models.
+
+      '
+    label: Minimum Down Time
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - h
+  minimum_up_time:
+    description: 'Minimum number of hours a unit must remain online once started. Used in unit commitment
+      models.
+
+      '
+    label: Minimum Up Time
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - h
+  initial_state_of_charge:
+    description: Initial state of charge at the beginning of the optimization horizon, expressed as a
+      fraction between 0 and 1.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  maximum_state_of_charge:
+    description: Maximum allowed state of charge, usually expressed as a fraction between 0 and 1.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  minimum_state_of_charge:
+    description: Minimum allowed state of charge, usually expressed as a fraction between 0 and 1
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  self_discharge_rate:
+    description: Fraction of stored energy lost per time step due to self-discharge.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  latitude:
+    description: 'Geographical latitude of the entity, expressed in decimal degrees. Used for spatial
+      modelling, renewable resource assessment, and GIS-based visualisation.
+
+      '
+    label: Latitude
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: -90.0
+        maximum: 90.0
+    unit:
+      constraints:
+        enum:
+        - deg
+  longitude:
+    description: 'Geographical longitude of the entity, expressed in decimal degrees. Used for spatial
+      modelling, renewable resource assessment, and GIS-based visualisation.
+
+      '
+    label: Longitude
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: -180.0
+        maximum: 180.0
+    unit:
+      constraints:
+        enum:
+        - deg
+  elevation:
+    description: 'Elevation of the entity above mean sea level, expressed in metres. Relevant for climate-adjusted
+      performance modelling and topographic network studies.
+
+      '
+    label: Elevation
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - m
+  nominal_voltage:
+    description: 'Rated line-to-line voltage of the network node or branch under normal operating conditions,
+      expressed in kV.
+
+      '
+    label: Nominal Voltage
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - kV
+  max_flow:
+    description: 'Maximum carrier flow permitted through a branch or interconnector without violating
+      operational limits, expressed in MW (power) or the appropriate flow unit for the carrier.
+
+      '
+    label: Maximum Flow
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  series_resistance_per_km:
+    description: Series resistance of the branch per unit length. This is the real component of the series
+      impedance and represents resistive conductor losses, expressed in ohm per kilometre (Ohm/km).
+    label: Series Resistance
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - Ohm/km
+  series_reactance_per_km:
+    description: Series reactance of the branch per unit length. This is the imaginary component of the
+      series impedance and represents inductive behaviour relevant for power-flow and voltage calculations,
+      expressed in ohm per kilometre (Ohm/km).
+    label: Series Reactance
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - Ohm/km
+  shunt_susceptance_per_km:
+    description: Shunt susceptance of the branch per unit length. This is the imaginary component of the
+      shunt admittance, not the shunt capacitance. It represents capacitive charging behaviour and is
+      expressed in micro-siemens per kilometre (microS/km).
+    label: Shunt Susceptance
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - microS/km
+  thermal_capacity_rating:
+    description: 'Maximum continuous apparent power the branch can carry without exceeding thermal limits,
+      expressed in MVA.
+
+      '
+    label: Thermal Capacity Rating
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MVA
+  line_length:
+    description: 'Physical length of the transmission or pipeline element, expressed in kilometres. Used
+      to scale per-unit-length electrical or hydraulic parameters.
+
+      '
+    label: Line Length
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - km
+  parallel_circuit_count:
+    description: 'Number of identical circuits run in parallel between the same endpoints. Increases total
+      capacity and reduces effective impedance.
+
+      '
+    label: Parallel Circuit Count
+    provenance_ref: Define the provenance here.
+    value:
+      type: integer
+  from_switch_closed:
+    description: 'Boolean indicating whether the breaker at the from-end of the branch is closed (true
+      = connected, false = disconnected). Used in contingency and outage modelling.
+
+      '
+    label: From Switch Closed
+    provenance_ref: Define the provenance here.
+    value:
+      type: boolean
+  to_switch_closed:
+    description: 'Boolean indicating whether the breaker at the to-end of the branch is closed (true =
+      connected, false = disconnected). Used in contingency and outage modelling.
+
+      '
+    label: To Switch Closed
+    provenance_ref: Define the provenance here.
+    value:
+      type: boolean
+  energy_storage_capacity:
+    description: 'Maximum net energy or storage medium volume that can be stored and subsequently released
+      under defined operating conditions, expressed as the difference between maximum and minimum allowable
+      state of charge. Use MWh for energy-equivalent storage models and m3 for reservoir water-volume
+      models.
+
+      '
+    label: Energy Storage Capacity
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MWh
+        - m3
+  charging_variable_operating_cost:
+    description: 'Marginal cost incurred per MWh of energy absorbed during the charging process, expressed
+      in MU/MWh.
+
+      '
+    label: Charging Variable Operating Cost
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/MWh
+  maximum_charging_power:
+    description: 'Upper limit on instantaneous power intake during charging, constrained by converter
+      size and thermal limits (MW).
+
+      '
+    label: Maximum Charging Power
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  maximum_required_units:
+    description: 'Maximum number of discrete technology units that may be installed, representing site
+      or policy constraints on deployment.
+
+      '
+    label: Maximum Required Units
+    provenance_ref: Define the provenance here.
+    value:
+      type: integer
+    unit:
+      constraints:
+        enum:
+        - unit
+  minimum_required_units:
+    description: 'Minimum number of discrete technology units that must be installed, representing modular
+      build constraints or policy minimums.
+
+      '
+    label: Minimum Required Units
+    provenance_ref: Define the provenance here.
+    value:
+      type: integer
+    unit:
+      constraints:
+        enum:
+        - unit
+  unit_nominal_size:
+    description: 'Nominal capacity of a single technology unit (MW or MWh depending on type). Combined
+      with minimum/maximum required units to define total installable capacity range.
+
+      '
+    label: Unit Nominal Size
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+        - MWh
+  technical_lifetime:
+    description: Technical lifetime of the asset in years.
+    label: Technical Lifetime
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - years
+  dispatch_type:
+    description: "Dispatch classification of a generation technology:\n  \"dispatchable\"    — operator\
+      \ can choose output (thermal, hydro reservoir)\n  \"nondispatchable\" — output bounded by external\
+      \ resource (wind, solar, RoR)\n  \"must_run\"        — must generate at minimum level (nuclear baseload,\
+      \ CHP)\n"
+    label: Dispatch Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - dispatchable
+        - nondispatchable
+        - must_run
+  start_datetime:
+    description: 'ISO 8601 datetime string marking the first timestep of the series (e.g. "2009-01-01T00:00:00").
+      Combined with resolution and length this fully defines the time axis without storing the full array.
+
+      '
+    label: Start Datetime
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  resolution:
+    description: 'ISO 8601 duration string defining the uniform step size between consecutive timesteps
+      (e.g. "PT1H" for hourly, "PT15M" for quarter-hourly, "P1D" for daily). All timesteps within one
+      TimestampSeries are assumed to have equal duration.
+
+      '
+    label: Resolution
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  length:
+    description: 'Total number of timesteps in the series. Must equal the length of the values array stored
+      in the HDF5 file for every Profile that references this TimestampSeries.
+
+      '
+    label: Length
+    provenance_ref: Define the provenance here.
+    value:
+      type: integer
+      constraints:
+        minimum: 1
+  timezone:
+    description: 'IANA timezone identifier for the series (e.g. "UTC", "Europe/Zurich"). Used when converting
+      between local time and epoch timestamps. Defaults to UTC if not specified.
+
+      '
+    label: Timezone
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  profile_type:
+    description: How profile samples are interpreted (absolute SI, capacity factor, or normalized annual
+      energy).
+    label: Profile Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - as_SI
+        - as_capacity_factor
+        - as_normalized_annual_energy
+  profile_unit:
+    description: 'SI unit of the profile values. Only meaningful for as_SI profiles (e.g. "MW", "MWh",
+      "m3/s"). Dimensionless profiles (capacity factor and normalized annual energy) should leave this
+      blank or set it to "pu" (per unit).
+
+      '
+    label: Profile Unit
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  data_reference:
+    description: 'Internal HDF5 path identifying the numeric payload for this profile, formatted as "/profiles/<entity_id>"
+      (e.g. "/profiles/profile.demand.electricity.at00"). The values dataset at this path contains a float64
+      array of length equal to the referenced TimestampSeries length. This attribute is the bridge between
+      the YAML entity store and the HDF5 data store.
+
+      '
+    label: Data Reference
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  annual_natural_inflow_energy:
+    description: 'Total natural inflow received by a storage asset over one year. Used as the scaling
+      factor when converting a normalised inflow profile (as_normalized_annual_energy) to absolute hourly
+      inflow values in dispatch optimisation models.
+
+      '
+    label: Annual Natural Inflow as energy
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MWh/year
+  nominal_pressure:
+    description: 'Nominal operating pressure at a gas, hydrogen, or water Bus, expressed in bar (gauge).
+      Defines the reference pressure level of the carrier domain at this node and is used for hydraulic
+      network calculations and compressor/pump modelling.
+
+      '
+    label: Nominal Pressure
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - bar
+  nominal_temperature:
+    description: 'Nominal supply temperature at a heat network Bus, expressed in degrees Celsius. Defines
+      the reference temperature of the heat carrier at this node and is used for thermal network flow
+      calculations and heat exchanger modelling.
+
+      '
+    label: Nominal Temperature
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+    unit:
+      constraints:
+        enum:
+        - degC
+  storage_technology_type:
+    description: Storage technology category when no StorageType library entity is referenced.
+    label: Storage Technology Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  economic_lifetime:
+    description: Economic/depreciation lifetime of the asset in years.
+    label: Economic Lifetime
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - years
+  co2_emission_factor:
+    description: 'Direct CO₂ emissions per unit of electrical output [tCO₂ / MWh_el]. For fuel-based generators
+      this is fuel_co2_intensity / efficiency.
+
+      '
+    label: CO2 Emission Factor
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - tCO2/MWh
+  fuel_consumption_rate:
+    description: 'Fuel input per unit of electrical output [MWh_fuel / MWh_el], equal to 1 / energy_conversion_efficiency.
+
+      '
+    label: Fuel Consumption Rate
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+  port_direction:
+    description: "Flow direction at a ConversionPort.\n  input        — carrier is consumed/withdrawn\
+      \ at this port\n  output       — carrier is produced/injected at this port\n  bidirectional — carrier\
+      \ can flow in either direction\n                  (e.g. reversible heat pump, V2G)\n"
+    label: Port Direction
+    value:
+      type: string
+      constraints:
+        enum:
+        - input
+        - output
+        - bidirectional
+  flow_coefficient:
+    description: Signed flow ratio of a ConversionPort relative to the unit's reference port (reference
+      port = 1.0).
+    label: Flow Coefficient
+    value:
+      type: decimal
+  minimum_flow_fraction:
+    description: 'Minimum allowed flow at this port as a fraction of the product flow_coefficient × reference_port_flow.
+      Used to express minimum part-load ratios or technical minimum generation constraints at the port
+      level.
+
+      '
+    label: Minimum Flow Fraction
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+  maximum_flow_fraction:
+    description: 'Maximum allowed flow at this port as a fraction of the product flow_coefficient × reference_port_flow.
+      Values greater than 1.0 express short-term overload capability beyond the rated coefficient.
+
+      '
+    label: Maximum Flow Fraction
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+  supply_price:
+    label: Supply Price
+    description: 'Marginal price at which the external supply injects energy into the system [MU/MWh].
+      Acts as the cost signal for the slack source in economic dispatch and market clearing. Set to 0
+      for a free slack (e.g. reference bus in a power flow). Set to a large positive value (e.g. value_of_lost_load)
+      to represent an emergency import of last resort.
+
+      '
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/MWh
+  supply_capacity:
+    label: Supply Capacity
+    description: 'Maximum power the external supply can inject [MW]. When absent or null the supply is
+      treated as uncapacitated (true slack — unlimited injection). Set an explicit value to model a capacity-limited
+      import connection such as a cross-border cable.
+
+      '
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  is_slack:
+    label: Is Slack
+    description: 'Boolean flag indicating that this ExternalSupply acts as the system slack / reference
+      node. Exactly one ExternalSupply per connected island should have is_slack = true. When true, the
+      supply absorbs all active power imbalances and the connected bus is treated as the angle reference
+      in AC power flow (bus type = slack).
+
+      '
+    value:
+      type: boolean
+  maximum_discharging_power:
+    description: Upper limit on instantaneous power output during discharging or generation, constrained
+      by turbine/converter size and operating limits (MW).
+    label: Maximum Discharging Power
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  pumping_efficiency:
+    description: Pumping efficiency of a HydroGenerationUnit (electrical energy in → hydraulic energy
+      stored). Distinct from charging_efficiency on battery-style StorageUnit.
+    label: Pumping Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - pu
+  maximum_pumping_power:
+    description: 'Maximum electrical power consumed during pumping operation [MW]. May differ from the
+      turbine generation capacity in ternary or quaternary configurations. Only relevant for phs_closed_loop
+      and phs_open_loop. '
+    label: Maximum Pumping Power
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  resource_group:
+    description: Broad group of a NaturalResource.
+    label: Resource Group
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - renewable
+        - hydro
+        - geothermal
+        - environmental
+  resource_type:
+    description: Natural-resource category (wind, solar, hydro inflow, …).
+    label: Resource Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  natural_resource_unit:
+    description: Canonical physical unit used when the resource is represented as an absolute quantity
+      or rate.
+    label: Natural Resource Unit
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  co2_emission_intensity:
+    description: 'Mass of CO₂ emitted per unit of energy delivered by the carrier, expressed in tCO₂/MWh.
+      Used for carbon accounting, emission constraint modelling, and environmental impact assessment.
+
+      '
+    label: CO2 Emission Intensity
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - tCO2/MWh
+  carrier_group:
+    description: High-level classification group of the carrier. Used for cross-carrier aggregation, reporting,
+      and domain assignment. Network node types exist for electricity/gas/heat/hydrogen (ElectricalBus,
+      GasBus, HeatBus, HydrogenBus). Group value "water" remains for carrier/resource labelling; hydro
+      water balance uses HydroReservoir, not a WaterBus node.
+    label: Carrier Group
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - electricity
+        - gas
+        - heat
+        - hydrogen
+        - water
+  carrier_type:
+    description: Carrier category label (electricity, gas, heat, …) for classification or import mapping.
+    label: Carrier Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  is_primary_fuel:
+    description: 'Indicates whether this carrier is a primary fuel that enters the system from outside
+      the modelled boundary (e.g., natural gas, coal, crude oil). Mutually exclusive with is_secondary_fuel.
+
+      '
+    label: Is Primary Fuel
+    provenance_ref: Define the provenance here.
+    value:
+      type: boolean
+  is_secondary_fuel:
+    description: 'Indicates whether this carrier is a secondary or derived fuel produced within the modelled
+      system (e.g., hydrogen from electrolysis, synthetic methane). Mutually exclusive with is_primary_fuel.
+
+      '
+    label: Is Secondary Fuel
+    provenance_ref: Define the provenance here.
+    value:
+      type: boolean
+  annual_energy_demand:
+    description: The total amount of energy required by the load over an entire year, expressed in MWh/year.
+      It is used to scale demand time series or to validate consumption totals for modelling scenarios.
+    label: Annual Energy Demand
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MWh/year
+  maximum_power_demand:
+    description: Peak power the load can withdraw, in MW. The yearly energy is annual_energy_demand.
+    label: Maximum Power Demand
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  demand_type:
+    description: Demand category or sector label for a DemandUnit (industrial, residential, …).
+    label: Type of the specific demand
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  flexibility_time_resolution:
+    description: The smallest allowable time granularity for shifting, adjusting, or rescheduling the
+      load demand. Typically corresponds to the dispatch interval (e.g., 15 min, 1 h).
+    label: Flexibility Time Resolution
+    provenance_ref: Define the provenance here.
+    value:
+      type: number
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - h
+        - min
+  flexibility_window_time_end:
+    description: The end of the time interval during which flexibility actions are permitted. Outside
+      this window the demand must strictly follow its profile.
+    label: Flexibility Window Time End
+    provenance_ref: Define the provenance here.
+    value:
+      type: number
+    unit:
+      constraints:
+        enum:
+        - Timestamp / time index
+  flexibility_window_time_start:
+    description: The beginning of the time interval during which the load is allowed to shift or modify
+      its consumption, expressed as a timestamp or model time index.
+    label: Flexibility WindowTime Start
+    provenance_ref: Define the provenance here.
+    value:
+      type: number
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - Timestamp / time index
+  is_demand_flexible:
+    description: Boolean indicator specifying whether the load can be shifted, curtailed, rescheduled,
+      or otherwise managed during operation. If false, demand must be met as defined by the demand profile.
+    label: Is demand Flexible
+    provenance_ref: Define the provenance here.
+    value:
+      type: boolean
+  maximum_downward_adjustment:
+    description: The maximum allowable reduction from the nominal load, expressed in kW or MW. Represents
+      demand reduction, curtailment potential, or flexibility for load shedding.
+    label: Maximum Downward Adjustment
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - kW
+        - MW
+  maximum_upward_adjustment:
+    description: The maximum amount of incremental upward deviation from the nominal load that is allowed
+      at any given time, expressed in kW or MW. Represents demand increase or load activation flexibility.
+    label: Maximum Upward Adjustment
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - kW
+        - MW
+  rated_apparent_power:
+    label: Rated MVA
+    description: Rated apparent power of the deployed generation unit [MVA]. Defines the machine-specific
+      per-unit power base used with a linked DynamicMachineModelType.
+    provenance_ref: IEEE Std 1110-2002, Section 3.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MVA
+  rated_voltage:
+    label: Rated kV
+    description: Rated line-to-line terminal voltage of the deployed generation unit [kV]. Together with
+      rated_apparent_power, defines the machine-specific impedance base.
+    provenance_ref: IEC 60034-1.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - kV
+  co2_price:
+    comment: CO2 Price is a monetary value assigned to each tonne of carbon dioxide (or CO₂-equivalent)
+      emitted within an energy system. It represents the cost of emitting greenhouse gases and is used
+      to internalize the environmental and societal damages associated with climate change.
+    label: CO2 Price
+    description: CO2 Price is a monetary value assigned to each tonne of carbon dioxide (or CO₂-equivalent)
+      emitted within an energy system. It represents the cost of emitting greenhouse gases and is used
+      to internalize the environmental and societal damages associated with climate change.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/tCO2
+        - CHF/tCO2
+  energy_carrier_cost:
+    description: The monetary cost of the energy carrier per unit of energy, expressed in MU/MWh. Includes
+      production, delivery, and variable operational costs, used for economic dispatch and optimization.
+    label: Energy Carrier Cost
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      default: 0.0
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/MWh
+  cold_start_cost:
+    description: Cost incurred to restart a generator that has been offline for a long period (cold state),
+      expressed in MU. Usually higher than hot start due to additional operational procedures.
+    label: Cold Start Cost
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU
+  hot_start_cost:
+    description: Cost incurred to restart a generator that has been recently offline (hot state), expressed
+      in monitary units. Reflects fuel and operational overhead.
+    label: Hot Start Cost
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU
+  ramping_cost_decrease:
+    description: The cost associated with reducing output power or reducing charging rate, expressed in
+      MonetaryUnits/MW or MonetaryUnits/MW/min. Represents operational constraints or efficiency penalties
+      during ramp-down.
+    label: Ramping Cost Decrease
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+  ramping_cost_increase:
+    description: The cost associated with increasing output power, expressed in MU/MW or MU/MW/min. Used
+      in dispatch optimisation to represent wear, thermal cycling, or operational penalties for fast upward
+      ramping.
+    label: Ramping Cost Increase
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/MW
+  variable_operating_cost:
+    description: Marginal operating cost per unit of output (or throughput) used in dispatch optimisation.
+    label: Variable Operating Cost
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/MWh
+  value_of_lost_load:
+    description: The economic cost (MU/MWh) assigned to unserved energy demand, representing the penalty
+      for not meeting the load. This parameter quantifies the societal and economic impact of supply interruptions
+      and is heavily used in adequacy and reliability studies.
+    label: Value of Lost Load Cost
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/MWh
+  discount_rate:
+    description: Discount rate applied to investment and cost streams associated with this technology,
+      expressed as a fraction between 0 and 1 (e.g. 0.03 for 3%). May override a global discount rate
+      defined at the Energy System Model level.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  fixed_operating_cost:
+    description: Fixed operation and maintenance (O&M) cost associated with the technology, typically
+      expressed per year and per unit of installed capacity or per unit of technology. Covers costs that
+      do not depend on energy production.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/year
+        - MU/(kW/year)
+        - MU/(MW/year)
+        - MU/unit
+  investment_cost:
+    description: Overnight investment cost of the technology per unit of installed capacity or per unit,
+      depending on the modeling convention. Used together with technical_lifetime and discount_rate for
+      annualized cost calculations.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MU/kW
+        - MU/MW
+        - MU/unit
+  salvage_fraction_value:
+    description: Fraction of the original investment value that is recovered as salvage at the end of
+      the planning horizon, expressed as a fraction between 0 and 1. Used for partial lifetime treatment
+      when the technology lifetime extends beyond the modeled period.
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  net_electrical_efficiency:
+    description: Net electrical efficiency is the ratio of the net electrical energy output of the CHP
+      plant to the total fuel energy input under defined operating conditions. It quantifies the plant’s
+      effectiveness in converting input fuel energy into electricity.
+    label: Net Electrical Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: float
+      default: 0.35
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  net_thermal_efficiency:
+    description: Net thermal efficiency is the ratio of the useful thermal energy output of the CHP plant
+      to the total fuel energy input. It represents the portion of input fuel energy recovered as usable
+      heat.
+    label: Net Thermal Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      default: 0.45
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  energy_conversion_efficiency:
+    description: Ratio of useful output energy to input energy, expressed as a fraction (0–1). Determines
+      efficiency of energy conversion processes.
+    label: Energy Conversion Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  generator_technology_type:
+    description: Generation technology category when no GeneratorType library entity is referenced.
+    label: Generator Technology Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+  hydro_machine_kind:
+    description: 'Hydro machine class for dispatch: turbine = generation-only; pump = pump-only (consumes
+      electricity to move water); reversible = pump-turbine that can operate in both modes. Distinct from
+      turbine_type (Francis/Kaplan/…) and GeneratorType.
+
+      '
+    label: Hydro Machine Kind
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - turbine
+        - pump
+        - reversible
+  nominal_power_capacity:
+    description: Maximum instantaneous power the asset, technology template, or conversion port can deliver
+      or absorb, in MW. Defines operational limits for dispatch.
+    label: Nominal Power Capacity
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  charging_efficiency:
+    description: The fraction of input energy that is successfully stored during the charging process,
+      expressed as a value between 0 and 1. Accounts for losses in power electronics, conversion stages,
+      and internal storage mechanisms.
+    label: Charging Energy Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  turbine_efficiency:
+    description: The fraction of hydraulic energy converted into useful electrical output by the turbine
+      or turbine-generator set, expressed as a value between 0 and 1. Applies to HydroGenerationUnit and
+      avoids storage-discharge semantics.
+    label: Turbine Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  discharging_efficiency:
+    description: The fraction of stored energy that can be delivered as useful output during the discharging
+      process, expressed as a value between 0 and 1. Represents conversion losses, internal resistance,
+      and inverter losses.
+    label: Discharging Energy Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  minimum_generation:
+    description: 'The minimum active power output that the generation entity can continuously produce
+      while remaining in stable operation. This value represents the lower operational dispatch limit
+      of the generator and is typically expressed in MW.
+
+      '
+    label: Minimum Generation
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  maximum_generation:
+    description: 'The maximum active power output that the generation entity can produce under normal
+      operating conditions. This value represents the upper operational dispatch limit of the generator
+      and is typically expressed in MW.
+
+      '
+    label: Maximum Generation
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  hub_height:
+    description: 'Height of the wind turbine hub above ground level. Determines the wind speed at rotor
+      height via the wind shear profile, and therefore directly affects annual energy yield. Instance-specific:
+      two turbines of the same type may have different hub heights depending on site conditions. '
+    label: Hub Height
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - m
+  rotor_diameter:
+    description: 'Diameter of the wind turbine rotor. Together with hub_height, determines the swept area
+      and the rated power curve. Instance-specific. '
+    label: Rotor Diameter
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - m
+  installation_type:
+    description: 'Installation category of the wind turbine. Determines foundation type, accessibility,
+      and O&M cost profile. Allowed values: onshore, offshore, floating_offshore. '
+    label: Installation Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - onshore
+        - offshore
+        - floating_offshore
+  number_of_turbines:
+    description: 'Number of individual wind turbines within this GenerationUnit (wind farm). Used to derive
+      per-turbine statistics and wake-loss modelling. '
+    label: Number of Turbines
+    provenance_ref: Define the provenance here.
+    value:
+      type: integer
+      constraints:
+        minimum: 1
+  tilt_angle:
+    description: 'Tilt angle of the solar panels relative to the horizontal plane. 0° = horizontal, 90°
+      = vertical. Optimal value depends on latitude and tracking system. Instance-specific. '
+    label: Tilt Angle
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 90.0
+    unit:
+      constraints:
+        enum:
+        - deg
+  azimuth_angle:
+    description: 'Azimuth orientation of the solar panels. Measured clockwise from north: 0° = north,
+      90° = east, 180° = south, 270° = west. 180° (south-facing) is optimal in the northern hemisphere. '
+    label: Azimuth Angle
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 360.0
+    unit:
+      constraints:
+        enum:
+        - deg
+  tracking_type:
+    description: 'Tracking system of the solar installation. Fixed systems have no moving parts. Single-axis
+      trackers follow the sun east-west. Dual-axis trackers follow both elevation and azimuth. Allowed
+      values: fixed, single_axis, dual_axis. '
+    label: Tracking Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - fixed
+        - single_axis
+        - dual_axis
+  panel_technology:
+    description: 'Photovoltaic cell technology or solar thermal technology type. Determines efficiency,
+      degradation rate, and temperature coefficient. Allowed values: monocrystalline, polycrystalline,
+      thin_film, csp. '
+    label: Panel Technology
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - monocrystalline
+        - polycrystalline
+        - thin_film
+        - csp
+  hydraulic_head:
+    description: 'Net hydraulic head available at the turbine under design conditions. Determines the
+      theoretical power output together with flow rate and turbine efficiency. Instance-specific: depends
+      on reservoir level and tailwater. '
+    label: Hydraulic Head
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - m
+  turbine_type:
+    description: Hydro turbine family (Francis, Kaplan, Pelton, …) for a HydroGenerationUnit.
+    label: Turbine Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - pelton
+        - francis
+        - kaplan
+        - bulb
+        - reversible_francis
+        - ternary
+        - quaternary
+  commissioning_year:
+    description: 'Year in which the generation unit was first commissioned and became commercially operational.
+      Instance-specific: determines actual age, real efficiency relative to nameplate, and remaining technical
+      lifetime. Year alone is sufficient for planning and ageing models. '
+    label: Commissioning Year
+    provenance_ref: Define the provenance here.
+    value:
+      type: integer
+      constraints:
+        minimum: 1900
+        maximum: 2100
+  cooling_type:
+    description: Cooling system type for a thermal plant (once-through, tower, air, …).
+    label: Cooling Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - once_through
+        - cooling_tower
+        - air_cooled
+  reactor_type:
+    description: 'Nuclear reactor technology type. Determines neutron spectrum, coolant, moderator, fuel
+      cycle, and safety characteristics. PWR: pressurised water reactor (most common globally). BWR: boiling
+      water reactor. PHWR: pressurised heavy-water reactor (e.g. CANDU). SMR: small modular reactor (<300
+      MWe). Allowed values: PWR, BWR, PHWR, SMR. '
+    label: Reactor Type
+    provenance_ref: Define the provenance here.
+    value:
+      type: string
+      constraints:
+        enum:
+        - PWR
+        - BWR
+        - PHWR
+        - SMR
+  reactor_thermal_power:
+    description: 'Gross thermal power of the reactor core under rated conditions, in MW_th. Electrical
+      output is this value times the net electrical efficiency. Useful heat from a conversion unit is
+      nominal_thermal_power_capacity, not this field. '
+    label: Reactor Thermal Power
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW_th
+  nominal_electrical_power_capacity:
+    description: Maximum electrical power (output or input rating) of a compact ConversionUnit such as
+      CHPUnit, FuelCellUnit, HeatPumpUnit, or ElectrolyserUnit.
+    label: Nominal Electrical Power Capacity
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  nominal_thermal_power_capacity:
+    description: Maximum useful heat the conversion unit or its technology template can deliver, in MW.
+      Applies to CHPUnit, HeatPumpUnit, BoilerUnit, and FuelCellUnit.
+    label: Nominal Thermal Power Capacity
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  electrical_efficiency:
+    description: Ratio of electrical energy output to fuel (or other input) energy for a compact
+      ConversionUnit such as CHPUnit or FuelCellUnit.
+    label: Electrical Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  thermal_efficiency:
+    description: Ratio of useful heat output to fuel (or other input) energy for a compact ConversionUnit
+      such as CHPUnit, BoilerUnit, or FuelCellUnit.
+    label: Thermal Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  coefficient_of_performance:
+    description: Ratio of useful heat output to electrical energy input for a heat pump (COP). Values
+      greater than 1 are typical; not constrained to the unit interval.
+    label: Coefficient of Performance
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+  total_efficiency:
+    description: Combined useful electrical and thermal output divided by fuel energy input.
+    label: Total Efficiency
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  power_to_heat_ratio:
+    description: Ratio of electrical output to useful heat output of a compact ConversionUnit such as
+      CHPUnit or FuelCellUnit.
+    label: Power-to-Heat Ratio
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  minimum_load:
+    description: Minimum stable operating load as a fraction of nominal electrical power.
+    label: Minimum Load
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+        maximum: 1.0
+    unit:
+      constraints:
+        enum:
+        - fraction
+  maximum_power_flow_from_to:
+    description: 'Maximum power flow in the direction from node 1 to node 2, used for asymmetric capacity
+      limits (e.g., NTC interconnectors).
+
+      '
+    label: Maximum Power Flow (1→2)
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW
+  maximum_power_flow_to_from:
+    description: 'Maximum power flow in the direction from node 2 to node 1, used for asymmetric capacity
+      limits (e.g., NTC interconnectors).
+
+      '
+    label: Maximum Power Flow (2→1)
+    provenance_ref: Define the provenance here.
+    value:
+      type: decimal
+      constraints:
+        minimum: 0.0
+    unit:
+      constraints:
+        enum:
+        - MW

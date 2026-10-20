@@ -1,0 +1,17 @@
+{
+  "living_lab": "Montvert",
+  "year": 2025,
+  "units": {"consumption": "kWh/year", "pv": "kWp", "battery": "kWh"},
+  "households": [
+    {"meter": "ll01", "consumption": 4800, "pv": 9.6, "battery": 10.0, "ev": true},
+    {"meter": "ll02", "consumption": 2600, "pv": 0, "battery": 0, "ev": false},
+    {"meter": "ll03", "consumption": 1900, "pv": 0, "battery": 0, "ev": false},
+    {"meter": "ll04", "consumption": 5200, "pv": 7.5, "battery": 0, "ev": true},
+    {"meter": "ll05", "consumption": 3100, "pv": 0, "battery": 0, "ev": false},
+    {"meter": "ll06", "consumption": 6100, "pv": 10.2, "battery": 13.5, "ev": true},
+    {"meter": "ll07", "consumption": 3900, "pv": 0, "battery": 0, "ev": false},
+    {"meter": "ll08", "consumption": 3300, "pv": 6.0, "battery": 0, "ev": false},
+    {"meter": "ll09", "consumption": 5600, "pv": 0, "battery": 0, "ev": true},
+    {"meter": "ll11", "consumption": 4400, "pv": 8.0, "battery": 0, "ev": false}
+  ]
+}
