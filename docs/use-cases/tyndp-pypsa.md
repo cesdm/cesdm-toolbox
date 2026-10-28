@@ -75,3 +75,30 @@ Aggregation is a model reduction: congestion inside a merged region disappears a
 
 !!! note
     The import scripts translate data into CESDM. They do not reproduce the TYNDP process or a PyPSA optimisation.
+
+## Source data and how to cite
+
+Cite the original sources as well as [CESDM](../project/contribute.md#cite) when you publish from these files.
+
+**TYNDP 2024.** The complete package is on the [ENTSOs TYNDP 2024 Scenarios download page](https://2024.entsos-tyndp-scenarios.eu/download/). Attribute it as **TYNDP 2024 Scenarios** (ENTSO-E and ENTSOG). The citable Zenodo record is [10.5281/zenodo.16759671](https://doi.org/10.5281/zenodo.16759671) (concept DOI; this version is [10.5281/zenodo.16759672](https://doi.org/10.5281/zenodo.16759672)). That Zenodo deposit currently mirrors the line and node tables; the full input set remains on the ENTSOs page.
+
+**PyPSA.** Cite the software paper, and a Zenodo DOI if you need a specific release. The project's own wording is on [Citing PyPSA](https://docs.pypsa.org/latest/home/citing/).
+
+Brown, T., Hörsch, J. and Schlachtberger, D. (2018). PyPSA: Python for Power System Analysis. *Journal of Open Research Software*, 6(1), 4. [doi:10.5334/jors.188](https://doi.org/10.5334/jors.188)
+
+Releases are archived on Zenodo under the concept DOI [10.5281/zenodo.3946412](https://doi.org/10.5281/zenodo.3946412). Use a version DOI from that record when the exact PyPSA release matters.
+
+```bibtex
+@article{PyPSA,
+  author  = {T. Brown and J. H\"orsch and D. Schlachtberger},
+  title   = {{PyPSA: Python for Power System Analysis}},
+  journal = {Journal of Open Research Software},
+  volume  = {6},
+  issue   = {1},
+  number  = {4},
+  year    = {2018},
+  eprint  = {1707.09913},
+  url     = {https://doi.org/10.5334/jors.188},
+  doi     = {10.5334/jors.188}
+}
+```

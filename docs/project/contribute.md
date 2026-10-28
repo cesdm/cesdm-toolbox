@@ -58,3 +58,5 @@ When you publish results or share a model, state:
 | schema packages and their versions (`SCHEMA_MANIFEST.yaml`) | which vocabulary the model uses — a receiver must load the same packages |
 | analysis profiles you validated against | what "complete" meant for your study |
 | the files exchanged — YAML, Frictionless, HDF5 profiles | what exactly was used |
+
+Results that start from the TYNDP 2024 scenarios or a PyPSA network also need those sources. Zenodo DOIs and the PyPSA paper are on [Use TYNDP and PyPSA data](../use-cases/tyndp-pypsa.md#source-data-and-how-to-cite).
